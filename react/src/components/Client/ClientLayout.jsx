@@ -1,14 +1,17 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import ClientHeader from './ClientHeader/ClientHeader'
+import ClientFooter from './ClientFooter/ClientFooter'
 
 function ClientLayout() {
     return (
-        <div>
-            <h1>Client Layout</h1>
+        <>
+            <ClientHeader/>
 
             <Outlet/>
             
-        </div>
+            <ClientFooter/>
+        </>
     )
 }
 
