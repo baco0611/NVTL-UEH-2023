@@ -1,5 +1,6 @@
 $default-color: #6fced4;
 $text-color: #3288f3;
+$invalid-color: #aa001d;
 
 .client-log-sign {
     padding-top: 110px;
@@ -54,12 +55,12 @@ $text-color: #3288f3;
             font-style: italic;
         }
 
-        &:focus {
+        &.filled, &:focus {
             border: 3px solid $text-color;
-        }
 
-        &.filled {
-            border: 3px solid $text-color;
+            ~ i {
+                color: $text-color;
+            }
         }
     }
 }
@@ -70,6 +71,13 @@ $text-color: #3288f3;
     button {
         width: 100%;
         font-size: 18px;
+        opacity: 0.6;
+        pointer-events: none;
+
+        &.active {
+            opacity: 1;
+            pointer-events: all;
+        }
     }
 
     p {

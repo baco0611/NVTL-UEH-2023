@@ -9,16 +9,16 @@ function Sign() {
 
     const [ signInValue, setSignInValue ] = useState({
         studentCode: '',
-        password: ''
+        passWord: ''
     })
 
     const [ signUpValue, setSignUpValue ] = useState({
         fullName: '',
-        departerment: '',
+        department: '',
         phone: '',
         email: '',
         studentCode: '',
-        password: '',
+        passWord: '',
         confirmPassword: '',
         permission: false
     })
