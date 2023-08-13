@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pride_take', function (Blueprint $table) {
             $table->id('idPrideTake');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
             $table->foreignId('idUser');
             $table->foreign('idUser')->references('idUser')->on('login');
         });

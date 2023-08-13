@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('thumnail', 50);
             $table->string('category', 500);
             $table->string('linkPost', 500);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('casting_mc', function (Blueprint $table) {
             $table->id('idCasting');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
             $table->string('fullName',500);
             $table->string('phone',50);
             $table->string('schoolName',500);

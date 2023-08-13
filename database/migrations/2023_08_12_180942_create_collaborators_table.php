@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('collaborators', function (Blueprint $table) {
             $table->id('idCollaborator');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
             $table->string('fullName',500);
             $table->string('grade',50);
             $table->string('studentCode',500);

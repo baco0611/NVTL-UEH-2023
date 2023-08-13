@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('studentCode', 500);
             $table->string('passWord', 500);
             $table->boolean('permission')->default(false);
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

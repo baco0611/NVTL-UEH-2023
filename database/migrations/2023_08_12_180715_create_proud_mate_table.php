@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('proof2', 500);
             $table->string('proof3', 500);
             $table->boolean('status')->default(false);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
