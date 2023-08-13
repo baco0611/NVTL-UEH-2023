@@ -2,7 +2,7 @@ import React from 'react'
 
 function Recruitment() {
   return (
-    <div>Recruitment</div>
+    <section>Recruitment</section>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Casting() {
   return (
-    <div>Casting</div>
+    <section>Casting</section>
   )
 }
 

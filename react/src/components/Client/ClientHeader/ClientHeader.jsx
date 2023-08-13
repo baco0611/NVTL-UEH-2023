@@ -3,23 +3,34 @@ import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import uehlogo from './img/header_uehlogo.png'
 import hoisvlogo from './img/header_hoisvlogo.png'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { UserContext } from '../../../context/ContextProvider'
 
 function ClientHeader() {
-    const [ path, setPath ] = useState(window.location.pathname)
+    const { path, setPath } = useContext(UserContext)
     const navigate = useNavigate()
     const [ isNav, setIsNav ] = useState(false)
     const [ isWeekly, setIsWeekly ] = useState(false)
 
-    const handleChangeLink = (e) => {
+    const handleChangeLink = (e, value) => {
         e.preventDefault()
         const href = e.target.href
         const newPath = href.split('/')[3]
 
         if(newPath != path) {
             setPath('/' + newPath)
-            navigate(newPath)
+            if(value)
+                navigate(newPath + '/' + href.split('/')[4])
+            else
+                navigate(newPath)
         }
+
+        setIsWeekly(false)
+    }
+
+    const _setIsWeekly = (e, value) => {
+        handleChangeLink(e, 'weekly')
+        setIsWeekly(value)
     }
 
     const handleCloseMenu = e => {
@@ -33,7 +44,10 @@ function ClientHeader() {
             return false
         }
 
-        if(!getParent(e.target, 'nav-mobile')) setIsNav(false)
+        if(!getParent(e.target, 'nav-mobile')) {
+            setIsNav(false)
+            setIsWeekly(false)
+        }
     }
 
     return (
@@ -61,11 +75,11 @@ function ClientHeader() {
                         </div>
                         <div 
                             className={clsx('client-header-item', {
-                                'active': path == '/pridetide'
+                                'active': path == '/primewave'
                             })}
                             onClick={() => setIsNav(false)}
                         >
-                            <Link onClick={handleChangeLink} to={'/pridetide'}>Pride tide</Link>
+                            <Link onClick={handleChangeLink} to={'/primewave'}>Prime wave</Link>
                         </div>
                         <div 
                             className={clsx('client-header-item weekly', {
@@ -73,8 +87,8 @@ function ClientHeader() {
                             })}
                         >
                             <Link 
-                                onClick={() => {
-                                    handleChangeLink
+                                onClick={(e) => {
+                                    handleChangeLink(e)
                                     setIsNav(false)
                                 }} 
                                 to={'/weekly'}
@@ -84,26 +98,34 @@ function ClientHeader() {
                         {
                             isWeekly &&
                             <ul className='weekly-item'>
-                                <li onClick={() => { 
-                                    setIsNav(false)
-                                    setIsWeekly(false)}
-                                }
-                                ><Link to={'/weekly/day1'}>Ngày 1</Link></li>
-                                <li onClick={() => { 
-                                    setIsNav(false)
-                                    setIsWeekly(false)}
-                                }
-                                ><Link to={'/weekly/day2'}>Ngày 2</Link></li>
-                                <li onClick={() => { 
-                                    setIsNav(false)
-                                    setIsWeekly(false)}
-                                }
-                                ><Link to={'/weekly/day3'}>Ngày 3</Link></li>
-                                <li onClick={() => { 
-                                    setIsNav(false)
-                                    setIsWeekly(false)}
-                                }
-                                ><Link to={'/weekly/day4'}>Ngày 4</Link></li>
+                                <li><Link 
+                                    to={'/weekly/day1'}
+                                    onClick={(e) => { 
+                                        setIsNav(false)
+                                        _setIsWeekly(e, false)}
+                                    }
+                                >Ngày 1</Link></li>
+                                <li><Link 
+                                    to={'/weekly/day2'}
+                                    onClick={(e) => { 
+                                        setIsNav(false)
+                                        _setIsWeekly(e, false)}
+                                    }
+                                >Ngày 2</Link></li>
+                                <li><Link 
+                                    to={'/weekly/day3'}
+                                    onClick={(e) => { 
+                                        setIsNav(false)
+                                        _setIsWeekly(e, false)}
+                                    }
+                                >Ngày 3</Link></li>
+                                <li><Link 
+                                    to={'/weekly/day4'}
+                                    onClick={(e) => { 
+                                        setIsNav(false)
+                                        _setIsWeekly(e, false)}
+                                    }
+                                >Ngày 4</Link></li>
                             </ul>
                         }
                         <div 
@@ -148,10 +170,10 @@ function ClientHeader() {
                 </div>
                 <div 
                     className={clsx('client-header-item', {
-                        'active': path == '/pridetide'
+                        'active': path == '/primewave'
                     })}
                 >
-                    <Link onClick={handleChangeLink} to={'/pridetide'}>Pride tide</Link>
+                    <Link onClick={handleChangeLink} to={'/primewave'}>Prime wave</Link>
                 </div>
                 <div 
                     className={clsx('client-header-item weekly', {
@@ -163,10 +185,10 @@ function ClientHeader() {
                     {
                         isWeekly &&
                         <ul className='weekly-item'>
-                            <li onClick={() => setIsWeekly(false)}><Link to={'/weekly/day1'}>Ngày 1</Link></li>
-                            <li onClick={() => setIsWeekly(false)}><Link to={'/weekly/day2'}>Ngày 2</Link></li>
-                            <li onClick={() => setIsWeekly(false)}><Link to={'/weekly/day3'}>Ngày 3</Link></li>
-                            <li onClick={() => setIsWeekly(false)}><Link to={'/weekly/day4'}>Ngày 4</Link></li>
+                            <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day1'}>Ngày 1</Link></li>
+                            <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day2'}>Ngày 2</Link></li>
+                            <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day3'}>Ngày 3</Link></li>
+                            <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day4'}>Ngày 4</Link></li>
                         </ul>
                     }
                 </div>
@@ -194,7 +216,7 @@ function ClientHeader() {
             </nav>
 
             <div className='client-header-login'>
-                <Link>Đăng nhập</Link>
+                <Link onClick={handleChangeLink} to={'/login'}>Đăng nhập</Link>
             </div>
         </header>
     )

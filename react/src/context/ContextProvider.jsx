@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 
 const UserContext = createContext({
+    path: window.location.pathname,
+    setPath: () => {},
     user: null,
     token: null,
     setUser: () => {},
@@ -32,6 +34,7 @@ function StateContext({ children }) {
     const apiURL = "http://localhost:8000/api"
     const fakeApi = "http://localhost:3001"
 
+    const [ path, setPath ] = useState(window.location.pathname)
     return (
         <UserContext.Provider value={{
                 user,
@@ -40,6 +43,8 @@ function StateContext({ children }) {
                 setToken,
                 apiURL,
                 fakeApi,
+                path,
+                setPath
             }
         }>
             {children}

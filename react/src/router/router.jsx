@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 import ClientLayout from "../components/Client/ClientLayout"
 import AdminLayout from "../components/Admin/AdminLayout"
 import Home from '../views/Client/Home/Home'
-import PrideTide from '../views/Client/PrideTide/PrideTide'
+import PrimeWave from '../views/Client/PrimeWave/PrimeWave'
 import Weekly from '../views/Client/Weekly/Weekly/Weekly'
 import Day1 from '../views/Client/Weekly/Day1/Day1'
 import Day2 from '../views/Client/Weekly/Day2/Day2'
@@ -11,6 +11,7 @@ import Day4 from '../views/Client/Weekly/Day4/Day4'
 import NightFest from '../views/Client/NightFest/NightFest'
 import Casting from '../views/Client/Casting/Casting'
 import Recruitment from '../views/Client/Recruitment/Recruitment'
+import LogLayout from "../views/Client/LogLayout/LogLayout"
 
 const router = createBrowserRouter([
     {
@@ -22,8 +23,8 @@ const router = createBrowserRouter([
                 element: <Home/>
             },
             {
-                path: '/pridetide',
-                element: <PrideTide/>
+                path: '/primewave',
+                element: <PrimeWave/>
             }, 
             {
                 path: '/weekly',
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: '/recruitment',
                 element: <Recruitment/>
+            }, 
+            {
+                path: '/login',
+                element: <LogLayout/>
             }
         ]
     },

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Day1() {
   return (
-    <div>Day1</div>
+    <section>Day1</section>
   )
 }
 
