@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+        Schema::create('file_collaborators', function (Blueprint $table) {
+            $table->id('idFile');
+            $table->string('type',50);
+            $table->string('fileName',500);
+            $table->foreignId('idCollaborator');
+            $table->foreign('idCollaborator')->references('idCollaborator')->on('collaborators');
         });
     }
 
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('file_collaborators');
     }
 };
