@@ -1,3 +1,48 @@
 #client-log {
+    padding-bottom: 0px !important;
+}
+
+.client-log {
+    display: flex;
+
+    img {
+        width: min(48%);
+        height: auto;
+        aspect-ratio: 700 / 830;
+        box-shadow: 20px 0 40px rgba(0, 0, 0, 0.2);
+        z-index: 3;
+        object-fit: cover;
+    }
+
+    &-side {
+        z-index: 2;
+        width: calc(100% - min(48%));
+        background: linear-gradient(to right, #d7e2e6 0%, #b4eae8 40%, #b4eae8 100%);
+    }
+
+    &-container {
+        width: min(600px, 80%);
+        min-height: 100px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    img {
+        display: none;
+    }
+    .client-log {
+        &-side {
+            z-index: 2;
+            width: 100%;
+            background: linear-gradient(to right, #d7e2e6 0%, #b4eae8 40%, #b4eae8 100%);
+        }
     
+        &-container {
+            width: min(550px, 80%);
+            min-height: 100px;
+            margin: 0 auto;
+        }
+    }
+
 }

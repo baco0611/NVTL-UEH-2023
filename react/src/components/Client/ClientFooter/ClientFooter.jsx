@@ -49,23 +49,26 @@ function ClientFooter() {
                     </div>
                 </div>
             </div>
-            <div className='client-footer-sns'>
-                <Link to={'https://www.tiktok.com/@bptueh'} target='blank'>
-                    <i className="fa-brands fa-tiktok"></i>
-                </Link>
-                <Link to={'https://www.facebook.com/BPTUEH/'} target='blank'>
-                    <i className="fa-brands fa-facebook-f"></i>
-                </Link>
-                <Link to={'https://www.instagram.com/banphongtrao.ueh/'} target='blank'>
-                    <i className="fa-brands fa-instagram"></i>
-                </Link>
-                <Link to={'https://youth.ueh.edu.vn/'} target='blank'>
-                    <i className="fa-solid fa-globe"></i>
-                </Link>
-                <Link to={'https://www.youtube.com/channel/UCukkP4Wu3VH5kqK1inZNOAg'} target='blank'>
-                    <i className="fa-brands fa-youtube"></i>
-                </Link>
-            </div>
+            {
+                path != '/login' &&
+                <div className='client-footer-sns'>
+                    <Link to={'https://www.tiktok.com/@bptueh'} target='blank'>
+                        <i className="fa-brands fa-tiktok"></i>
+                    </Link>
+                    <Link to={'https://www.facebook.com/BPTUEH/'} target='blank'>
+                        <i className="fa-brands fa-facebook-f"></i>
+                    </Link>
+                    <Link to={'https://www.instagram.com/banphongtrao.ueh/'} target='blank'>
+                        <i className="fa-brands fa-instagram"></i>
+                    </Link>
+                    <Link to={'https://youth.ueh.edu.vn/'} target='blank'>
+                        <i className="fa-solid fa-globe"></i>
+                    </Link>
+                    <Link to={'https://www.youtube.com/channel/UCukkP4Wu3VH5kqK1inZNOAg'} target='blank'>
+                        <i className="fa-brands fa-youtube"></i>
+                    </Link>
+                </div>
+            }
             <p id='copyright'>Copyright &copy; 2023 by Huỳnh Văn Nguyên Bảo - Nguyễn Thị Vân Anh</p>
         </footer>
     )

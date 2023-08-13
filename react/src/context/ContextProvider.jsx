@@ -1,7 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 const UserContext = createContext({
-    path: window.location.pathname,
+    path: '/' +  window.location.pathname.split('/')[1],
     setPath: () => {},
     user: null,
     token: null,
@@ -34,7 +34,7 @@ function StateContext({ children }) {
     const apiURL = "http://localhost:8000/api"
     const fakeApi = "http://localhost:3001"
 
-    const [ path, setPath ] = useState(window.location.pathname)
+    const [ path, setPath ] = useState('/' + window.location.pathname.split('/')[1])
     return (
         <UserContext.Provider value={{
                 user,

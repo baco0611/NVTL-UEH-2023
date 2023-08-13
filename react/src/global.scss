@@ -21,3 +21,34 @@ body{
 section {
     padding-bottom: 75px;
 }
+
+.primary-button {
+    background-color: #91d0ed;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    
+    &:hover {
+        background-color: #8cd9dd;
+    }
+}
+
+.secondary-button {
+    background: linear-gradient(to right, #74e3e9, #65a5f0, #3fc3ff);
+    border: none;
+    color: white;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 
+        inset 2px 2px 2px 0 rgba(255,255,255,.5), 7px 7px 20px 0 rgba(0,0,0,.1); 
+    
+    &:hover {
+        background: linear-gradient(to right, #76f3da, #76a5e0, #34d4fc);
+    }
+}

@@ -12,6 +12,8 @@ import NightFest from '../views/Client/NightFest/NightFest'
 import Casting from '../views/Client/Casting/Casting'
 import Recruitment from '../views/Client/Recruitment/Recruitment'
 import LogLayout from "../views/Client/LogLayout/LogLayout"
+import Sign from "../views/Client/LogLayout/Sign/Sign"
+import ForgotPassword from "../views/Client/LogLayout/ForgotPassword/ForgotPassword"
 
 const router = createBrowserRouter([
     {
@@ -60,7 +62,17 @@ const router = createBrowserRouter([
             }, 
             {
                 path: '/login',
-                element: <LogLayout/>
+                element: <LogLayout/>,
+                children: [
+                    {
+                        path: '/login',
+                        element: <Sign/>
+                    },
+                    {
+                        path: '/login/forgot',
+                        element: <ForgotPassword/>
+                    }
+                ]
             }
         ]
     },
