@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::create('file_collaborators', function (Blueprint $table) {
+            $table->id('idFile');
+            $table->string('type',50);
+            $table->string('fileName',500);
+            $table->foreignId('idCollaborator');
+            $table->foreign('idCollaborator')->references('idCollaborator')->on('collaborators');
         });
     }
 
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('file_collaborators');
     }
 };
