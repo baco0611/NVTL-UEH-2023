@@ -21,8 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+#Admin
 Route::get('listStatusPage', [StatusPageController::class, 'statusPage'])->name('statusPage_show');
 Route::get('listAccount', [LoginController::class, 'userAccount'])->name('userAccount_show');
 Route::get('listPrideTake', [PrideTakeController::class, 'getPrideTake'])->name('prideTake_show');
 Route::get('listProudMate', [ProudMateController::class, 'getProudMate'])->name('proudMate_show');
+
+#Login
+Route::post('registerAccount', [LoginController::class,'registerAccount'])->name('register');
+Route::post('loginAccount', [LoginController::class,'checkAccount'])->name('login');
