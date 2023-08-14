@@ -35,7 +35,7 @@ class LoginController extends Controller
      */
     public function registerAccount(Request $request)
     {
-        $request['passWord']= md5($request['passWord']);
+        $request['password']= md5($request['password']);
         $userSevice = new LoginService();
         $item =$userSevice->checkAccount($request['studentCode']);
         if (Empty(json_decode($item))) {
@@ -50,7 +50,7 @@ class LoginController extends Controller
     }
     public function checkAccount(Request $request)
     {
-        $pass= md5($request['passWord']);
+        $pass= md5($request['password']);
         $studentCode=$request['studentCode'];
         $userSevice = new LoginService();
         $user= $userSevice->check($pass, $studentCode);

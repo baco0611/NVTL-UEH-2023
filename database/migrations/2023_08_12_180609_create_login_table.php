@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone', 50);
             $table->string('email', 500);
             $table->string('studentCode', 500);
-            $table->string('passWord', 500);
+            $table->string('password', 500);
             $table->boolean('permission')->default(false);
             $table->timestamp('created_at')->useCurrent();
         });
