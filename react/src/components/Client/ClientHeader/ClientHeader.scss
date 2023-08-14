@@ -55,6 +55,7 @@
         border-bottom: 5px solid transparent;
         border-top: 5px solid transparent;
         transition: all ease 0.15s;
+        position: relative;
 
         a {
             display: flex;
@@ -94,8 +95,9 @@
         border-radius: 10px 0 0 10px;
         box-shadow: -10px 0px #91d0ed;
         transition: all ease 0.15s;
+        position: relative;
         
-        a {
+        a, p {
             display: block;
             align-items: center;
             color: $active-color;
@@ -113,9 +115,10 @@
     }
 }
 
-.weekly-item {
+.list-item {
     position: absolute;
-    top: 100%;
+    top: 105%;
+    right: 0;
     background-color: $active-color;
     width: 155px;
     border-radius: 15px;
@@ -141,6 +144,17 @@
             border-radius: 15px;
         }
     }
+
+    &.account { 
+        width: 250px;
+        a, p {
+            color: white !important;
+            display: block;
+            width: 100%;
+            line-height: 40px;
+            text-align: center;
+        }
+    }
 }
 
 .client-header.recruitment {
@@ -158,7 +172,7 @@
     .client-header-login {
         box-shadow: -10px 0px $red-border;
 
-        a {
+        a, p {
             color: $red-active;
         }
     }
@@ -216,7 +230,7 @@
                     }
                 }
 
-                .weekly-item {
+                .list-item {
                     border-radius: 0;
                     position: relative;
                     top: 0;

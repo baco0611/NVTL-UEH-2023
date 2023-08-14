@@ -3,28 +3,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import uehlogo from './img/header_uehlogo.png'
 import hoisvlogo from './img/header_hoisvlogo.png'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
+import ClientUser from './ClientUser'
 
 function ClientHeader() {
-    const { path, setPath } = useContext(UserContext)
+    const { path, user, handleChangePath } = useContext(UserContext)
     const navigate = useNavigate()
     const [ isNav, setIsNav ] = useState(false)
     const [ isWeekly, setIsWeekly ] = useState(false)
 
     const handleChangeLink = (e, value) => {
-        e.preventDefault()
-        const href = e.target.href
-        const newPath = href.split('/')[3]
-
-        if(newPath != path) {
-            setPath('/' + newPath)
-            if(value)
-                navigate(newPath + '/' + href.split('/')[4])
-            else
-                navigate(newPath)
-        }
-
+        handleChangePath(e, value, navigate)
         setIsWeekly(false)
     }
 
@@ -49,6 +39,31 @@ function ClientHeader() {
             setIsWeekly(false)
         }
     }
+
+    useEffect(() => {
+        const handleClick = e => {
+            let element = e.target
+
+            while(element.parentElement) {
+                if(element.parentElement.matches('.weekly'))
+                {
+                    element = element.parentElement
+                    break
+                }
+                
+                element = element.parentElement
+            }
+            if(!element.className.split(' ').includes('weekly')) {
+                setIsWeekly(false)
+            }
+        }
+
+        window.addEventListener('click', handleClick)
+
+        return () => {
+            window.removeEventListener('click', handleClick)
+        }
+    })
 
     return (
         <header 
@@ -97,7 +112,7 @@ function ClientHeader() {
                         </div>
                         {
                             isWeekly &&
-                            <ul className='weekly-item'>
+                            <ul className='list-item'>
                                 <li><Link 
                                     to={'/weekly/day1'}
                                     onClick={(e) => { 
@@ -184,7 +199,7 @@ function ClientHeader() {
                     <i className="fa-solid fa-caret-down" onClick={() => setIsWeekly(!isWeekly)}></i>
                     {
                         isWeekly &&
-                        <ul className='weekly-item'>
+                        <ul className='list-item'>
                             <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day1'}>Ngày 1</Link></li>
                             <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day2'}>Ngày 2</Link></li>
                             <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day3'}>Ngày 3</Link></li>
@@ -214,10 +229,16 @@ function ClientHeader() {
                     <Link onClick={handleChangeLink} to={'/recruitment'}>Tuyển CTV</Link>
                 </div>
             </nav>
-
-            <div className='client-header-login'>
-                <Link onClick={handleChangeLink} to={'/login'}>Đăng nhập</Link>
-            </div>
+            
+            {
+                !user 
+                &&
+                    <div className='client-header-login'>
+                        <Link onClick={handleChangeLink} to={'/login'}>Đăng nhập</Link>
+                    </div>
+                ||
+                    <ClientUser/>
+            }
         </header>
     )
 }

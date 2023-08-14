@@ -3,10 +3,12 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import './SignUp.scss'
 import Validator from '../../scripts/validForm'
 import { UserContext } from '../../../../../context/ContextProvider'
+import { handelSignUp } from '../../scripts/signUpdate'
+import { useNavigate } from 'react-router-dom'
 
 function SignUp({ state, setState }) {
-    const { listDepartment } = useContext(UserContext)
-    console.log(state)
+    const { listDepartment, setUser, handleChangeURL } = useContext(UserContext)
+    const navigate = useNavigate()
 
     const handleChangeValue = (e) => {
         const element = e.target
@@ -22,6 +24,8 @@ function SignUp({ state, setState }) {
     const [ isDepartment, setIsDepartment ] = useState(false)
     const [ isFocus, setIsFocus ] = useState(false)
     const [ isValid, setIsValid ] = useState(true)
+    const [ isSuccess, setIsSuccess ] = useState(false)
+    const [ userValue, setUserValue ] = useState(null)
 
     const [hidePassword, setHidePassword] = useState(true)
 
@@ -83,6 +87,14 @@ function SignUp({ state, setState }) {
             window.removeEventListener('click', handleClick)
         }
     })
+
+    useEffect(() => {
+        if(isSuccess) {
+            setUser(userValue)
+            setIsSuccess(false)
+            handleChangeURL('/', navigate)
+        }
+    }, [isSuccess])
 
     return (
         <>
@@ -231,6 +243,7 @@ function SignUp({ state, setState }) {
                             active: isSubmit && isValid && isFocus
                         }
                     )}
+                    onClick={async () => await handelSignUp({ state, setIsSuccess, setUserValue })}
                 >Đăng ký</button>
             </div>
         </>

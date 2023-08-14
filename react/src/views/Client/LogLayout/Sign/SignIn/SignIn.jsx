@@ -1,10 +1,13 @@
 import clsx from 'clsx'
 import './SignIn.scss'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Validator from '../../scripts/validForm'
+import { Link } from 'react-router-dom'
+import { handleSignIn } from '../../scripts/signUpdate'
+import { UserContext } from '../../../../../context/ContextProvider'
 
 function SignIn({ state, setState, setIsDangNhap }) {
-
+    const { setUser } = useContext(UserContext)
     const handleChangeValue = (e) => {
         const element = e.target
 
@@ -16,6 +19,7 @@ function SignIn({ state, setState, setIsDangNhap }) {
 
     const [hidePassword, setHidePassword] = useState(true)
     const [ isSubmit, setIsSubmit] = useState(true)
+    const [ isRemember, setIsRemember ] = useState(false) 
 
     useEffect(() => {
         Validator({
@@ -29,7 +33,6 @@ function SignIn({ state, setState, setIsDangNhap }) {
             setIsSubmit
         })
     }, [state])
-
 
     return (
         <>
@@ -69,6 +72,21 @@ function SignIn({ state, setState, setIsDangNhap }) {
                         }
                     </div>
                 </form>
+                <div className='client-sign-user'>
+                    <div className='client-sign-remember'>
+                        <input
+                            type='checkbox'
+                            className='checkbox-btn'
+                            checked={isRemember}
+                            onChange={() => setIsRemember(!isRemember)}
+                        />
+                        
+                        <span>Nhớ tài khoản</span>
+                    </div>
+                    <div className='client-sign-forgot'>
+                        <Link>Quên mật khẩu ?</Link>
+                    </div>
+                </div>
             </div>
             <div className='client-log-button'>
                 <button
@@ -78,6 +96,7 @@ function SignIn({ state, setState, setIsDangNhap }) {
                             active: isSubmit
                         }
                     )}
+                    onClick={async () => await handleSignIn({state, setUser, isRemember})}
                 >Đăng nhập</button>
                 <p>Chưa có tài khoản? <span onClick={() => setIsDangNhap(false)}>Đăng ký ngay</span></p>
             </div>

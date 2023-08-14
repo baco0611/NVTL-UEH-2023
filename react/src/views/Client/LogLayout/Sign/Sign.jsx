@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './Sign.scss'
 import clsx from 'clsx'
 import SignIn from './SignIn/SignIn'
 import SignUp from './SignUp/SignUp'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../../../context/ContextProvider'
 
 function Sign() {
     const [ isDangNhap, setIsDangNhap ] = useState(true)
+    const navigate = useNavigate()
+    const { user } = useContext(UserContext)
 
     const [ signInValue, setSignInValue ] = useState({
         studentCode: '',
@@ -22,6 +26,12 @@ function Sign() {
         confirmPassword: '',
         permission: false
     })
+
+    useEffect(() => {
+        if(user) {
+            navigate('/')
+        }
+    }, [])
 
     return (
         <div className='client-log-side client-log-sign'>
