@@ -3,13 +3,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
 import { useNavigate } from 'react-router-dom'
 import Validator from '../LogLayout/scripts/validForm'
+import { handleUpdatePassword } from './scripts/userInfomationUpdate'
 
 function UserPassword() {
-    const { setUser, handleChangeURL } = useContext(UserContext)
+    const { getUserId } = useContext(UserContext)
     const navigate = useNavigate()
     const [ state, setState ] = useState({
+        id: JSON.parse(localStorage.getItem('ACCESS_USER')).id || JSON.parse(localStorage.getItem('ACCESS_USER')).id,
         oldPassword: '',
-        password: '',
+        newPassword: '',
         confirmPassword: ''
     })
 
@@ -25,6 +27,7 @@ function UserPassword() {
     const [ hideOldPassword, setHideOldPassword ] = useState(true)
     const [ hideNewPassword, setHideNewPassword ] = useState(true)
     const [ hidePassword, setHidePassword ] = useState(true)
+    const [ isSubmit, setIsSubmit ] = useState(false)
 
     useEffect(() => {
         Validator({
@@ -38,7 +41,8 @@ function UserPassword() {
                 Validator.minLength('#client-new-password', 8),
                 Validator.isRequired('#client-new-confirmPassword', 'Hãy nhập lại mật khẩu mới'),
                 Validator.isConfirm('#client-new-confirmPassword', '#client-new-password', 'Hãy nhập lại mật khẩu mới'),
-            ]
+            ],
+            setIsSubmit
         })
     }, [state])
 
@@ -51,11 +55,11 @@ function UserPassword() {
                             id='client-old-password'
                             type={hideOldPassword ? "password" : "type"} 
                             value={state.oldPassword}
-                            name='passWord'
+                            name='oldPassword'
                             placeholder='Mật khẩu cũ'
                             onChange={handleChangeValue}
                             autoComplete='off'
-                            className={clsx({'filled': state.pldPassword})}
+                            className={clsx({'filled': state.oldPassword})}
                         />
                         <span className='client-sign-message'></span>
                         {
@@ -70,12 +74,12 @@ function UserPassword() {
                         <input 
                             id='client-new-password'
                             type={hidePassword ? "password" : "type"} 
-                            value={state.password}
-                            name='passWord'
+                            value={state.newPassword}
+                            name='newPassword'
                             placeholder='Mật khẩu mới'
                             onChange={handleChangeValue}
                             autoComplete='off'
-                            className={clsx({'filled': state.passWord})}
+                            className={clsx({'filled': state.newPassWord})}
                         />
                         <span className='client-sign-message'></span>
                         {
@@ -113,10 +117,10 @@ function UserPassword() {
                     className={clsx(
                         'secondary-button',
                         {
-                            active: true
+                            active: isSubmit
                         }
                     )}
-                    // onClick={async () => await handleSignUp({ state, setIsSuccess, setUserValue })}
+                    onClick={async () => await handleUpdatePassword({ state, getUserId })}
                 >Cập nhật</button>
             </div>
         </>

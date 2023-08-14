@@ -56,11 +56,11 @@ function SignIn({ state, setState, setIsDangNhap }) {
                             id='client-password'
                             type={hidePassword ? "password" : "type"} 
                             value={state.password}
-                            name='passWord'
+                            name='password'
                             placeholder='Mật khẩu'
                             onChange={handleChangeValue}
                             autoComplete='off'
-                            className={clsx({'filled': state.passWord})}
+                            className={clsx({'filled': state.password})}
                         />
                         <span className='client-sign-message'></span>
                         {

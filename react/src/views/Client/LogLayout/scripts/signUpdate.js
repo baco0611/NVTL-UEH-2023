@@ -1,7 +1,12 @@
 import axiosClient from '../../../../context/axiosClient'
 
 const handleSignIn = async ({ state, setUser, isRemember }) => {
-    await axiosClient.post('/loginAccount', state)
+    const payload = new FormData()
+
+    payload.append('studentCode', state.studentCode)
+    payload.append('password', state.password)
+
+    await axiosClient.post('/loginAccount', payload)
     .then((response) => {
         console.log(response)
         if(response.data.status == 200) {
@@ -12,7 +17,16 @@ const handleSignIn = async ({ state, setUser, isRemember }) => {
 }
 
 const handleSignUp = async ({ state, setIsSuccess, setUserValue }) => {
-    await axiosClient.post('/registerAccount', state)
+    const payload = new FormData()
+
+    payload.append('fullName', state.fullName)
+    payload.append('department', state.department)
+    payload.append('phone', state.phone)
+    payload.append('email', state.email)
+    payload.append('studentCode', state.studentCode)
+    payload.append('password', state.password)
+
+    await axiosClient.post('/registerAccount', payload)
     .then((response) => {
         console.log(response)
         if(response.data.status == 200) {

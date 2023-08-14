@@ -8,7 +8,8 @@ const UserContext = createContext({
     setUser: () => {},
     apiURL: null,
     fakeApi: null,
-    listDepartment: []
+    listDepartment: [],
+    getUserId: () => {}
 })
 
 function StateContext({ children }) {

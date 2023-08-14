@@ -28,6 +28,7 @@ function SignUp({ state, setState }) {
     const [ userValue, setUserValue ] = useState(null)
 
     const [hidePassword, setHidePassword] = useState(true)
+    const [hidePassword2, setHidePassword2] = useState(true)
 
     const setFocus = () => {
         setIsDepartment(!isDepartment)
@@ -198,11 +199,11 @@ function SignUp({ state, setState }) {
                             id='client-password'
                             type={hidePassword ? "password" : "type"} 
                             value={state.password}
-                            name='passWord'
+                            name='password'
                             placeholder='Mật khẩu'
                             onChange={handleChangeValue}
                             autoComplete='off'
-                            className={clsx({'filled': state.passWord})}
+                            className={clsx({'filled': state.password})}
                         />
                         <span className='client-sign-message'></span>
                         {
@@ -216,7 +217,7 @@ function SignUp({ state, setState }) {
                     <div className='client-sign-item'>
                         <input 
                             id='client-confirmPassword'
-                            type={hidePassword ? "password" : "type"} 
+                            type={hidePassword2 ? "password" : "type"} 
                             value={state.confirmPassword}
                             name='confirmPassword'
                             placeholder='Nhập lại mật khẩu'
@@ -226,11 +227,11 @@ function SignUp({ state, setState }) {
                         />
                         <span className='client-sign-message'></span>
                         {
-                            hidePassword == false
+                            hidePassword2 == false
                             &&
-                                <i className="ti-eye" style={{color: '#ccc'}} onClick={() => setHidePassword(!hidePassword)}/>
+                                <i className="ti-eye" style={{color: '#ccc'}} onClick={() => setHidePassword2(!hidePassword2)}/>
                             ||
-                                <i className="ti-eye" onClick={() => setHidePassword(!hidePassword)}/>
+                                <i className="ti-eye" onClick={() => setHidePassword2(!hidePassword2)}/>
                         }
                     </div>
                 </form>

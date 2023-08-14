@@ -3,9 +3,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
 import { useNavigate } from 'react-router-dom'
 import Validator from '../LogLayout/scripts/validForm'
+import { handleUpdateInformation } from './scripts/userInfomationUpdate'
 
 function UserInformation() {
-    const { listDepartment, setUser, handleChangeURL } = useContext(UserContext)
+    const { listDepartment, setUser, getUserId } = useContext(UserContext)
     const navigate = useNavigate()
     const [ state, setState ] = useState(JSON.parse(localStorage.getItem('ACCESS_USER') || sessionStorage.getItem('ACCESS_USER')))
 
@@ -149,7 +150,7 @@ function UserInformation() {
                             active: true
                         }
                     )}
-                    // onClick={async () => await handleSignUp({ state, setIsSuccess, setUserValue })}
+                    onClick={async () => await handleUpdateInformation({ state, setUser, getUserId })}
                 >Cập nhật</button>
             </div>
         </>
