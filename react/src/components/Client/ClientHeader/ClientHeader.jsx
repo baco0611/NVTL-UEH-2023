@@ -5,7 +5,7 @@ import uehlogo from './img/header_uehlogo.png'
 import hoisvlogo from './img/header_hoisvlogo.png'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
-import ClientUser from './ClientUser'
+import ClientInformation from './ClientInformation'
 
 function ClientHeader() {
     const { path, user, handleChangePath } = useContext(UserContext)
@@ -237,7 +237,7 @@ function ClientHeader() {
                         <Link onClick={handleChangeLink} to={'/login'}>Đăng nhập</Link>
                     </div>
                 ||
-                    <ClientUser/>
+                    <ClientInformation/>
             }
         </header>
     )

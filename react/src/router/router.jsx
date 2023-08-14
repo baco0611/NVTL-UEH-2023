@@ -14,6 +14,7 @@ import Recruitment from '../views/Client/Recruitment/Recruitment'
 import LogLayout from "../views/Client/LogLayout/LogLayout"
 import Sign from "../views/Client/LogLayout/Sign/Sign"
 import ForgotPassword from "../views/Client/LogLayout/ForgotPassword/ForgotPassword"
+import UserLayout from "../views/Client/UserLayout/UserLayout"
 
 const router = createBrowserRouter([
     {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
                         element: <ForgotPassword/>
                     }
                 ]
+            },
+            {
+                path: '/user',
+                element: <UserLayout/>
             }
         ]
     },

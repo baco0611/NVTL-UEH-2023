@@ -96,6 +96,7 @@
         box-shadow: -10px 0px #91d0ed;
         transition: all ease 0.15s;
         position: relative;
+        z-index: 1;
         
         a, p {
             display: block;
@@ -190,6 +191,7 @@
         &-mobile {
             display: block;
             padding: 20px 35px;
+            z-index: 2;
 
             i {
                 height: 100%;

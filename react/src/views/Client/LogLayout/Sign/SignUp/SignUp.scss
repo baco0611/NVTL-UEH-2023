@@ -3,6 +3,7 @@
 .client-department {
     width: 100%;
     position: relative;
+    cursor: pointer;
 
     &.focus, &.filled {
         & .client-department-item {

@@ -11,7 +11,7 @@ const handleSignIn = async ({ state, setUser, isRemember }) => {
     })
 }
 
-const handelSignUp = async ({ state, setIsSuccess, setUserValue }) => {
+const handleSignUp = async ({ state, setIsSuccess, setUserValue }) => {
     await axiosClient.post('/registerAccount', state)
     .then((response) => {
         console.log(response)
@@ -32,5 +32,5 @@ const handelSignUp = async ({ state, setIsSuccess, setUserValue }) => {
 
 export {
     handleSignIn,
-    handelSignUp
+    handleSignUp
 }

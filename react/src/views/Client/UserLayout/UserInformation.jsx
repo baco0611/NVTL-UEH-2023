@@ -1,14 +1,13 @@
 import clsx from 'clsx'
-import { useContext, useEffect, useRef, useState } from 'react'
-import './SignUp.scss'
-import Validator from '../../scripts/validForm'
-import { UserContext } from '../../../../../context/ContextProvider'
-import { handleSignUp } from '../../scripts/signUpdate'
+import React, { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../../../context/ContextProvider'
 import { useNavigate } from 'react-router-dom'
+import Validator from '../LogLayout/scripts/validForm'
 
-function SignUp({ state, setState }) {
+function UserInformation() {
     const { listDepartment, setUser, handleChangeURL } = useContext(UserContext)
     const navigate = useNavigate()
+    const [ state, setState ] = useState(JSON.parse(localStorage.getItem('ACCESS_USER') || sessionStorage.getItem('ACCESS_USER')))
 
     const handleChangeValue = (e) => {
         const element = e.target
@@ -18,21 +17,14 @@ function SignUp({ state, setState }) {
             [element.name]: element.value
         })
     }
-
-    const [ isSubmit, setIsSubmit] = useState(true)
-
-    const [ isDepartment, setIsDepartment ] = useState(false)
-    const [ isFocus, setIsFocus ] = useState(false)
-    const [ isValid, setIsValid ] = useState(true)
-    const [ isSuccess, setIsSuccess ] = useState(false)
-    const [ userValue, setUserValue ] = useState(null)
-
-    const [hidePassword, setHidePassword] = useState(true)
-
     const setFocus = () => {
         setIsDepartment(!isDepartment)
         setIsFocus(true)
     }
+
+    const [ isValid, setIsValid ] = useState(true)
+    const [ isFocus, setIsFocus ] = useState(false)
+    const [ isDepartment, setIsDepartment ] = useState(false)
 
     useEffect(() => {
         Validator({
@@ -46,55 +38,9 @@ function SignUp({ state, setState }) {
                 Validator.isRequired('#client-email', 'Vui lòng điền email của bạn'),
                 Validator.isEmail('#client-email', 'Vui lòng điền email hợp lệ'),
                 Validator.isRequired('#client-studentCode', 'Vui lòng điền mã số sinh viên của bạn'),
-                Validator.isRequired('#client-password', 'Vui lòng điền mật khẩu'),
-                Validator.minLength('#client-password', 8),
-                Validator.isPassword('#client-password'),
-                Validator.isRequired('#client-confirmPassword', 'Vui lòng nhập lại mật khẩu'),
-                Validator.isConfirm('#client-confirmPassword', '#client-password'),
-            ],
-            setIsSubmit
+            ]
         })
     }, [state])
-
-    useEffect(() => {
-        const handleClick = e => {
-            let element = e.target
-
-            while(element.parentElement) {
-                if(element.parentElement.matches('.client-department'))
-                {
-                    element = element.parentElement
-                    break
-                }
-                
-                element = element.parentElement
-            }
-            if(!element.className.split(' ').includes('client-department')) {
-                setIsDepartment(false)
-
-                if(isFocus) {
-                    if(state.department)
-                        setIsValid(true)
-                    else
-                        setIsValid(false)
-                }
-            }
-        }
-
-        window.addEventListener('click', handleClick)
-
-        return () => {
-            window.removeEventListener('click', handleClick)
-        }
-    })
-
-    useEffect(() => {
-        if(isSuccess) {
-            setUser(userValue)
-            setIsSuccess(false)
-            handleChangeURL('/', navigate)
-        }
-    }, [isSuccess])
 
     return (
         <>
@@ -193,46 +139,6 @@ function SignUp({ state, setState }) {
                         />
                         <span className='client-sign-message'></span>
                     </div>
-                    <div className='client-sign-item'>
-                        <input 
-                            id='client-password'
-                            type={hidePassword ? "password" : "type"} 
-                            value={state.password}
-                            name='passWord'
-                            placeholder='Mật khẩu'
-                            onChange={handleChangeValue}
-                            autoComplete='off'
-                            className={clsx({'filled': state.passWord})}
-                        />
-                        <span className='client-sign-message'></span>
-                        {
-                            hidePassword == false
-                            &&
-                                <i className="ti-eye" style={{color: '#ccc'}} onClick={() => setHidePassword(!hidePassword)}/>
-                            ||
-                                <i className="ti-eye" onClick={() => setHidePassword(!hidePassword)}/>
-                        }
-                    </div>
-                    <div className='client-sign-item'>
-                        <input 
-                            id='client-confirmPassword'
-                            type={hidePassword ? "password" : "type"} 
-                            value={state.confirmPassword}
-                            name='confirmPassword'
-                            placeholder='Nhập lại mật khẩu'
-                            onChange={handleChangeValue}
-                            autoComplete='off'
-                            className={clsx({'filled': state.confirmPassword})}
-                        />
-                        <span className='client-sign-message'></span>
-                        {
-                            hidePassword == false
-                            &&
-                                <i className="ti-eye" style={{color: '#ccc'}} onClick={() => setHidePassword(!hidePassword)}/>
-                            ||
-                                <i className="ti-eye" onClick={() => setHidePassword(!hidePassword)}/>
-                        }
-                    </div>
                 </form>
             </div>
             <div className='client-log-button'>
@@ -240,14 +146,14 @@ function SignUp({ state, setState }) {
                     className={clsx(
                         'secondary-button',
                         {
-                            active: isSubmit && isValid && isFocus
+                            active: true
                         }
                     )}
-                    onClick={async () => await handleSignUp({ state, setIsSuccess, setUserValue })}
-                >Đăng ký</button>
+                    // onClick={async () => await handleSignUp({ state, setIsSuccess, setUserValue })}
+                >Cập nhật</button>
             </div>
         </>
     )
 }
 
-export default SignUp
+export default UserInformation

@@ -1,10 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../../context/ContextProvider'
 
-function ClientUser() {
+function ClientInformation() {
     const [ isAccount, setIsAccount ] = useState(false)
-    const { setUser } = useContext(UserContext)
+    const { setUser, handleChangeURL } = useContext(UserContext)
+    const navigate = useNavigate()
+
+    const logOut = () => {
+        setUser()
+        handleChangeURL('/', navigate)
+    }
 
     useEffect(() => {
         const handleClick = e => {
@@ -37,12 +43,12 @@ function ClientUser() {
             {
                 isAccount &&
                 <ul className='list-item account'>
-                    <li><Link>Thông tin</Link></li>
-                    <li onClick={() => setUser()}><p>Đăng xuất</p></li>
+                    <li><Link onClick={() => setIsAccount(false)} to={'/user'}>Thông tin</Link></li>
+                    <li onClick={logOut}><Link to={'/'}>Đăng xuất</Link></li>
                 </ul>
             }
         </div>
     )
 }
 
-export default ClientUser
+export default ClientInformation

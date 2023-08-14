@@ -50,7 +50,7 @@ function ClientFooter() {
                 </div>
             </div>
             {
-                path != '/login' &&
+                path != '/login' && path != '/user' &&
                 <div className='client-footer-sns'>
                     <Link to={'https://www.tiktok.com/@bptueh'} target='blank'>
                         <i className="fa-brands fa-tiktok"></i>

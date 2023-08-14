@@ -9,7 +9,7 @@ import { UserContext } from '../../../../context/ContextProvider'
 function Sign() {
     const [ isDangNhap, setIsDangNhap ] = useState(true)
     const navigate = useNavigate()
-    const { user } = useContext(UserContext)
+    const { user, handleChangeURL } = useContext(UserContext)
 
     const [ signInValue, setSignInValue ] = useState({
         studentCode: '',
@@ -29,9 +29,11 @@ function Sign() {
 
     useEffect(() => {
         if(user) {
-            navigate('/')
+            handleChangeURL('/', navigate)
         }
     }, [])
+
+    useEffect(() => {window.scrollTo(0, 0)})
 
     return (
         <div className='client-log-side client-log-sign'>

@@ -1,9 +1,11 @@
 import React from 'react'
 
 function Weekly() {
-  return (
-    <section>Weekly</section>
-  )
+    useEffect(() => {window.scrollTo(0, 0)})
+
+    return (
+      <section>Weekly</section>
+    )
 }
 
 export default Weekly

@@ -68,11 +68,13 @@ function Validator(option) {
 
     if(formElement) {
         if(checkError())
-        {
-            option.setIsSubmit(true)
+        {  
+            if(typeof(option.setIsSubmit) == 'function')
+                option.setIsSubmit(true)
         }
         else 
-            option.setIsSubmit(false)
+            if(typeof(option.setIsSubmit) == 'function')
+                option.setIsSubmit(false)
  
         // Loop through each rule and listen event for handling
         option.rules.forEach(rule => {
