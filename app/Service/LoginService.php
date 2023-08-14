@@ -17,7 +17,7 @@ class LoginService
     public function check($pass, $studentCode) {
         $user= DB::table('login')
         ->where('studentCode', $studentCode)
-        ->where('passWord', $pass)
+        ->where('password', $pass)
         ->get();
         
         return $user;
@@ -36,7 +36,7 @@ class LoginService
             'phone'=>$request['phone'],
             'email'=>$request['email'],
             'studentCode'=>$request['studentCode'],
-            'passWord'=>$request['passWord']
+            'password'=>$request['password']
         ]);
     }
 }

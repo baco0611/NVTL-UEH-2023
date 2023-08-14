@@ -10,6 +10,6 @@ class Login extends Model
     use HasFactory;
     protected $table = 'login';
     protected $fillable = [
-        'fullName', 'department', 'phone', 'email', 'studentCode', 'passWord'
+        'fullName', 'department', 'phone', 'email', 'studentCode', 'password'
     ];
 }
