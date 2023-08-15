@@ -4,13 +4,14 @@ import { UserContext } from '../../../context/ContextProvider'
 
 function ClientInformation() {
     const [ isAccount, setIsAccount ] = useState(false)
-    const { setUser, handleChangeURL, adminURL } = useContext(UserContext)
+    const { setUser, adminURL, setPath } = useContext(UserContext)
     const navigate = useNavigate()
     const { user } = useContext(UserContext)
 
     const logOut = () => {
         setUser()
-        handleChangeURL('/', navigate)
+        setPath('/')
+        navigate('/')
     }
 
     useEffect(() => {

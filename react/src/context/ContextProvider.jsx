@@ -54,27 +54,6 @@ function StateContext({ children }) {
 
     const [ path, setPath ] = useState('/' + window.location.pathname.split('/')[1])
 
-    const handleChangePath = (e, value, navigate) => {
-        e.preventDefault()
-        const href = e.target.href
-        const newPath = href.split('/')[3]
-
-        if(newPath != path) {
-            setPath('/' + newPath)
-            if(value)
-                navigate(newPath + '/' + href.split('/')[4])
-            else
-                navigate(newPath)
-        }
-    }
-
-    const handleChangeURL = (url, navigate) => {
-        if(url != path) {
-            setPath(url)
-            navigate(url)
-        }
-    }
-
     const listDepartment = [
         'Công nghệ thông tin và kinh doanh (BIT)',
         'Viện đào tạo quốc tế (ISB)',
@@ -107,8 +86,6 @@ function StateContext({ children }) {
                 setPath,
                 listDepartment,
                 getUserId,
-                handleChangePath,
-                handleChangeURL,
                 adminURL
             }
         }>

@@ -7,7 +7,7 @@ import { handleSignUp } from '../../scripts/signUpdate'
 import { useNavigate } from 'react-router-dom'
 
 function SignUp({ state, setState }) {
-    const { listDepartment, setUser, handleChangeURL } = useContext(UserContext)
+    const { listDepartment, setUser, setPath } = useContext(UserContext)
     const navigate = useNavigate()
 
     const handleChangeValue = (e) => {
@@ -93,7 +93,8 @@ function SignUp({ state, setState }) {
         if(isSuccess) {
             setUser(userValue)
             setIsSuccess(false)
-            handleChangeURL('/', navigate)
+            setPath('/')
+            navigate('/')
         }
     }, [isSuccess])
 

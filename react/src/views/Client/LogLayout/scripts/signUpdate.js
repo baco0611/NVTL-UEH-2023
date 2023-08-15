@@ -14,6 +14,9 @@ const handleSignIn = async ({ state, setUser, isRemember }) => {
             window.location = '/'
         }
     })
+    .catch(error => {
+        console.log(error)
+    })
 }
 
 const handleSignUp = async ({ state, setIsSuccess, setUserValue }) => {
@@ -41,6 +44,9 @@ const handleSignUp = async ({ state, setIsSuccess, setUserValue }) => {
                 permission: 0
             })
         }
+    })
+    .catch(error => {
+        console.log(error)
     })
 }
 
