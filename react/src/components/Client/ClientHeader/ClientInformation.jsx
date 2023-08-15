@@ -4,7 +4,7 @@ import { UserContext } from '../../../context/ContextProvider'
 
 function ClientInformation() {
     const [ isAccount, setIsAccount ] = useState(false)
-    const { setUser, handleChangeURL } = useContext(UserContext)
+    const { setUser, handleChangeURL, adminURL } = useContext(UserContext)
     const navigate = useNavigate()
     const { user } = useContext(UserContext)
 
@@ -49,7 +49,7 @@ function ClientInformation() {
                     {
                         user.permission == 1 
                         &&
-                        <li><Link onClick={() => setIsAccount(false)} to={'/admin'}>Admin</Link></li>
+                        <li><Link onClick={() => setIsAccount(false)} to={adminURL}>Admin</Link></li>
                     }
                 </ul>
             }

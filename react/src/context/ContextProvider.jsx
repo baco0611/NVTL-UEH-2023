@@ -9,10 +9,12 @@ const UserContext = createContext({
     apiURL: null,
     fakeApi: null,
     listDepartment: [],
-    getUserId: () => {}
+    getUserId: () => {},
+    adminURL: ''
 })
 
 function StateContext({ children }) {
+    const adminURL = 'http://admin.localhost:3100/'
 
     // User and token
     const [user, _setUser] = useState(JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER')))
@@ -106,7 +108,8 @@ function StateContext({ children }) {
                 listDepartment,
                 getUserId,
                 handleChangePath,
-                handleChangeURL
+                handleChangeURL,
+                adminURL
             }
         }>
             {children}

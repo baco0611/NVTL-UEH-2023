@@ -32,20 +32,22 @@ function ClientFooter() {
                     <div className='client-footer-info'>
                         <h3>MS. DƯ PHÚC MỸ KIM</h3>
                         <h4>CHỦ TỊCH HỘI SINH VIÊN UEH</h4>
-                        <p>SĐT: 0934000901</p>
-                        <p>EMAIL: kim.du@isb.edu.vn</p>
+                        <p>Email: hoisinhvien@ueh.edu.vn</p>
                     </div>
                     <div className='client-footer-info'>
                         <h3>MS. NGUYỄN VÕ KIM NGÂN</h3>
                         <h4>PHÓ CHỦ TỊCH HỘI SINH VIÊN UEH</h4>
-                        <p>SĐT: 0839224444</p>
-                        <p>EMAIL: nguyenvokimngan2304@gmail.com</p>
+                        <p>Email: nguyenvokimngan2304@gmail.com</p>
                     </div>
                     <div className='client-footer-info'>
                         <h3>MS. ĐÀO ANH TRÚC</h3>
-                        <h4>CHỦ TỊCH HỘI SINH VIÊN UEH</h4>
-                        <p>SĐT: 0934000901</p>
-                        <p>EMAIL: kim.du@isb.edu.vn</p>
+                        <h4>PHÓ TRƯỞNG BAN PHONG TRÀO<br/>- TÌNH NGUYỆN UEH</h4>
+                        <p>Email: trucdao.bptueh@gmail.com</p>
+                    </div>
+                    <div className='client-footer-info'>
+                        <h3>MS. NGUYỄN TRÚC NGỌC</h3>
+                        <h4>PHÓ TRƯỞNG BAN PHONG TRÀO<br/>- TÌNH NGUYỆN UEH</h4>
+                        <p>Email: trucngoc275@gmail.com</p>
                     </div>
                 </div>
             </div>
