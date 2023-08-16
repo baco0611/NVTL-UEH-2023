@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBlogPost extends FormRequest
+class UpdateBlogPassword extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,7 @@ class StoreBlogPost extends FormRequest
     public function rules()
     {
         return [
-            'fullName'=>'required|max:500',
-            'studentCode'=>$this->studentCode,
-            'department'=>$this->department,
-            'email'=>$this->email,
-            'phone'=>$this->phone,
-            'permission' => $this->permission
+            //
         ];
     }
 }

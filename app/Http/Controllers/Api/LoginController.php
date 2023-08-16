@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBlogAccount;
+use App\Http\Requests\StoreBlogLogin;
 use App\Http\Resources\AccountResource;
 use App\Http\Resources\LoginResource;
 use App\Models\Login;
 use App\Service\LoginService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -29,26 +32,23 @@ class LoginController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @param  StoreBlogAccount  $request
+     * @param  StoreBlogLogin  $request
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function registerAccount(Request $request)
+    public function registerAccount(StoreBlogAccount $request)
     {
         $request['password']= md5($request['password']);
         $userSevice = new LoginService();
-        $item =$userSevice->checkAccount($request['studentCode']);
-        if (Empty(json_decode($item))) {
-            $user= $userSevice->insertData($request);
-            return response()->json([
-                'status' =>HttpResponse::HTTP_OK
-            ]);
-        }
+        $user=$userSevice->insertData($request);
+        $userAccount =AccountResource::collection($user);
         return response()->json([
-            'status' =>HttpResponse::HTTP_UNAUTHORIZED
+            'userAccount'=>$userAccount,
+            'status' =>HttpResponse::HTTP_OK
         ]);
     }
-    public function checkAccount(Request $request)
+    public function checkAccount(StoreBlogLogin $request)
     {
         $pass= md5($request['password']);
         $studentCode=$request['studentCode'];
@@ -71,9 +71,15 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showAccount($id)
     {
-        //
+        $userSevice = new LoginService();
+        $item = $userSevice->getAccount($id);   
+        $userAccount =AccountResource::collection($item);
+        return response()->json([
+            'userAccount'=>$userAccount
+        ]);
+
     }
 
     /**
@@ -83,11 +89,74 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateAccount(Request $request)
     {
-        //
+        $userSevice = new LoginService();
+        $item = $userSevice->getAccount($request['idUser']);
+        if (Empty(json_decode($item))){
+            return response()->json([
+                'status' =>HttpResponse::HTTP_UNAUTHORIZED
+            ]);
+        }
+        $id=$request['idUser'];
+        $valid=$this->validate($request, array(
+            'fullName'=>'required',
+            'studentCode' => "required|unique:login,studentCode,$id,idUser",
+            'department'=>'required',
+            'email'=>"required|email|unique:login,email,$id,idUser",
+            'phone'=>'required|min:10|max:11',
+        ),array(
+            'required' => ':attribute không được bỏ trống',
+            'email.unique' => ":attribute đã được sử dụng đăng kí",
+            'email.email'=>'email không hợp lệ',
+            'studentCode.unique' => ':attribute đã đăng kí',
+            'phone.min'=>":attribute ít nhất 10 số",
+            'phone.max'=>":attribute nhiều nhất 11 số"
+        ), array(
+            'fullName' => 'Họ và Tên',
+            'department'=>'Khoa',
+            'phone'=>'Số điện thoại',
+            'email'=>'Email',
+            'studentCode'=>'Mã số sinh viên',
+            'password'=>'Mật khẩu'
+        ));
+        $user=$userSevice->updateAccount($request);
+        $userAccount =AccountResource::collection($user);
+        return response()->json([
+            'userAccount'=>$userAccount,
+            'status' =>HttpResponse::HTTP_OK,
+            'mess'=>"Cập nhật thành công"
+        ]);
     }
-
+    public function updatePassword(Request $request)
+    {
+        $userSevice = new LoginService();
+        $item = $userSevice->getAccount($request['idUser']);
+        if (Empty(json_decode($item))){
+            return response()->json([
+                'status' =>HttpResponse::HTTP_UNAUTHORIZED
+            ]);
+        }
+        $id=$request['idUser'];
+        $pass= md5($request['current_password']);
+        $valid=$this->validate($request, array(
+            'new_password' => ['required', 'min:8'],
+            'confirm_new_password' => ['required', 'same:new_password'],
+            'current_password' => ['required','current_password']
+        ), array(
+            'required' => 'Mật khẩu không được bỏ trống',
+            'new_password.min'=>'Mật khẩu ít nhất 8 kí tự',
+            'confirm_new_password.same'=>'Nhập lại mật khẩu sai',
+            'current_password'=>'Mật khẩu cũ sai'
+        ));
+        $user=$userSevice->updatePassword($request);
+        $userAccount =AccountResource::collection($user);
+        return response()->json([
+            'userAccount'=>$userAccount,
+            'status' =>HttpResponse::HTTP_OK,
+            'mess'=>"Cập nhật mật khẩu thành công"
+        ]);
+    }
     /**
      * Remove the specified resource from storage.
      *

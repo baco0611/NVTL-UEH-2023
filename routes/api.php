@@ -30,3 +30,6 @@ Route::get('listProudMate', [ProudMateController::class, 'getProudMate'])->name(
 #Login
 Route::post('registerAccount', [LoginController::class,'registerAccount'])->name('register');
 Route::post('loginAccount', [LoginController::class,'checkAccount'])->name('login');
+Route::post('updateAccount', [LoginController::class,'updateAccount'])->name('updateAccount');
+Route::post('updatePassword', [LoginController::class,'updatePassword'])->name('updatePassword');
+Route::get('user/{id}', [LoginController::class, 'showAccount'])->name('showAccount');
