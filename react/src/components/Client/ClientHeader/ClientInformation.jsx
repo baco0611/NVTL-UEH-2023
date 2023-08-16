@@ -4,9 +4,8 @@ import { UserContext } from '../../../context/ContextProvider'
 
 function ClientInformation() {
     const [ isAccount, setIsAccount ] = useState(false)
-    const { setUser, adminURL, setPath } = useContext(UserContext)
+    const { setUser, setPath } = useContext(UserContext)
     const navigate = useNavigate()
-    const { user } = useContext(UserContext)
 
     const logOut = () => {
         setUser()
@@ -47,11 +46,6 @@ function ClientInformation() {
                 <ul className='list-item account'>
                     <li><Link onClick={() => setIsAccount(false)} to={'/user'}>Thông tin</Link></li>
                     <li onClick={logOut}><Link to={'/'}>Đăng xuất</Link></li>
-                    {
-                        user.permission == 1 
-                        &&
-                        <li><Link onClick={() => setIsAccount(false)} to={adminURL}>Admin</Link></li>
-                    }
                 </ul>
             }
         </div>

@@ -15,6 +15,7 @@ import LogLayout from "../views/Client/LogLayout/LogLayout"
 import Sign from "../views/Client/LogLayout/Sign/Sign"
 import ForgotPassword from "../views/Client/LogLayout/ForgotPassword/ForgotPassword"
 import UserLayout from "../views/Client/UserLayout/UserLayout"
+import Error from "../components/Error/Error"
 
 const router = createBrowserRouter([
     {
@@ -82,8 +83,12 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: '/admin',
-        element: <AdminLayout/>
+        path: '/error',
+        element: <Error/>
+    },
+    {
+        path: '*',
+        element: <Error/>
     }
 ])
 

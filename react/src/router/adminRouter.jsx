@@ -9,9 +9,10 @@ import WonderU from "../views/Admin/WonderU/WonderU"
 import Stage from "../views/Admin/Stage/Stage"
 import MC from "../views/Admin/MC/MC"
 import AdminRecruitment from "../views/Admin/AdminRecruitment/AdminRecruitment"
-import News from "../views/Admin/News/News"
 import NewsHome from "../views/Admin/News/NewsHome/NewsHome"
 import NewsWeekly from "../views/Admin/News/NewsWeekly/NewsWeekly"
+import Error from "../components/Error/Error"
+import AdminLogin from "../views/Admin/AdminLogin/AdminLogin"
 
 const adminRouter = createBrowserRouter([
     {
@@ -60,23 +61,29 @@ const adminRouter = createBrowserRouter([
             },
             {
                 path: '/news',
-                element: <News/>,
-                children: [
-                    {
-                        path: '/news',
-                        element: <Navigate to={'/news/home'}/>
-                    },
-                    {
-                        path: '/news/home',
-                        element: <NewsHome/>
-                    },
-                    {
-                        path: '/news/weekly',
-                        element: <NewsWeekly/>
-                    }
-                ]
+                element: <Navigate to={'/news/home'}/>
+            },
+            {
+                path: '/news/home',
+                element: <NewsHome/>
+            },
+            {
+                path: '/news/weekly',
+                element: <NewsWeekly/>
             },
         ]
+    },
+    {
+        path: '/error',
+        element: <Error/>
+    },
+    {
+        path: '*',
+        element: <Error/>
+    },
+    {
+        path: '/login',
+        element: <AdminLogin/>
     }
 ])
 

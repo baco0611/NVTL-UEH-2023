@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext({
     path: '/' +  window.location.pathname.split('/')[1],
@@ -10,11 +9,13 @@ const UserContext = createContext({
     fakeApi: null,
     listDepartment: [],
     getUserId: () => {},
-    adminURL: ''
+    adminURL: '',
+    mainURL: ''
 })
 
 function StateContext({ children }) {
     const adminURL = 'http://admin.localhost:3100/'
+    const mainURL = 'nvtl2023ueh.com'
 
     // User and token
     const [user, _setUser] = useState(JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER')))
@@ -86,7 +87,8 @@ function StateContext({ children }) {
                 setPath,
                 listDepartment,
                 getUserId,
-                adminURL
+                adminURL,
+                mainURL
             }
         }>
             {children}
