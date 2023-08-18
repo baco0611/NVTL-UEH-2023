@@ -102,6 +102,19 @@ function Validator(option) {
                 }
             }
         })
+
+        const submitButton = $(option.submitButton)
+        if(submitButton) {
+            submitButton.oninput = e => {
+                e.preventDefault()
+
+                if(checkError()) {
+                    if(typeof(option.action) == "function") {
+                        action()
+                    }
+                }
+            }
+        }
     }
 }
 

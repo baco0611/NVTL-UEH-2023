@@ -21,13 +21,16 @@ function StateContext({ children }) {
     const [user, _setUser] = useState(JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER')))
 
     const setUser = (user, isRemember) => {
-        console.log(user)
+        const data = {
+            ...user,
+            isRemember: isRemember
+        }
         if(user) {
             if(isRemember)
-                localStorage.setItem('ACCESS_USER', JSON.stringify(user))
+                localStorage.setItem('ACCESS_USER', JSON.stringify(data))
             else
-                sessionStorage.setItem('ACCESS_USER', JSON.stringify(user))
-            _setUser(user)
+                sessionStorage.setItem('ACCESS_USER', JSON.stringify(data))
+            _setUser(data)
         } else {
             localStorage.removeItem('ACCESS_USER')
             sessionStorage.removeItem('ACCESS_USER')
@@ -36,7 +39,8 @@ function StateContext({ children }) {
     }
 
     const getUserId = (id) => {
-        const idList = id.split('-')
+        const stringId = id.toString() 
+        const idList = stringId.split('-')
         if(idList[1])
             return {
                 id,

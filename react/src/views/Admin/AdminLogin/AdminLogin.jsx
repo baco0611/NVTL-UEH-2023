@@ -4,6 +4,7 @@ import Validator from '../../Client/LogLayout/scripts/validForm'
 import clsx from 'clsx'
 import { handleSignIn } from '../../Client/LogLayout/scripts/signUpdate'
 import { UserContext } from '../../../context/ContextProvider'
+// import Swal from 'sweetalert2'
 function AdminLogin() {
     const [ state, setState ] = useState({
         studentCode: '',
@@ -37,6 +38,22 @@ function AdminLogin() {
             setIsSubmit
         })
     }, [state])
+
+    const updateInformation = async () => {
+        const result = await handleSignIn({state, setUser, isRemember})
+        console.log(result)
+        if(result) {
+            // Swal.fire({
+            //     title: 'Custom animation with Animate.css',
+            //     showClass: {
+            //       popup: 'animate__animated animate__fadeInDown'
+            //     },
+            //     hideClass: {
+            //       popup: 'animate__animated animate__fadeOutUp'
+            //     }
+            //   })
+        }
+    }
 
     return (
         <div id='admin-login'>
@@ -98,7 +115,7 @@ function AdminLogin() {
                             active: isSubmit
                         }
                     )}
-                    onClick={async () => await handleSignIn({state, setUser, isRemember})}
+                    onClick={updateInformation}
                 >Đăng nhập</button>
             </div>
         </div>

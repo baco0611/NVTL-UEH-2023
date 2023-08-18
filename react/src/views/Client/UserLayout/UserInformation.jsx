@@ -4,6 +4,7 @@ import { UserContext } from '../../../context/ContextProvider'
 import { useNavigate } from 'react-router-dom'
 import Validator from '../LogLayout/scripts/validForm'
 import { handleUpdateInformation } from './scripts/userInfomationUpdate'
+import Swal from 'sweetalert2'
 
 function UserInformation() {
     const { listDepartment, setUser, getUserId } = useContext(UserContext)
@@ -20,11 +21,9 @@ function UserInformation() {
     }
     const setFocus = () => {
         setIsDepartment(!isDepartment)
-        setIsFocus(true)
     }
 
     const [ isValid, setIsValid ] = useState(true)
-    const [ isFocus, setIsFocus ] = useState(false)
     const [ isDepartment, setIsDepartment ] = useState(false)
 
     useEffect(() => {
@@ -39,9 +38,36 @@ function UserInformation() {
                 Validator.isRequired('#client-email', 'Vui lòng điền email của bạn'),
                 Validator.isEmail('#client-email', 'Vui lòng điền email hợp lệ'),
                 Validator.isRequired('#client-studentCode', 'Vui lòng điền mã số sinh viên của bạn'),
-            ]
+            ],
+            submitButton: '#submit-btn',
+            action: updateInformation
         })
     }, [state])
+
+    const updateInformation = async () => {
+        const result = await handleUpdateInformation({ state, setUser, getUserId })
+        if(result) {
+            Swal.fire({
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                },
+                customClass: {
+                    confirmButton: 'user-update-success-button'
+                },
+                html: `
+                    <div class="user-update-success">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <h1>CẬP NHẬT THÀNH CÔNG</h1>
+                    </div>
+                `,
+                confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+                confirmButtonColor: "#3288f3"
+            })
+        }
+    }
 
     return (
         <>
@@ -150,7 +176,7 @@ function UserInformation() {
                             active: true
                         }
                     )}
-                    onClick={async () => await handleUpdateInformation({ state, setUser, getUserId })}
+                    id='submit-btn'
                 >Cập nhật</button>
             </div>
         </>

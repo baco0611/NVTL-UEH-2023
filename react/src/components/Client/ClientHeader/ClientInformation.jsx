@@ -8,6 +8,7 @@ function ClientInformation() {
     const navigate = useNavigate()
 
     const logOut = () => {
+        console.log('hi')
         setUser()
         setPath('/')
         navigate('/')

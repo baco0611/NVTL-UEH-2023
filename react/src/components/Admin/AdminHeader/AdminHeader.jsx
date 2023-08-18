@@ -10,7 +10,12 @@ function AdminHeader() {
     const [ isCasting, setIsCasting ] = useState(false)
     const [ isNews, setIsNews ] = useState(false)
     const navigate = useNavigate()
-    console.log(user)
+
+    useEffect(() => {
+        if(user) {
+            setUser(user, user.isRemember)
+        }
+    }, [])
 
     const handleActiveList = (e, setState) => {
         e.preventDefault()
@@ -18,9 +23,10 @@ function AdminHeader() {
     }
 
     const logOut = () => {
+        console.log('bye')
         setUser()
         setPath('/')
-        navigate('/status')
+        navigate('/')
     }
 
     useEffect(() => {

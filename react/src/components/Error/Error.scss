@@ -7,7 +7,7 @@ $booBg: $bgColor;
 $booShadow: darken($booBg, 5%);
 
 // face
-$booFaceSize: round($jaggedDistance / 1.3333);
+$booFaceSize: round(calc($jaggedDistance / 1.3333));
 $booFaceColor: #365be1;
 
 // ===========
@@ -52,17 +52,17 @@ $booFaceColor: #365be1;
     content: '';
     display: block;
     position: absolute;
-    left: -($size / 1.7);
-    bottom: -($jaggedDistance / 3.85);
+    left: -(calc($size / 1.7));
+    bottom: -(calc($jaggedDistance / 3.85));
     width: calc(100% + #{$size});
     height: $size;
     background-repeat: repeat-x;
     background-size: $size $size;
     background-position: left bottom;
-    background-image: linear-gradient(-45deg, $color-outer ($size / 2), transparent 0),
-                      linear-gradient(45deg, $color-outer ($size / 2), transparent 0),
-                      linear-gradient(-45deg, $booFaceColor ($size / 1.7), transparent 0),
-                      linear-gradient(45deg, $booFaceColor ($size / 1.7), transparent 0);
+    background-image: linear-gradient(-45deg, $color-outer calc($size / 2), transparent 0),
+                      linear-gradient(45deg, $color-outer calc($size / 2), transparent 0),
+                      linear-gradient(-45deg, $booFaceColor calc($size / 1.7), transparent 0),
+                      linear-gradient(45deg, $booFaceColor calc($size / 1.7), transparent 0);
   }
 }
 
@@ -78,7 +78,7 @@ body #error-session {
     position: relative;
     height: 100vh;
     text-align: center;
-    font-size: $jaggedDistance / 2;
+    font-size: calc($jaggedDistance / 2);
     
     h1 {
         font-size: $jaggedDistance;
@@ -87,7 +87,7 @@ body #error-session {
     }
 
     p {
-        line-height: $jaggedDistance * 2 / 3;
+        line-height: calc($jaggedDistance * 2 / 3);
     }
 }
 
@@ -107,17 +107,17 @@ body #error-session {
     background-color: $booBg;
     margin-left: auto;
     margin-right: auto;
-    border: (($jaggedDistance / 1.65)  - ($jaggedDistance /2)) solid $booFaceColor;
+    border: (calc($jaggedDistance / 1.65)  - calc($jaggedDistance /2)) solid $booFaceColor;
     border-bottom: 0;
     overflow: hidden;
-    border-radius: ($booSize / 2) ($booSize / 2) 0 0;
-    box-shadow: -($jaggedDistance / 2) 0 0 2px rgba($booShadow, .5) inset;
+    border-radius: calc($booSize / 2) calc($booSize / 2) 0 0;
+    box-shadow: -(calc($jaggedDistance / 2)) 0 0 2px rgba($booShadow, .5) inset;
     @include border-bottom-jagged($jaggedDistance, $bgColor);
     animation: floating 3s ease-in-out infinite;
 
     .error-face {
         width: $booFaceSize;
-        height: $jaggedDistance / 10;
+        height: calc($jaggedDistance / 10);
         border-radius: 5px;
         background-color: $booFaceColor;
         position: absolute;
@@ -129,12 +129,12 @@ body #error-session {
         &::after {
         content: '';
         display: block;
-        width: $booFaceSize / 4;
-        height: $booFaceSize / 4;
+        width: calc($booFaceSize / 4);
+        height: calc($booFaceSize / 4);
         background-color: $booFaceColor;
         border-radius: 50%;
         position: absolute;
-        bottom: $jaggedDistance + ($booFaceSize / 3);
+        bottom: $jaggedDistance + calc($booFaceSize / 3);
         }
         
         &::before {
@@ -149,7 +149,7 @@ body #error-session {
 
 .error-shadow {
     width: $booSize - $jaggedDistance;
-    height: $jaggedDistance / 2;
+    height: calc($jaggedDistance / 2);
     background-color: rgba($booShadow, .75);
     margin-top: $jaggedDistance * 1.25;  
     margin-right: auto;

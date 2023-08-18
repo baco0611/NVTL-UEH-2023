@@ -8,10 +8,16 @@ import { UserContext } from '../../../context/ContextProvider'
 import ClientInformation from './ClientInformation'
 
 function ClientHeader() {
-    const { path, user, handleChangePath } = useContext(UserContext)
+    const { path, user, handleChangePath, setUser } = useContext(UserContext)
     const navigate = useNavigate()
     const [ isNav, setIsNav ] = useState(false)
     const [ isWeekly, setIsWeekly ] = useState(false)
+
+    useEffect(() => {
+        if(user) {
+            setUser(user, user.isRemember)
+        }
+    }, [])
 
     const handleCloseMenu = e => {
         function getParent(element, id) {
