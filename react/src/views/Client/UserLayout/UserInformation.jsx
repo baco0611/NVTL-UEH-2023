@@ -177,6 +177,7 @@ function UserInformation() {
                         }
                     )}
                     id='submit-btn'
+                    onClick={updateInformation}
                 >Cập nhật</button>
             </div>
         </>
