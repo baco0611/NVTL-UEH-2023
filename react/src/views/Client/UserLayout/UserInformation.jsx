@@ -10,6 +10,7 @@ function UserInformation() {
     const { listDepartment, setUser, getUserId } = useContext(UserContext)
     const navigate = useNavigate()
     const [ state, setState ] = useState(JSON.parse(localStorage.getItem('ACCESS_USER') || sessionStorage.getItem('ACCESS_USER')))
+    const [ error, setError ] = useState({})
 
     const handleChangeValue = (e) => {
         const element = e.target
@@ -43,9 +44,50 @@ function UserInformation() {
             action: updateInformation
         })
     }, [state])
+    
+    useEffect(() => {
+        function getParent(element, selector) {
+            while(element.parentElement) {
+                if(element.parentElement.matches(selector))
+                    return element.parentElement
+                
+                element = element.parentElement
+            }
+        }
+        const $ = document.querySelector.bind(document)
+        const fullName = $('#client-fullName')
+        const phone = $('#client-phone')
+        const email = $('#client-email')
+        const studentCode = $('#client-studentCode')
+
+        for(var key in error) {
+            let errorElement
+            switch (key) {
+                case "studentCode":
+                    errorElement = studentCode
+                    break;
+                case "phone":
+                    errorElement = phone
+                    break;
+                case "email":
+                    errorElement = email
+                    break;
+                case "fullName":
+                    errorElement = fullName
+                    break;
+                default:
+                    break;
+            }
+
+            const boxElement = getParent(errorElement, '.client-sign-item')
+            boxElement.classList.add('invalid')  
+            const spanElement = boxElement.querySelector('span')
+            spanElement.innerText = error[key]       
+        }
+    }, [error])
 
     const updateInformation = async () => {
-        const result = await handleUpdateInformation({ state, setUser, getUserId })
+        const result = await handleUpdateInformation({ state, setUser, getUserId, setError })
         if(result) {
             Swal.fire({
                 showClass: {
@@ -177,7 +219,7 @@ function UserInformation() {
                         }
                     )}
                     id='submit-btn'
-                    onClick={updateInformation}
+                    // onClick={updateInformation}
                 >Cập nhật</button>
             </div>
         </>

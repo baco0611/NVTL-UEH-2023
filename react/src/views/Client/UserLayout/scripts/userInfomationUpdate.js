@@ -1,6 +1,6 @@
 import axiosClient from "../../../../context/axiosClient"
 
-const handleUpdateInformation = async ({ state, setUser, getUserId }) => {
+const handleUpdateInformation = async ({ state, setUser, getUserId, setError }) => {
     const id = getUserId(String(state.id))
     
     const payload = new FormData()
@@ -15,12 +15,15 @@ const handleUpdateInformation = async ({ state, setUser, getUserId }) => {
 
     return await axiosClient.post('/updateAccount', payload)
     .then(response => {
-        console.log(response)
         if(response.status == 200)
         {
             setUser(response.data.userAccount[0], isRemember)
             return true
         }
+        return false
+    })
+    .catch(error => {
+        setError(error.response.data.errors)
         return false
     })
 }
