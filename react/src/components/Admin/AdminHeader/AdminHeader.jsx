@@ -64,28 +64,28 @@ function AdminHeader() {
             <nav className='admin-header-nav'>
                 <div 
                     className={clsx('admin-header-item', {
-                        'active': path == '/status'
+                        'active': path == 'admin/status'
                     })}
                 >
-                    <Link to={'/status'}>Trạng thái</Link>
+                    <Link to={'admin/status'}>Trạng thái</Link>
                 </div>
                 <div 
                     className={clsx('admin-header-item', {
-                        'active': path == '/account'
+                        'active': path == 'admin/account'
                     })}
                 >
-                    <Link to={'/account'}>Tài khoản</Link>
+                    <Link to={'admin/account'}>Tài khoản</Link>
                 </div>
                 <div 
                     className={clsx('admin-header-item', {
-                        'active': path == '/mission'
+                        'active': path == 'admin/mission'
                     })}
                 >
-                    <Link to={'/mission'}>Priwe Wave</Link>
+                    <Link to={'admin/mission'}>Priwe Wave</Link>
                 </div>
                 <div 
                     className={clsx('admin-header-item', 'list', {
-                        'active': path == '/casting'
+                        'active': path == 'admin/casting'
                     })}
                 >
                     <Link onClick={(e) => handleActiveList(e, () => setIsCasting(!isCasting))}>Casting</Link>
@@ -93,21 +93,21 @@ function AdminHeader() {
                     {
                         isCasting &&
                         <ul className='list-item admin'>
-                            <li><Link onClick={() => setIsCasting(false)} to={'/stage'}>Văn Nghệ</Link></li>
-                            <li><Link onClick={() => setIsCasting(false)} to={'/mc'}>MC</Link></li>
+                            <li><Link onClick={() => setIsCasting(false)} to={'admin/stage'}>Văn Nghệ</Link></li>
+                            <li><Link onClick={() => setIsCasting(false)} to={'admin/mc'}>MC</Link></li>
                         </ul>
                     }
                 </div>
                 <div 
                     className={clsx('admin-header-item', {
-                        'active': path == '/recruit'
+                        'active': path == 'admin/recruit'
                     })}
                 >
-                    <Link to={'/recruit'}>Tuyển CTV</Link>
+                    <Link to={'admin/recruit'}>Tuyển CTV</Link>
                 </div>
                 <div 
                     className={clsx('admin-header-item', 'list', {
-                        'active': path == '/news'
+                        'active': path == 'admin/news'
                     })}
                 >
                     <Link onClick={(e) => handleActiveList(e, () => setIsNews(!isNews))}>News</Link>
@@ -115,8 +115,8 @@ function AdminHeader() {
                     {
                         isNews &&
                         <ul className='list-item admin'>
-                            <li><Link onClick={() => setIsNews(false)} to={'/news/home'}>Home</Link></li>
-                            <li><Link onClick={() => setIsNews(false)} to={'/news/weekly'}>Tuần lễ</Link></li>
+                            <li><Link onClick={() => setIsNews(false)} to={'admin/news/home'}>Home</Link></li>
+                            <li><Link onClick={() => setIsNews(false)} to={'admin/news/weekly'}>Tuần lễ</Link></li>
                         </ul>
                     }
                 </div>

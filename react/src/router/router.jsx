@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom"
+import { Navigate, createBrowserRouter } from "react-router-dom"
 import ClientLayout from "../components/Client/ClientLayout"
 import AdminLayout from "../components/Admin/AdminLayout"
 import Home from '../views/Client/Home/Home'
@@ -16,6 +16,20 @@ import Sign from "../views/Client/LogLayout/Sign/Sign"
 import ForgotPassword from "../views/Client/LogLayout/ForgotPassword/ForgotPassword"
 import UserLayout from "../views/Client/UserLayout/UserLayout"
 import Error from "../components/Error/Error"
+import Status from "../views/Admin/Status/Status"
+import Account from "../views/Admin/Account/Account"
+import Mission from "../views/Admin/Mission/Mission"
+import PrideTake from "../views/Admin/PrideTake/PrideTake"
+import ProudMate from "../views/Admin/ProudMate/ProudMate"
+import AdminRecruitment from "../views/Admin/AdminRecruitment/AdminRecruitment"
+import MC from "../views/Admin/MC/MC"
+import WonderU from "../views/Admin/WonderU/WonderU"
+import Stage from "../views/Admin/Stage/Stage"
+import NewsHome from "../views/Admin/News/NewsHome/NewsHome"
+import NewsWeekly from "../views/Admin/News/NewsWeekly/NewsWeekly"
+import ClientPrideTake from "../views/Client/PrimeWave/ClientPrideTake/ClientPrideTake"
+import ClientProudMate from "../views/Client/PrimeWave/ClientProudMate/ClientProudMate"
+import ClientWonderU from "../views/Client/PrimeWave/ClientWonderU/ClientWonderU"
 
 const router = createBrowserRouter([
     {
@@ -30,6 +44,18 @@ const router = createBrowserRouter([
                 path: '/primewave',
                 element: <PrimeWave/>
             }, 
+            {
+                path: '/primewave/pridetake',
+                element: <ClientPrideTake/>
+            },
+            {
+                path: '/primewave/proudmate',
+                element: <ClientProudMate/>
+            },
+            {
+                path: '/primewave/wonderu',
+                element: <ClientWonderU/>
+            },
             {
                 path: '/weekly',
                 element: <Weekly/>,
@@ -80,6 +106,64 @@ const router = createBrowserRouter([
                 path: '/user',
                 element: <UserLayout/>
             }
+        ]
+    },
+    {
+        path: '/admin',
+        element: <AdminLayout/>,
+        children: [
+            {
+                path: '/admin',
+                element: <Navigate to={'/admin/status'}/>
+            },
+            {
+                path: '/admin/status',
+                element: <Status/>
+            },
+            {
+                path: '/admin/account',
+                element: <Account/>
+            },
+            {
+                path: 'admin/mission',
+                element: <Mission/>
+            },
+            {
+                path: 'admin/pridetake',
+                element: <PrideTake/>
+            },
+            {
+                path: 'admin/proudmate',
+                element: <ProudMate/>
+            },
+            {
+                path: 'admin/wonderu',
+                element: <WonderU/>
+            },
+            {
+                path: 'admin/stage',
+                element: <Stage/>
+            },
+            {
+                path: 'admin/mc',
+                element: <MC/>
+            },
+            {
+                path: 'admin/recruit',
+                element: <AdminRecruitment/>
+            },
+            {
+                path: 'admin/news',
+                element: <Navigate to={'/news/home'}/>
+            },
+            {
+                path: 'admin/news/home',
+                element: <NewsHome/>
+            },
+            {
+                path: 'admin/news/weekly',
+                element: <NewsWeekly/>
+            },
         ]
     },
     {

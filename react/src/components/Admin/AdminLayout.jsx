@@ -10,6 +10,9 @@ function AdminLayout() {
     useEffect(() => {
         if(!user)
             navigate('/login')
+
+        if(user.permission != 1) 
+            navigate('/')
     }, [])
 
     return (
