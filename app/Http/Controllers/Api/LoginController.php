@@ -51,18 +51,20 @@ class LoginController extends Controller
     public function checkAccount(StoreBlogLogin $request)
     {
         $pass= md5($request['password']);
-        $studentCode=$request['studentCode'];
+        $accountName=$request['accountName'];
         $userSevice = new LoginService();
-        $user= $userSevice->check($pass, $studentCode);
+        $user= $userSevice->check($pass, $accountName);
         if (Empty(json_decode($user))) {
             return response()->json([
-                'status' =>HttpResponse::HTTP_UNAUTHORIZED
+                'status' =>HttpResponse::HTTP_UNAUTHORIZED,
+                'mess'=>'Tài khoản không hợp lệ'
             ]);
         }
         $userAccount =AccountResource::collection($user);
         return response()->json([
             'userAccount'=>$userAccount,
-            'status' =>HttpResponse::HTTP_OK
+            'status' =>HttpResponse::HTTP_OK,
+            'mess'=>"Đăng nhập thành công"
         ]);
     }
     /**
@@ -139,15 +141,20 @@ class LoginController extends Controller
         }
         $id=$request['idUser'];
         $pass= md5($request['current_password']);
+        $confirm_pass= $userSevice->checkPass($pass,$id);
+        if (Empty(json_decode($confirm_pass))){
+            return response()->json([
+                'status' =>'Mật khẩu cũ nhập sai'
+            ]);
+        }
         $valid=$this->validate($request, array(
             'new_password' => ['required', 'min:8'],
             'confirm_new_password' => ['required', 'same:new_password'],
-            'current_password' => ['required','current_password']
+            'current_password' => ['required']
         ), array(
             'required' => 'Mật khẩu không được bỏ trống',
             'new_password.min'=>'Mật khẩu ít nhất 8 kí tự',
-            'confirm_new_password.same'=>'Nhập lại mật khẩu sai',
-            'current_password'=>'Mật khẩu cũ sai'
+            'confirm_new_password.same'=>'Nhập lại mật khẩu sai'
         ));
         $user=$userSevice->updatePassword($request);
         $userAccount =AccountResource::collection($user);
