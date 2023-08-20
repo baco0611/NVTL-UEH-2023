@@ -3,7 +3,7 @@ import { UserContext } from "../../../context/ContextProvider"
 
 function AdminRecruitment() {
     const { setPath } = useContext(UserContext)
-    useEffect(() => setPath('/recruit'), [])
+    useEffect(() => setPath('/admin/recruit'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (

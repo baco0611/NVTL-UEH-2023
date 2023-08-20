@@ -3,7 +3,7 @@ import { UserContext } from "../../../context/ContextProvider"
 
 function Mission() {
     const { setPath } = useContext(UserContext)
-    useEffect(() => setPath('/mission'), [])
+    useEffect(() => setPath('/admin/mission'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (

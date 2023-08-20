@@ -3,7 +3,7 @@ import { UserContext } from "../../../../context/ContextProvider"
 
 function NewsHome() {
     const { setPath } = useContext(UserContext)
-    useEffect(() => setPath('/news'), [])
+    useEffect(() => setPath('/admin/news'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (

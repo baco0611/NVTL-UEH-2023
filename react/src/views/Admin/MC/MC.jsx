@@ -3,7 +3,7 @@ import { UserContext } from "../../../context/ContextProvider"
 
 function MC() {
     const { setPath } = useContext(UserContext)
-    useEffect(() => setPath('/casting'), [])
+    useEffect(() => setPath('/admin/casting'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import AdminHeader from './AdminHeader/AdminHeader'
 import { UserContext } from '../../context/ContextProvider'
+import "./AdminVariable.scss"
 
 function AdminLayout() {
     const { user } = useContext(UserContext)
@@ -16,7 +17,7 @@ function AdminLayout() {
     }, [])
 
     return (
-        <div>
+        <div id='adminLayout'>
             <AdminHeader/>
 
             <Outlet/>

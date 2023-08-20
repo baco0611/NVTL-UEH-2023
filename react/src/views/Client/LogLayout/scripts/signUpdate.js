@@ -1,6 +1,6 @@
 import axiosClient from '../../../../context/axiosClient'
 
-const handleSignIn = async ({ state, setUser, isRemember }) => {
+const handleSignIn = async ({ state, setUser, isRemember, setError }) => {
     const payload = new FormData()
 
     payload.append('studentCode', state.studentCode)

@@ -125,43 +125,43 @@ const router = createBrowserRouter([
                 element: <Account/>
             },
             {
-                path: 'admin/mission',
+                path: '/admin/mission',
                 element: <Mission/>
             },
             {
-                path: 'admin/pridetake',
+                path: '/admin/pridetake',
                 element: <PrideTake/>
             },
             {
-                path: 'admin/proudmate',
+                path: '/admin/proudmate',
                 element: <ProudMate/>
             },
             {
-                path: 'admin/wonderu',
+                path: '/admin/wonderu',
                 element: <WonderU/>
             },
             {
-                path: 'admin/stage',
+                path: '/admin/stage',
                 element: <Stage/>
             },
             {
-                path: 'admin/mc',
+                path: '/admin/mc',
                 element: <MC/>
             },
             {
-                path: 'admin/recruit',
+                path: '/admin/recruit',
                 element: <AdminRecruitment/>
             },
             {
-                path: 'admin/news',
+                path: '/admin/news',
                 element: <Navigate to={'/news/home'}/>
             },
             {
-                path: 'admin/news/home',
+                path: '/admin/news/home',
                 element: <NewsHome/>
             },
             {
-                path: 'admin/news/weekly',
+                path: '/admin/news/weekly',
                 element: <NewsWeekly/>
             },
         ]

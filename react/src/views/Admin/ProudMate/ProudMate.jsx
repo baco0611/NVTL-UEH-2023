@@ -3,7 +3,7 @@ import { UserContext } from "../../../context/ContextProvider"
 
 function ProudMate() {
     const { setPath } = useContext(UserContext)
-    useEffect(() => setPath('/proudmate'), [])
+    useEffect(() => setPath('/admin/proudmate'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
 import { useNavigate } from 'react-router-dom'
 import Validator from '../LogLayout/scripts/validForm'
-import { handleUpdateInformation } from './scripts/userInfomationUpdate'
+import { handleUpdateInformation, informationError } from './scripts/userInfomationUpdate'
 import Swal from 'sweetalert2'
 
 function UserInformation() {
@@ -46,44 +46,7 @@ function UserInformation() {
     }, [state])
     
     useEffect(() => {
-        function getParent(element, selector) {
-            while(element.parentElement) {
-                if(element.parentElement.matches(selector))
-                    return element.parentElement
-                
-                element = element.parentElement
-            }
-        }
-        const $ = document.querySelector.bind(document)
-        const fullName = $('#client-fullName')
-        const phone = $('#client-phone')
-        const email = $('#client-email')
-        const studentCode = $('#client-studentCode')
-
-        for(var key in error) {
-            let errorElement
-            switch (key) {
-                case "studentCode":
-                    errorElement = studentCode
-                    break;
-                case "phone":
-                    errorElement = phone
-                    break;
-                case "email":
-                    errorElement = email
-                    break;
-                case "fullName":
-                    errorElement = fullName
-                    break;
-                default:
-                    break;
-            }
-
-            const boxElement = getParent(errorElement, '.client-sign-item')
-            boxElement.classList.add('invalid')  
-            const spanElement = boxElement.querySelector('span')
-            spanElement.innerText = error[key]       
-        }
+        informationError(error)
     }, [error])
 
     const updateInformation = async () => {

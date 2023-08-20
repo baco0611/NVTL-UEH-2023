@@ -3,7 +3,7 @@ import { UserContext } from "../../../context/ContextProvider"
 
 function PrideTake() {
     const { setPath } = useContext(UserContext)
-    useEffect(() => setPath('/pridetake'), [])
+    useEffect(() => setPath('/admin/pridetake'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (

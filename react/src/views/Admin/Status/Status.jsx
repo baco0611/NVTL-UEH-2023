@@ -3,7 +3,7 @@ import { UserContext } from '../../../context/ContextProvider'
 
 function Status() {
     const { setPath } = useContext(UserContext)
-    useEffect(() => setPath('/status'), [])
+    useEffect(() => setPath('/admin/status'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (

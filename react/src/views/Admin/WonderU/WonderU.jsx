@@ -3,7 +3,7 @@ import { UserContext } from "../../../context/ContextProvider"
 
 function WonderU() {
     const { setPath } = useContext(UserContext)
-    useEffect(() => setPath('/wonderu'), [])
+    useEffect(() => setPath('/admin/wonderu'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (
