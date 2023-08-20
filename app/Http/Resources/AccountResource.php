@@ -15,7 +15,7 @@ class AccountResource extends JsonResource
     public function toArray($request)
     {
         return  [
-            'id'=>$this->idUser,
+            'id'=>$this->id,
             'fullName'=>$this->fullName,
             'studentCode'=>$this->studentCode,
             'department'=>$this->department,

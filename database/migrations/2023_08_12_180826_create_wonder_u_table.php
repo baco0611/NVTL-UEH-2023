@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('wonder_u', function (Blueprint $table) {
             $table->id('idWonderU');
             $table->foreignId('idUser');
-            $table->foreign('idUser')->references('idUser')->on('login');
+            $table->foreign('idUser')->references('id')->on('login');
             $table->string('proof1',500);
             $table->string('proof2',500);
             $table->string('proof3',500);

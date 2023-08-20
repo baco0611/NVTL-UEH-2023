@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PrideTakeController;
 use App\Http\Controllers\Api\ProudMateController;
 use App\Http\Controllers\Api\StatusPageController;
+use App\Http\Controllers\Api\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,5 @@ Route::post('loginAccount', [LoginController::class,'checkAccount'])->name('logi
 Route::post('updateAccount', [LoginController::class,'updateAccount'])->name('updateAccount');
 Route::post('updatePassword', [LoginController::class,'updatePassword'])->name('updatePassword');
 Route::get('user/{id}', [LoginController::class, 'showAccount'])->name('showAccount');
+Route::post('reset-password', [ResetPasswordController::class,'sendMail'])->name('send_mail');
+Route::post('reset-password/{token}', [ResetPasswordController::class,'reset'])->name('reset_password');
