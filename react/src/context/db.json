@@ -1,88 +1,57 @@
 {
-    "sectionH": [
-        {
-            "id": 10005,
-            "data": [
-                {
-                    "id": 1,
-                    "PLO": 1,
-                    "idCTCT": 1,
-                    "mucDoDapUng": 1
-                },
-                {
-                    "id": 2,
-                    "PLO": 2,
-                    "idCTCT": 1,
-                    "mucDoDapUng": 4
-                },
-                {
-                    "id": 3,
-                    "PLO": 6,
-                    "idCTCT": 1,
-                    "mucDoDapUng": 20
-                }
-            ] 
-        }
-    ],
-    "sectionH-update": {
-        "id": 10005,
+    "prideTakeClient": {
+        "id": 1
+    },
+    "prideTakeAdmin_request": {
+        "createTime": "increase",
+        "__time_comment": "increase hoặc decrease"
+    },
+    "prideTakeAdmin": {
         "data": [
             {
-                "id": 1,
-                "mucDoDapUng": 2
+                "id": "nchfnsmaj-1-2-5",
+                "__id_comment": "[chuỗi hash bất kì]-[id]-[id*2]-[id*5]",
+                "createTime": "",
+                "fullName": "",
+                "studentCode": "",
+                "email": ""
             },
             {
-                "id": 23,
-                "mucDoDapUng": 5
+                "id": "dnahsbc-2-4-10",
+                "createTime": "",
+                "fullName": "",
+                "studentCode": "",
+                "email": ""
             }
         ]
     },
-    "sectionH-create":{
-        "id": 10005,
+    "newsUpload": {
+        "title": "",
+        "subTitle": "",
+        "thumbnail": "",
+        "linkPost": "https://www.facebook.com/",
+        "category":"home",
+        "__category_comment": "home hoặc weekly"
+    },
+    "newsAdmin_request": {
+        "category": "home",
+        "__category_comment": "home hoặc weekly",
+        "search": "",
+        "createTime": "increase",
+        "__time_comment": "increase hoặc decrease"
+    },
+    "newsAdmin": {
+        "category": "home",
         "data": [
             {
-                "PLO": 1,
-                "idCTCT": 1,
-                "mucDoDapUng": 1
-            },
-            {
-                "PLO": 2,
-                "idCTCT": 1,
-                "mucDoDapUng": 4
-            },
-            {
-                "PLO": 6,
-                "idCTCT": 1,
-                "mucDoDapUng": 20
+                "id": "",
+                "createTime": "",
+                "thumbnail": "",
+                "__thumbnail_comment": "Ni thì làm URL như đoạn làm shop",
+                "title": "",
+                "subTitle": "",
+                "linkPost": ""
             }
-        ] 
-    },
-    "sectionH-delete": {
-        "id": 10005,
-        "deleteData": [1, 2, 3, 4]
-    },
-    "sectionG-soTinChi": {
-        "id": 10005,
-        "data": {
-            "daiCuong": 30,
-            "coSoNganh": 25,
-            "nganh": 30,
-            "boTro": 10,
-            "thucTap": 15,
-            "doAnKhoaLuan": 10,
-            "chuyenNganh": 21
-        }
-    },
-    "sectionG-soTinChi-update": {
-        "id": 10005,
-        "data": {
-            "daiCuong": 30,
-            "coSoNganh": 25,
-            "nganh": 30,
-            "boTro": 10,
-            "thucTap": 15,
-            "doAnKhoaLuan": 10,
-            "chuyenNganh": 21
-        }
+        ]
     }
 }
