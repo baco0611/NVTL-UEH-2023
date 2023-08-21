@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Login;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use app\Models\User;
 use Illuminate\Http\Request;
 use App\Models\PasswordReset;
 use App\Notifications\ResetPasswordRequest;

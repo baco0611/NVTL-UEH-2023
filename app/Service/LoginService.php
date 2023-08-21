@@ -21,16 +21,22 @@ class LoginService
         return $result;
     }
     
-    public function check($pass, $accountName) {
-        $user= DB::table('login')
-        ->where('password', $pass)
+    public function checkNameAccount($accountName) {
+        $name=DB::table('login')
         ->orwhere('studentCode', $accountName)
         ->orWhere('email',$accountName)
         ->get();
-        
-        return $user;
+        return $name;
     }
-    
+
+    public function checkPassAccount($accountName,$pass) {
+        $name=DB::table('login')
+        ->orwhere('studentCode', $accountName)
+        ->orWhere('email',$accountName)
+        ->where('password', $pass)
+        ->get();
+        return $name;
+    }
     public function checkPass($pass, $idUser) {
         $user= DB::table('login')
         ->where('id', $idUser)
