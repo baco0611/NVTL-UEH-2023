@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('news', function (Blueprint $table) {
-            $table->id('idNews');
+            $table->increments('id');
             $table->string('title', 500);
             $table->string('subTitle', 500);
-            $table->string('thumnail', 50);
+            $table->string('thumbnail', 50);
             $table->string('category', 500);
             $table->string('linkPost', 500);
             $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

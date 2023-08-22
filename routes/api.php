@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\PrideTakeController;
 use App\Http\Controllers\Api\ProudMateController;
 use App\Http\Controllers\Api\StatusPageController;
@@ -27,6 +28,10 @@ Route::get('listStatusPage', [StatusPageController::class, 'statusPage'])->name(
 Route::get('listAccount', [LoginController::class, 'userAccount'])->name('userAccount_show');
 Route::get('listPrideTake', [PrideTakeController::class, 'getPrideTake'])->name('prideTake_show');
 Route::get('listProudMate', [ProudMateController::class, 'getProudMate'])->name('proudMate_show');
+#Client
+#PrideTake
+Route::post('insertPrideTake', [PrideTakeController::class,'insertPrideTake'])->name('insertPrideTake');
+
 
 #Login
 Route::post('registerAccount', [LoginController::class,'registerAccount'])->name('register');
@@ -36,3 +41,6 @@ Route::post('updatePassword', [LoginController::class,'updatePassword'])->name('
 Route::get('user/{id}', [LoginController::class, 'showAccount'])->name('showAccount');
 Route::post('reset-password', [ResetPasswordController::class,'sendMail'])->name('send_mail');
 Route::post('reset-password/{token}', [ResetPasswordController::class,'reset'])->name('reset_password');
+
+#News
+Route::post('newsUpload', [NewsController::class,'storeNews'])->name('newsUpload');

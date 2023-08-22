@@ -14,4 +14,11 @@ class PrideTakeService
         ->get();
         return $result;
     }
+    public function insertData($id){
+        $result=DB::table('pride_take')
+        ->insert([
+            'idUser'=>$id, 
+        ]);
+        return $result;
+    }
 }
