@@ -25,15 +25,13 @@ class StoreBlogLogin extends FormRequest
     {
         return [
             'accountName'=>'required',
-            'password'=>['required',
-                        'min:8']
+            'password'=>['required']
         ];
     }
     public function messages()
     {
         return [
-            'required' => ':attribute không được bỏ trống',
-            'min'=>':attribute ít nhất 8 kí tự'
+            'required' => ':attribute không được bỏ trống'
             ];
     }
     public function attributes()
