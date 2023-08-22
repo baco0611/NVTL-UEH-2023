@@ -21,4 +21,23 @@ class PrideTakeService
         ]);
         return $result;
     }
+    
+    public function sortTime($key){
+        if ($key=='increase'){
+            $result=DB::select('
+            SELECT  pt.created_at,pt.idPrideTake,us.fullName,us.email,us.studentCode
+            FROM ueh_db.pride_take as pt join login as us on pt.idUser=us.id
+            order by pt.created_at 
+            ');
+            return $result;
+        }
+        if ($key=='decrease'){
+            $result=DB::select('
+            SELECT  pt.created_at,pt.idPrideTake,us.fullName,us.email,us.studentCode
+            FROM ueh_db.pride_take as pt join login as us on pt.idUser=us.id
+            order by pt.created_at desc 
+            ');
+            return $result;
+        }
+    }
 }
