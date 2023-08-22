@@ -14,6 +14,57 @@ $deepBlue-color: #2641a5;
     align-items: center;
     gap: 2%;
 
+    &-name {
+        height: 30px;
+        position: absolute;
+        bottom: 15%;
+        width: 100%;
+        z-index: 7;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        img {
+            position: relative !important;
+            height: 100%;
+        }
+
+        .space {
+            width: 15px;
+        }
+
+        .key-mu {
+            height: 130%;
+
+            &-o {
+                height: 120%;
+            }
+        }
+
+        .key-nang {
+            height: 130%;
+            transform: translateY(10px);
+        }
+
+        .key-dau-mu {
+            height: 148%;
+
+            &-o {
+                height: 128%;
+            }
+        }
+
+        .key-dau-nang {
+            height: 160%;
+            transform: translateY(10px);
+
+            &-o {
+                height: 155%;
+                transform: translateY(11px);   
+            }
+        }
+    }
+
     &-left {
         aspect-ratio: 1/1;
         width: 40%;

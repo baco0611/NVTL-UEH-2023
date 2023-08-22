@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 function ClientPrideTakeIndex1({ avatar, setAvatar, setIndex }) {
 
+    
     const imageRef = useRef(null)
 
     const handleImageClick = () => {
