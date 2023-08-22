@@ -20,6 +20,7 @@ function SignIn({ state, setState, setIsDangNhap }) {
     const [hidePassword, setHidePassword] = useState(true)
     const [ isSubmit, setIsSubmit] = useState(true)
     const [ isRemember, setIsRemember ] = useState(false) 
+    const [ error, setError ] = useState({})
 
     useEffect(() => {
         Validator({
@@ -33,6 +34,10 @@ function SignIn({ state, setState, setIsDangNhap }) {
             setIsSubmit
         })
     }, [state])
+
+    useEffect(() => {
+
+    }, [error])
 
     return (
         <>
@@ -96,7 +101,7 @@ function SignIn({ state, setState, setIsDangNhap }) {
                             active: isSubmit
                         }
                     )}
-                    onClick={async () => await handleSignIn({state, setUser, isRemember})}
+                    onClick={async () => await handleSignIn({state, setUser, isRemember, setError})}
                 >Đăng nhập</button>
                 <p>Chưa có tài khoản? <span onClick={() => setIsDangNhap(false)}>Đăng ký ngay</span></p>
             </div>

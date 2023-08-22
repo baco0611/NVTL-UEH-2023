@@ -1,0 +1,76 @@
+@import '../Variable.scss';
+
+#admin-login {
+    background-color: $light-color;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30%;
+
+    h1 {
+        font-size: 40px;
+        padding-bottom: 20px;
+        color: $primary-color;
+    }
+
+    .client-log-sign-box {
+        background-color: $primary-color;
+    }
+
+    .client-sign-form input {
+        border: 3px solid $active-color;
+        color: $active-color;
+
+        &.filled, &:focus {
+            border: 3px solid $border-color;
+
+            ~ i {
+                color: $active-color;
+            }
+        }
+    }
+
+    .client-sign-item {
+        i {
+            color: $primary-color;
+        }
+    }
+
+    .client-sign {
+        &-user {
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: $active-color;
+            font-weight: 600;
+        }
+        &-remember {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+
+    .checkbox-btn {
+        background-color: $light-color;
+        border: 2px solid $active-color;
+
+        &::after {
+            color: $active-color;
+        }
+    }
+
+    .secondary-button {
+        background: $light-color !important;
+        border: 2px solid $active-color;
+        color: $active-color;
+
+        &:hover {
+            background: $active-color !important;
+            color: $light-color;
+        }
+    }
+}

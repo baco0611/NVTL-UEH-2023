@@ -1,6 +1,9 @@
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
+import { UserContext } from "../../../context/ContextProvider"
 
 function Mission() {
+    const { setPath } = useContext(UserContext)
+    useEffect(() => setPath('/admin/mission'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (

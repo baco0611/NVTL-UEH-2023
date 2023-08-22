@@ -9,7 +9,7 @@ import { UserContext } from '../../../../context/ContextProvider'
 function Sign() {
     const [ isDangNhap, setIsDangNhap ] = useState(true)
     const navigate = useNavigate()
-    const { user, handleChangeURL } = useContext(UserContext)
+    const { user, setPath } = useContext(UserContext)
 
     const [ signInValue, setSignInValue ] = useState({
         studentCode: '',
@@ -29,7 +29,8 @@ function Sign() {
 
     useEffect(() => {
         if(user) {
-            handleChangeURL('/', navigate)
+            setPath('/')
+            navigate('/')
         }
     }, [])
 

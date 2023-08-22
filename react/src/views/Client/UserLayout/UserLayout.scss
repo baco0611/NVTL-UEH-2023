@@ -1,0 +1,32 @@
+.user-update-success {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    & i {
+        border-radius: 100%;
+        box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(#93d0ed 100%, #aad1eb 75%, #d9d4e6 25%, #f8d6e3 0%);
+
+        width: 90px;
+        height: 90px;
+        font-size: 90px;
+    }
+
+    h1 {
+        font-size: 30px;
+        color: black;
+        padding-top: 25px;
+    }
+
+    &-btn {
+        // width: 200px;
+    }
+}

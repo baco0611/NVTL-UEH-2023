@@ -1,5 +1,6 @@
 import '../LogLayout/LogLayout.scss'
 import '../LogLayout/Sign/Sign.scss'
+import './UserLayout.scss'
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../../context/ContextProvider'
@@ -9,13 +10,14 @@ import UserInformation from './UserInformation'
 import UserPassword from './UserPassword'
 
 function User() {
-    const { user, handleChangeURL, setPath } = useContext(UserContext)
+    const { user, setPath } = useContext(UserContext)
     const navigate = useNavigate()
     const [ isThongTin, setIsThongTin ] = useState(true)
 
     useEffect(() => {
         if(!user) {
-            handleChangeURL('/login', navigate)
+            setPath('/login')
+            navigate('/login')
         } else {
             setPath('/user')
         }

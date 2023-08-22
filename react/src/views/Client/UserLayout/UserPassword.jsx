@@ -8,8 +8,9 @@ import { handleUpdatePassword } from './scripts/userInfomationUpdate'
 function UserPassword() {
     const { getUserId } = useContext(UserContext)
     const navigate = useNavigate()
+    const user = JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER'))
     const [ state, setState ] = useState({
-        id: JSON.parse(localStorage.getItem('ACCESS_USER')).id || JSON.parse(localStorage.getItem('ACCESS_USER')).id,
+        id: getUserId(user.id),
         oldPassword: '',
         newPassword: '',
         confirmPassword: ''

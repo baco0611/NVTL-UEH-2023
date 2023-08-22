@@ -1,9 +1,12 @@
 import { Outlet } from 'react-router-dom'
 import './LogLayout.scss'
 import SidePic from './img/SidePic.png'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
+import { UserContext } from '../../../context/ContextProvider'
 
 function LogLayout() {
+    const { setPath } = useContext(UserContext)
+    useEffect(() => setPath('/login'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (

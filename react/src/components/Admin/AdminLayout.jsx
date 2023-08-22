@@ -1,10 +1,24 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
+import AdminHeader from './AdminHeader/AdminHeader'
+import { UserContext } from '../../context/ContextProvider'
+import "./AdminVariable.scss"
 
 function AdminLayout() {
+    const { user } = useContext(UserContext)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(!user)
+            navigate('/login')
+
+        if(user.permission != 1) 
+            navigate('/')
+    }, [])
+
     return (
-        <div>
-            <h1>Admin Layout</h1>
+        <div id='adminLayout'>
+            <AdminHeader/>
 
             <Outlet/>
             

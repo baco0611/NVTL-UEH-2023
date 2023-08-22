@@ -114,10 +114,10 @@ class LoginController extends Controller
             'phone'=>'required|min:10|max:11',
         ),array(
             'required' => ':attribute không được bỏ trống',
-            'email.unique' => ":attribute đã được sử dụng đăng kí",
+            'email.unique' => ":attribute đã tồn tại",
             'email.email'=>'email không hợp lệ',
-            'studentCode.unique' => ':attribute đã đăng kí',
-            'phone.min'=>":attribute ít nhất 10 số",
+            'studentCode.unique' => ':attribute đã tồn tại',
+            'phone.min'=>":attribute có ít nhất 10 số",
             'phone.max'=>":attribute nhiều nhất 11 số"
         ), array(
             'fullName' => 'Họ và Tên',
@@ -159,7 +159,7 @@ class LoginController extends Controller
         ), array(
             'required' => 'Mật khẩu không được bỏ trống',
             'new_password.min'=>'Mật khẩu ít nhất 8 kí tự',
-            'confirm_new_password.same'=>'Nhập lại mật khẩu sai'
+            'confirm_new_password.same'=>'Mật khẩu nhập lại sai',
         ));
         $user=$userSevice->updatePassword($request);
         $userAccount =AccountResource::collection($user);

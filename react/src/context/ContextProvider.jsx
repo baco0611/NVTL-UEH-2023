@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext({
     path: '/' +  window.location.pathname.split('/')[1],
@@ -10,23 +9,28 @@ const UserContext = createContext({
     fakeApi: null,
     listDepartment: [],
     getUserId: () => {},
-    adminURL: ''
+    adminURL: '',
+    mainURL: ''
 })
 
 function StateContext({ children }) {
     const adminURL = 'http://admin.localhost:3100/'
+    const mainURL = 'nvtl2023ueh.com'
 
     // User and token
     const [user, _setUser] = useState(JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER')))
 
     const setUser = (user, isRemember) => {
-        console.log(user)
+        const data = {
+            ...user,
+            isRemember: isRemember
+        }
         if(user) {
             if(isRemember)
-                localStorage.setItem('ACCESS_USER', JSON.stringify(user))
+                localStorage.setItem('ACCESS_USER', JSON.stringify(data))
             else
-                sessionStorage.setItem('ACCESS_USER', JSON.stringify(user))
-            _setUser(user)
+                sessionStorage.setItem('ACCESS_USER', JSON.stringify(data))
+            _setUser(data)
         } else {
             localStorage.removeItem('ACCESS_USER')
             sessionStorage.removeItem('ACCESS_USER')
@@ -35,7 +39,8 @@ function StateContext({ children }) {
     }
 
     const getUserId = (id) => {
-        const idList = id.split('-')
+        const stringId = id.toString() 
+        const idList = stringId.split('-')
         if(idList[1])
             return {
                 id,
@@ -53,27 +58,6 @@ function StateContext({ children }) {
     const fakeApi = "http://localhost:3001"
 
     const [ path, setPath ] = useState('/' + window.location.pathname.split('/')[1])
-
-    const handleChangePath = (e, value, navigate) => {
-        e.preventDefault()
-        const href = e.target.href
-        const newPath = href.split('/')[3]
-
-        if(newPath != path) {
-            setPath('/' + newPath)
-            if(value)
-                navigate(newPath + '/' + href.split('/')[4])
-            else
-                navigate(newPath)
-        }
-    }
-
-    const handleChangeURL = (url, navigate) => {
-        if(url != path) {
-            setPath(url)
-            navigate(url)
-        }
-    }
 
     const listDepartment = [
         'Công nghệ thông tin và kinh doanh (BIT)',
@@ -107,9 +91,8 @@ function StateContext({ children }) {
                 setPath,
                 listDepartment,
                 getUserId,
-                handleChangePath,
-                handleChangeURL,
-                adminURL
+                adminURL,
+                mainURL
             }
         }>
             {children}

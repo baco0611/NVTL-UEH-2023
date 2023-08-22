@@ -8,20 +8,16 @@ import { UserContext } from '../../../context/ContextProvider'
 import ClientInformation from './ClientInformation'
 
 function ClientHeader() {
-    const { path, user, handleChangePath } = useContext(UserContext)
+    const { path, user, handleChangePath, setUser } = useContext(UserContext)
     const navigate = useNavigate()
     const [ isNav, setIsNav ] = useState(false)
     const [ isWeekly, setIsWeekly ] = useState(false)
 
-    const handleChangeLink = (e, value) => {
-        handleChangePath(e, value, navigate)
-        setIsWeekly(false)
-    }
-
-    const _setIsWeekly = (e, value) => {
-        handleChangeLink(e, 'weekly')
-        setIsWeekly(value)
-    }
+    useEffect(() => {
+        if(user) {
+            setUser(user, user.isRemember)
+        }
+    }, [])
 
     const handleCloseMenu = e => {
         function getParent(element, id) {
@@ -86,7 +82,7 @@ function ClientHeader() {
                             })}
                             onClick={() => setIsNav(false)}
                         >
-                            <Link onClick={handleChangeLink} to={'/'}>Trang chủ</Link>
+                            <Link to={'/'}>Trang chủ</Link>
                         </div>
                         <div 
                             className={clsx('client-header-item', {
@@ -94,7 +90,7 @@ function ClientHeader() {
                             })}
                             onClick={() => setIsNav(false)}
                         >
-                            <Link onClick={handleChangeLink} to={'/primewave'}>Prime wave</Link>
+                            <Link to={'/primewave'}>Prime wave</Link>
                         </div>
                         <div 
                             className={clsx('client-header-item weekly', {
@@ -149,7 +145,7 @@ function ClientHeader() {
                             })}
                             onClick={() => setIsNav(false)}
                         >
-                            <Link onClick={handleChangeLink} to={'/nightfest'}>Đêm hội</Link>
+                            <Link to={'/nightfest'}>Đêm hội</Link>
                         </div>
                         <div 
                             className={clsx('client-header-item', {
@@ -157,7 +153,7 @@ function ClientHeader() {
                             })}
                             onClick={() => setIsNav(false)}
                         >
-                            <Link onClick={handleChangeLink} to={'/casting'}>Casting</Link>
+                            <Link to={'/casting'}>Casting</Link>
                         </div>
                         <div 
                             className={clsx('client-header-item', {
@@ -165,7 +161,7 @@ function ClientHeader() {
                             })}
                             onClick={() => setIsNav(false)}
                         >
-                            <Link onClick={handleChangeLink} to={'/recruitment'}>Tuyển CTV</Link>
+                            <Link to={'/recruitment'}>Tuyển CTV</Link>
                         </div>
                     </nav>
                 </div>
@@ -181,29 +177,29 @@ function ClientHeader() {
                         'active': path == '/'
                     })}
                 >
-                    <Link onClick={handleChangeLink} to={'/'}>Trang chủ</Link>
+                    <Link to={'/'}>Trang chủ</Link>
                 </div>
                 <div 
                     className={clsx('client-header-item', {
                         'active': path == '/primewave'
                     })}
                 >
-                    <Link onClick={handleChangeLink} to={'/primewave'}>Prime wave</Link>
+                    <Link to={'/primewave'}>Prime wave</Link>
                 </div>
                 <div 
                     className={clsx('client-header-item weekly', {
                         'active': path == '/weekly'
                     })}
                 >
-                    <Link onClick={handleChangeLink} to={'/weekly'}>Tuần lễ</Link>
+                    <Link to={'/weekly'}>Tuần lễ</Link>
                     <i className="fa-solid fa-caret-down" onClick={() => setIsWeekly(!isWeekly)}></i>
                     {
                         isWeekly &&
                         <ul className='list-item'>
-                            <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day1'}>Ngày 1</Link></li>
-                            <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day2'}>Ngày 2</Link></li>
-                            <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day3'}>Ngày 3</Link></li>
-                            <li><Link onClick={(e) => _setIsWeekly(e, false)} to={'/weekly/day4'}>Ngày 4</Link></li>
+                            <li><Link onClick={() => setIsWeekly(false)} to={'/weekly/day1'}>Ngày 1</Link></li>
+                            <li><Link onClick={() => setIsWeekly(false)} to={'/weekly/day2'}>Ngày 2</Link></li>
+                            <li><Link onClick={() => setIsWeekly(false)} to={'/weekly/day3'}>Ngày 3</Link></li>
+                            <li><Link onClick={() => setIsWeekly(false)} to={'/weekly/day4'}>Ngày 4</Link></li>
                         </ul>
                     }
                 </div>
@@ -212,21 +208,21 @@ function ClientHeader() {
                         'active': path == '/nightfest'
                     })}
                 >
-                    <Link onClick={handleChangeLink} to={'/nightfest'}>Đêm hội</Link>
+                    <Link to={'/nightfest'}>Đêm hội</Link>
                 </div>
                 <div 
                     className={clsx('client-header-item', {
                         'active': path == '/casting'
                     })}
                 >
-                    <Link onClick={handleChangeLink} to={'/casting'}>Casting</Link>
+                    <Link to={'/casting'}>Casting</Link>
                 </div>
                 <div 
                     className={clsx('client-header-item', {
                         'active': path == '/recruitment'
                     })}
                 >
-                    <Link onClick={handleChangeLink} to={'/recruitment'}>Tuyển CTV</Link>
+                    <Link to={'/recruitment'}>Tuyển CTV</Link>
                 </div>
             </nav>
             
@@ -234,7 +230,7 @@ function ClientHeader() {
                 !user 
                 &&
                     <div className='client-header-login'>
-                        <Link onClick={handleChangeLink} to={'/login'}>Đăng nhập</Link>
+                        <Link to={'/login'}>Đăng nhập</Link>
                     </div>
                 ||
                     <ClientInformation/>
