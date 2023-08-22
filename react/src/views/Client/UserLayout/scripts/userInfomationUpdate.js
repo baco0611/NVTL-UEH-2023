@@ -62,6 +62,7 @@ const informationError = async (error) => {
                 break;
         }
 
+        if(!errorElement) continue
         const boxElement = getParent(errorElement, '.client-sign-item')
         boxElement.classList.add('invalid')  
         const spanElement = boxElement.querySelector('span')
@@ -69,17 +70,69 @@ const informationError = async (error) => {
     }
 }
 
-const handleUpdatePassword = ({ state, getUserId }) => {
-    const id = getUserId(state.id)
-
+const handleUpdatePassword = async ({ state, getUserId, setError }) => {
+    const id = getUserId(state.id.real)
     const payload = new FormData()
-    payload.append('id', id.real)
-    payload.append('newPassword', state.newPassword)
-    payload.append('oldPassword', state.oldPassword)
+    payload.append('idUser', id.real)
+    payload.append('new_password', state.newPassword)
+    payload.append('confirm_new_password', state.confirmPassword)
+    payload.append('current_password', state.oldPassword)
+
+    return await axiosClient.post('/updatePassword', payload)
+    .then(response => {
+        if(response.data.status == 200)
+            return true
+        else {
+            setError(response.data)
+        }
+        return false
+    })
+    .catch(error => {
+        return false
+    })
+}
+
+const passwordError = (error) => {
+    function getParent(element, selector) {
+        while(element.parentElement) {
+            if(element.parentElement.matches(selector))
+                return element.parentElement
+            
+            element = element.parentElement
+        }
+    }
+    const $ = document.querySelector.bind(document)
+    const oldPass = $('#client-old-password')
+    const newPass = $('#client-new-password')
+    const confirmPass = $('#client-new-confirmPassword')
+
+    for(var key in error) {
+        let errorElement
+        switch (key) {
+            case "current_password":
+                errorElement = oldPass
+                break;
+            case "new_password":
+                errorElement = newPass
+                break;
+            case "confirm_new_password":
+                errorElement = confirmPass
+                break;
+            default:
+                break;
+        }
+
+        if(!errorElement) continue
+        const boxElement = getParent(errorElement, '.client-sign-item')
+        boxElement.classList.add('invalid')  
+        const spanElement = boxElement.querySelector('span')
+        spanElement.innerText = error[key]       
+    }
 }
 
 export {
     handleUpdateInformation,
     handleUpdatePassword,
-    informationError
+    informationError,
+    passwordError
 }

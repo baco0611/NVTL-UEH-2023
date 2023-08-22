@@ -151,7 +151,8 @@ class LoginController extends Controller
         $confirm_pass= $userSevice->checkPass($pass,$id);
         if (Empty(json_decode($confirm_pass))){
             return response()->json([
-                'status' =>'Mật khẩu cũ nhập sai'
+                'current_password' =>'Mật khẩu cũ nhập sai',
+                'status' =>HttpResponse::HTTP_UNPROCESSABLE_ENTITY
             ]);
         }
         $valid=$this->validate($request, array(
@@ -162,6 +163,7 @@ class LoginController extends Controller
             'required' => 'Mật khẩu không được bỏ trống',
             'new_password.min'=>'Mật khẩu ít nhất 8 kí tự',
             'confirm_new_password.same'=>'Mật khẩu nhập lại sai',
+            'status' =>HttpResponse::HTTP_UNPROCESSABLE_ENTITY
         ));
         $user=$userSevice->updatePassword($request);
         $userAccount =AccountResource::collection($user);

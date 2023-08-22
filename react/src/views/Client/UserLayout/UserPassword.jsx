@@ -3,11 +3,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
 import { useNavigate } from 'react-router-dom'
 import Validator from '../LogLayout/scripts/validForm'
-import { handleUpdatePassword } from './scripts/userInfomationUpdate'
+import { handleUpdatePassword, passwordError } from './scripts/userInfomationUpdate'
 
 function UserPassword() {
     const { getUserId } = useContext(UserContext)
     const navigate = useNavigate()
+    const [ error, setError ] = useState()
     const user = JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER'))
     const [ state, setState ] = useState({
         id: getUserId(user.id),
@@ -47,6 +48,10 @@ function UserPassword() {
         })
     }, [state])
 
+    useEffect(() => {
+        passwordError(error)
+    }, [error])
+
     return (
         <>
             <div className='client-log-in client-log-sign-box'>
@@ -80,7 +85,7 @@ function UserPassword() {
                             placeholder='Mật khẩu mới'
                             onChange={handleChangeValue}
                             autoComplete='off'
-                            className={clsx({'filled': state.newPassWord})}
+                            className={clsx({'filled': state.newPassword})}
                         />
                         <span className='client-sign-message'></span>
                         {
@@ -121,7 +126,7 @@ function UserPassword() {
                             active: isSubmit
                         }
                     )}
-                    onClick={async () => await handleUpdatePassword({ state, getUserId })}
+                    onClick={async () => await handleUpdatePassword({ state, getUserId, setError })}
                 >Cập nhật</button>
             </div>
         </>

@@ -47,7 +47,7 @@ const loginError = async (error) => {
             default:
                 break;
         }
-
+        if(!errorElement) continue
         const boxElement = getParent(errorElement, '.client-sign-item')
         boxElement.classList.add('invalid')  
         const spanElement = boxElement.querySelector('span')
@@ -104,6 +104,7 @@ const signUpError = (error) => {
                 break;
         }
 
+        if(!errorElement) continue
         const boxElement = getParent(errorElement, '.client-sign-item')
         boxElement.classList.add('invalid')  
         const spanElement = boxElement.querySelector('span')
