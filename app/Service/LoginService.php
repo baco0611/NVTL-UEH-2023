@@ -9,7 +9,7 @@ class LoginService
 {
     public function getAccount($idUser) {
         $result = DB::table('login')
-        ->where('idUser',$idUser)
+        ->where('id',$idUser)
         ->get();
         return $result;
     }
@@ -21,19 +21,25 @@ class LoginService
         return $result;
     }
     
-    public function check($pass, $accountName) {
-        $user= DB::table('login')
-        ->where('password', $pass)
+    public function checkNameAccount($accountName) {
+        $name=DB::table('login')
         ->orwhere('studentCode', $accountName)
         ->orWhere('email',$accountName)
         ->get();
-        
-        return $user;
+        return $name;
     }
-    
+
+    public function checkPassAccount($accountName,$pass) {
+        $name=DB::table('login')
+        ->orwhere('studentCode', $accountName)
+        ->orWhere('email',$accountName)
+        ->where('password', $pass)
+        ->get();
+        return $name;
+    }
     public function checkPass($pass, $idUser) {
         $user= DB::table('login')
-        ->where('idUser', $idUser)
+        ->where('id', $idUser)
         ->where('password', $pass)
         ->get();
         
@@ -62,7 +68,7 @@ class LoginService
     }
      public function updateAccount($request){
        $result= DB::table('login')
-        ->where('idUser',$request['idUser'])
+        ->where('id',$request['idUser'])
         ->update([
             'fullName'=>$request['fullName'], 
             'department'=>$request['department'],
@@ -71,19 +77,27 @@ class LoginService
             'studentCode'=>$request['studentCode'],
         ]);
         $user= DB::table('login')
-        ->where('idUser',$request['idUser'])
+        ->where('id',$request['idUser'])
         ->get();
         return $user;
     }
     public function updatePassword($request){
         DB::table('login')
-        ->where('idUser',$request['idUser'])
+        ->where('id',$request['idUser'])
         ->update([
             'password'=>md5($request['new_password'])
         ]);
         $user= DB::table('login')
-        ->where('idUser',$request['idUser'])
+        ->where('id',$request['idUser'])
         ->get();
         return $user;
+    }
+    public function resetPassword($user,$request){
+        $result=DB::table('login')
+        ->where('id',$user['id'])
+        ->update([
+            'password'=>md5($request['new_password'])
+        ]);
+        return $result ;
     }
 }

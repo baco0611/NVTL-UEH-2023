@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class AccountResource extends JsonResource
 {
@@ -14,8 +15,9 @@ class AccountResource extends JsonResource
      */
     public function toArray($request)
     {
+        $fakeId= Str::random(10)."-".strval($this->id)."-".strval($this->id*4)."-".strval($this->id*5).Str::random(9);
         return  [
-            'id'=>$this->idUser,
+            'id'=>$fakeId,
             'fullName'=>$this->fullName,
             'studentCode'=>$this->studentCode,
             'department'=>$this->department,

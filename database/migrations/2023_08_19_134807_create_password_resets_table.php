@@ -12,14 +12,15 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('pride_take', function (Blueprint $table) {
-            $table->id('idPrideTake');
-            $table->timestamp('created_at')->useCurrent();
-            $table->foreignId('idUser');
-            $table->foreign('idUser')->references('id')->on('login');
-        });
-    }
+{
+    Schema::create('password_resets', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('email')->index();
+        $table->string('token');
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pride_take');
+        Schema::dropIfExists('password_reset');
     }
 };

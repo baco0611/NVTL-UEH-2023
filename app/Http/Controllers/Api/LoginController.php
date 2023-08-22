@@ -53,14 +53,19 @@ class LoginController extends Controller
         $pass= md5($request['password']);
         $accountName=$request['accountName'];
         $userSevice = new LoginService();
-        $user= $userSevice->check($pass, $accountName);
-        if (Empty(json_decode($user))) {
+        $userName= $userSevice->checkNameAccount($accountName);
+        if (Empty(json_decode($userName))) {
             return response()->json([
-                'status' =>HttpResponse::HTTP_UNAUTHORIZED,
-                'mess'=>'Tài khoản không hợp lệ'
+                'accountName' =>'Tên đăng nhập không đúng'
             ]);
         }
-        $userAccount =AccountResource::collection($user);
+        $userPass=$userSevice->checkPassAccount($accountName,$pass);
+        if (Empty(json_decode($userPass))) {
+            return response()->json([
+                'password' =>'Mật khẩu không đúng'
+            ]);
+        }
+        $userAccount =AccountResource::collection($userPass);
         return response()->json([
             'userAccount'=>$userAccount,
             'status' =>HttpResponse::HTTP_OK,

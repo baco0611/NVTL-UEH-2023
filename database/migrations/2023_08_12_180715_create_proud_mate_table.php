@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id('idProudMate');
             $table->string('teamName', 500);
             $table->foreignId('member1');
-            $table->foreign('member1')->references('idUser')->on('login');
+            $table->foreign('member1')->references('id')->on('login');
             $table->foreignId('member2');
-            $table->foreign('member2')->references('idUser')->on('login');
+            $table->foreign('member2')->references('id')->on('login');
             $table->foreignId('member3');
-            $table->foreign('member3')->references('idUser')->on('login');
+            $table->foreign('member3')->references('id')->on('login');
             $table->string('proof1', 500);
             $table->string('proof2', 500);
             $table->string('proof3', 500);
