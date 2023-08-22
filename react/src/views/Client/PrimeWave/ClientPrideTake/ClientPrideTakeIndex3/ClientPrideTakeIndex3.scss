@@ -1,0 +1,145 @@
+#client-pride-3 {
+    width: 100%;
+    position: relative;
+
+    .client-background {
+        position: absolute;
+        z-index: 2;
+
+        &.turtle {
+            top: 15%;
+            z-index: 4;
+
+        }
+
+        &.shark {
+            top: 37%;
+            right: 0;
+        }
+
+        &.sanhotrai {
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+
+        }
+
+        &.sanhophai {
+            bottom: 0;
+            right: 0;
+        }
+    }
+}
+
+.client-pride-3 {
+    position: relative;
+    width: 100%;
+    min-height: 110vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+
+    &-box {
+        background: url('./img/back.png');
+        background-size: 100% 100%;
+        width: 100%;
+        height: 250px;
+
+        .content {
+            width: 45vw;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+    }
+
+    &-btn {
+        position: absolute;
+    }
+
+    .client-pride-3-result {
+        position: absolute;
+        width: 35vw;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 15vw;
+    }
+
+    .client-pride-3-download {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        right: 15vw;
+        transform: 
+            translateX(calc((-35vw / 2) + 50% ))
+            translateY(calc((35vw / 2) + 50% ));
+        top: 50%;
+    }
+
+    .client-pride-3-back {
+        height: 50px;
+        width: 200px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        left: 20vw;
+        transform: 
+            translateY(calc((35vw / 2) + 50% ));
+        top: 50%;
+        z-index: 5 !important;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .client-pride-3-box .content {
+        width: 55vw;
+    }
+
+    .client-pride-3-result {
+        right: 5vw !important;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .client-pride-3-box {
+        height: 150px;
+        .content {
+            width: 100%;
+            padding: 30px;
+        }   
+    }
+    .client-pride-3-result {
+        position: unset !important;
+        transform: none !important;
+        margin-top: 40px;
+        width: 75% !important;
+    }
+
+    .client-pride-3-btn {
+        position: relative;
+        display: flex;
+        margin-top: 40px;
+        gap: 40px;
+    }
+
+    .client-pride-3-download {
+        position: unset !important;
+        transform: none !important;
+    }
+
+    .client-pride-3-back {
+        position: unset !important;
+        transform: none !important;
+    }
+}

@@ -28,9 +28,19 @@ function ClientPrideTake() {
         }
     }, [index])
 
-    useEffect(() => {
-        
+    const [ value, setValue ] = useState({
+        down: 0,
+        right: 0,
+        scale: 1,
+        rotate: 0,
     })
+
+    const [ name, setName ] = useState('')
+
+    useEffect(() => {
+        const Params = new URLSearchParams(window.location.search);
+        setIndex(Params.get('index'))
+    }, [window.location.href])
 
     return (
         <section id='client-pride'>
@@ -48,6 +58,10 @@ function ClientPrideTake() {
                     avatar={avatar}
                     setResult={setResult}
                     setIndex={setIndex}
+                    value={value}
+                    setValue={setValue}
+                    name={name}
+                    setName={setName}
                 />
             : index == 3
             ?

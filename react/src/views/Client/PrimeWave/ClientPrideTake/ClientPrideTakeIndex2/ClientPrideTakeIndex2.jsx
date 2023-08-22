@@ -11,19 +11,11 @@ import frame from './img/frame.png'
 import rotate from './img/rotate.png'
 import zoom from './img/zoom.png'
 import domtoimage, { htmlToImage } from 'dom-to-image'
-import html2canvas from "html2canvas"
 import * as alphabet from './img/alphabet'
 
-function ClientPrideTakeIndex2({ avatar, setResult, setIndex }) {
+function ClientPrideTakeIndex2({ avatar, setResult, setIndex, value, setValue, name, setName }) {
     
     const imageURL = avatar || 'https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/12/1228045/Lisa-Blackpink6.jpeg'
-    const [ name, setName ] = useState('')
-    const [ value, setValue ] = useState({
-        down: 0,
-        right: 0,
-        scale: 1,
-        rotate: 0,
-    })
     const avataRef = useRef(null)
 
     const handleChangValue = e => {
@@ -92,6 +84,17 @@ function ClientPrideTakeIndex2({ avatar, setResult, setIndex }) {
             console.log(dataURL)
             setResult(dataURL)
             setIndex(3)
+        })
+    }
+
+    const handleBack = () => {
+        setIndex(1)
+        setName('')
+        setValue({
+            down: 0,
+            right: 0,
+            scale: 1,
+            rotate: 0,
         })
     }
 
@@ -352,7 +355,7 @@ function ClientPrideTakeIndex2({ avatar, setResult, setIndex }) {
                         </div>
                     </div>
                     <div className='client-pride-2-nav'>
-                        <button className="secondary-button btn" onClick={() => setIndex(1)}>
+                        <button className="secondary-button btn" onClick={handleBack}>
                             <i className="fa-solid fa-arrow-left-long"></i>
                             Quay lại
                         </button> 
