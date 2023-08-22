@@ -89,7 +89,7 @@ function SignIn({ state, setState, setIsDangNhap }) {
                         <span>Nhớ tài khoản</span>
                     </div>
                     <div className='client-sign-forgot'>
-                        <Link>Quên mật khẩu ?</Link>
+                        <Link to={'/login/forgot'}>Quên mật khẩu ?</Link>
                     </div>
                 </div>
             </div>

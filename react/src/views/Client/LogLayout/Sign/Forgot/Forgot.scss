@@ -1,0 +1,46 @@
+.client-log-forgot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-container {
+        width: 80%;
+        background-color: white;
+        padding: 10px 0;
+        border-radius: 20px;
+
+        h3 {
+            padding: 10px 30px;
+            font-size: 24px;
+            border-bottom: 1px solid #ccc;
+        }
+    }
+
+    &-content {
+        padding: 30px;
+
+        h4 {
+            color: #398ef4;
+            font-size: 18px;
+            padding-bottom: 25px;
+        }
+    }
+
+    &-nav {
+        padding: 0 30px;
+        padding-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+
+        .btn {
+            display: block;
+            width: 100px;
+            text-align: center;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

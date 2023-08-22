@@ -13,7 +13,6 @@ import Casting from '../views/Client/Casting/Casting'
 import Recruitment from '../views/Client/Recruitment/Recruitment'
 import LogLayout from "../views/Client/LogLayout/LogLayout"
 import Sign from "../views/Client/LogLayout/Sign/Sign"
-import ForgotPassword from "../views/Client/LogLayout/ForgotPassword/ForgotPassword"
 import UserLayout from "../views/Client/UserLayout/UserLayout"
 import Error from "../components/Error/Error"
 import Status from "../views/Admin/Status/Status"
@@ -30,6 +29,7 @@ import NewsWeekly from "../views/Admin/News/NewsWeekly/NewsWeekly"
 import ClientPrideTake from "../views/Client/PrimeWave/ClientPrideTake/ClientPrideTake"
 import ClientProudMate from "../views/Client/PrimeWave/ClientProudMate/ClientProudMate"
 import ClientWonderU from "../views/Client/PrimeWave/ClientWonderU/ClientWonderU"
+import ForgotPassword from "../views/Client/LogLayout/Sign/Forgot/Forgot"
 
 const router = createBrowserRouter([
     {
