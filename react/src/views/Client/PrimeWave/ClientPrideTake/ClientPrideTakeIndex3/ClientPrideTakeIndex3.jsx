@@ -8,7 +8,6 @@ import title from './img/title.png'
 import subtitle from './img/subtitle.png'
 
 function ClientPrideTakeIndex3({result, setIndex}) {
-    console.log(result)
     useEffect(() => {
         if(!result) {
             setIndex(1)
