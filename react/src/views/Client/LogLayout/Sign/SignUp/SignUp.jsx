@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import './SignUp.scss'
 import Validator from '../../scripts/validForm'
 import { UserContext } from '../../../../../context/ContextProvider'
-import { handleSignUp } from '../../scripts/signUpdate'
+import { handleSignUp, signUpError } from '../../scripts/signUpdate'
 import { useNavigate } from 'react-router-dom'
 
 function SignUp({ state, setState }) {
@@ -26,6 +26,7 @@ function SignUp({ state, setState }) {
     const [ isValid, setIsValid ] = useState(true)
     const [ isSuccess, setIsSuccess ] = useState(false)
     const [ userValue, setUserValue ] = useState(null)
+    const [ error, setError ] = useState(null)
 
     const [hidePassword, setHidePassword] = useState(true)
     const [hidePassword2, setHidePassword2] = useState(true)
@@ -97,6 +98,10 @@ function SignUp({ state, setState }) {
             navigate('/')
         }
     }, [isSuccess])
+
+    useEffect(() => {
+        signUpError(error)
+    }, [error])
 
     return (
         <>
@@ -245,7 +250,7 @@ function SignUp({ state, setState }) {
                             active: isSubmit && isValid && isFocus
                         }
                     )}
-                    onClick={async () => await handleSignUp({ state, setIsSuccess, setUserValue })}
+                    onClick={async () => await handleSignUp({ state, setIsSuccess, setUserValue, setError })}
                 >Đăng ký</button>
             </div>
         </>

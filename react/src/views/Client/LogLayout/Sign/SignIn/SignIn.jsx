@@ -3,7 +3,7 @@ import './SignIn.scss'
 import { useContext, useEffect, useState } from 'react'
 import Validator from '../../scripts/validForm'
 import { Link } from 'react-router-dom'
-import { handleSignIn } from '../../scripts/signUpdate'
+import { handleSignIn, loginError } from '../../scripts/signUpdate'
 import { UserContext } from '../../../../../context/ContextProvider'
 
 function SignIn({ state, setState, setIsDangNhap }) {
@@ -28,7 +28,7 @@ function SignIn({ state, setState, setIsDangNhap }) {
             formGroupSelector: '.client-sign-item',
             errorSelector: '.client-sign-message',
             rules: [
-                Validator.isRequired('#client-studentCode', 'Vui lòng điền mã số sinh viên của bạn'),
+                Validator.isRequired('#client-accountName', 'Vui lòng điền mã số sinh viên của bạn'),
                 Validator.isRequired('#client-password', 'Vui lòng điền mật khẩu'),
             ],
             setIsSubmit
@@ -36,7 +36,7 @@ function SignIn({ state, setState, setIsDangNhap }) {
     }, [state])
 
     useEffect(() => {
-
+        loginError(error)
     }, [error])
 
     return (
@@ -45,14 +45,14 @@ function SignIn({ state, setState, setIsDangNhap }) {
                 <form className='client-sign-form' id='client-sign-up'>
                     <div className='client-sign-item'>
                         <input 
-                            id='client-studentCode'
+                            id='client-accountName'
                             type='text'
-                            value={state.studentCode}
-                            name='studentCode'
+                            value={state.accountName}
+                            name='accountName'
                             placeholder='Mã số sinh viên'
                             onChange={handleChangeValue}
                             autoComplete='off'
-                            className={clsx({'filled': state.studentCode})}
+                            className={clsx({'filled': state.accountName})}
                         />
                         <span className='client-sign-message'></span>
                     </div>

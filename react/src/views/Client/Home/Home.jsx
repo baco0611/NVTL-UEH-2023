@@ -36,7 +36,7 @@ function Home() {
             }
         }
 
-        if(block1Ref) {
+        if(block1Ref && block2Ref && block3Ref && block4Ref && block5Ref) {
             if(block1Ref.current.getBoundingClientRect().top < screenHeigh - 100) {
                 setTimeout(() => {
                     block1Ref.current.classList.remove('visible')

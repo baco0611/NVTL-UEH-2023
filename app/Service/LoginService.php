@@ -32,6 +32,7 @@ class LoginService
     public function checkPassAccount($accountName,$pass) {
         $name=DB::table('login')
         ->orwhere('studentCode', $accountName)
+        ->where('password', $pass)
         ->orWhere('email',$accountName)
         ->where('password', $pass)
         ->get();

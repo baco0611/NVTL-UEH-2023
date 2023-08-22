@@ -12,7 +12,7 @@ function Sign() {
     const { user, setPath } = useContext(UserContext)
 
     const [ signInValue, setSignInValue ] = useState({
-        studentCode: '',
+        accountName: '',
         password: ''
     })
 
