@@ -12,6 +12,7 @@ import block2 from './img/block2.png'
 import block3 from './img/block3.png'
 import block4 from './img/block4.png'
 import block5 from './img/block5.png'
+import message from './img/message.png'
 
 function Home() {
     const { setPath } = useContext(UserContext)
@@ -64,7 +65,6 @@ function Home() {
     useEffect(() => {
 
         window.addEventListener('scroll', handleScroll)
-        handleScroll()
 
         return () => {
             window.removeEventListener('scroll', handleScroll)
@@ -91,11 +91,7 @@ function Home() {
                 </div>
             </div>
             <div className='client-home-message'>
-                <h1 className='visible' ref={messageRef}>
-                    Light your path,
-                    <br/>
-                    guide your dream
-                </h1>
+                <img className='visible' ref={messageRef} src={message}/>
             </div>
             <div className='client-home-quote'>
                 <div className='client-home-quote-box'>

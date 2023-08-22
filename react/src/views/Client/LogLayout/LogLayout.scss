@@ -5,13 +5,26 @@
 .client-log {
     display: flex;
 
-    img {
-        width: min(48%);
+    .logSwiper {
+        width: 48%;
         height: auto;
-        aspect-ratio: 700 / 830;
+        aspect-ratio: 700 / 838;
         box-shadow: 20px 0 40px rgba(0, 0, 0, 0.2);
         z-index: 3;
         object-fit: cover;
+
+        .logBanner {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 700 / 838;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
     }
 
     &-side {
@@ -28,7 +41,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-    #client-log img {
+    #client-log .logSwiper {
         display: none;
     }
     .client-log {

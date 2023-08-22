@@ -3,7 +3,7 @@ import axiosClient from '../../../../context/axiosClient'
 const handleSignIn = async ({ state, setUser, isRemember, setError }) => {
     const payload = new FormData()
 
-    payload.append('studentCode', state.studentCode)
+    payload.append('accountName', state.studentCode)
     payload.append('password', state.password)
 
     await axiosClient.post('/loginAccount', payload)

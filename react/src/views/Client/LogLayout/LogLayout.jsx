@@ -3,6 +3,7 @@ import './LogLayout.scss'
 import SidePic from './img/SidePic.png'
 import { useContext, useEffect } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
+import LogBanner from './Sign/LogBanner/LogBanner'
 
 function LogLayout() {
     const { setPath } = useContext(UserContext)
@@ -11,7 +12,8 @@ function LogLayout() {
 
     return (
         <section id='client-log' className='client-log'>
-            <img src={SidePic}></img>
+            {/* <img src={SidePic}></img> */}
+            <LogBanner/>
             <Outlet/>
         </section>
     )

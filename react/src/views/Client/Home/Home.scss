@@ -70,6 +70,11 @@ $primary-color: #0052ba;
 
     &-message {
         padding: 50px 0;
+
+        img {
+            width: 75%;
+            margin: 0 auto;
+        }
         
         h1 {
             text-align: center;
