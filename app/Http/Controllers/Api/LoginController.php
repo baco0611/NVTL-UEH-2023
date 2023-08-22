@@ -56,13 +56,15 @@ class LoginController extends Controller
         $userName= $userSevice->checkNameAccount($accountName);
         if (Empty(json_decode($userName))) {
             return response()->json([
-                'accountName' =>'Tên đăng nhập không đúng'
+                'accountName' =>'Tên đăng nhập không đúng',
+                'status'=>HttpResponse::HTTP_UNPROCESSABLE_ENTITY
             ]);
         }
         $userPass=$userSevice->checkPassAccount($accountName,$pass);
         if (Empty(json_decode($userPass))) {
             return response()->json([
-                'password' =>'Mật khẩu không đúng'
+                'password' =>'Mật khẩu không đúng',
+                'status'=>HttpResponse::HTTP_UNPROCESSABLE_ENTITY
             ]);
         }
         $userAccount =AccountResource::collection($userPass);

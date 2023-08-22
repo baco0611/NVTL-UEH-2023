@@ -31,7 +31,7 @@ Route::get('listProudMate', [ProudMateController::class, 'getProudMate'])->name(
 #Client
 #PrideTake
 Route::post('insertPrideTake', [PrideTakeController::class,'insertPrideTake'])->name('insertPrideTake');
-
+Route::post('sortByTime', [PrideTakeController::class,'sortByTime'])->name('sortByTime');
 
 #Login
 Route::post('registerAccount', [LoginController::class,'registerAccount'])->name('register');
