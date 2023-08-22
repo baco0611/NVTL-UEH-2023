@@ -24,7 +24,7 @@ class StoreBlogLogin extends FormRequest
     public function rules()
     {
         return [
-            'studentCode'=>'required',
+            'accountName'=>'required',
             'password'=>['required',
                         'min:8']
         ];
@@ -39,7 +39,7 @@ class StoreBlogLogin extends FormRequest
     public function attributes()
     {
         return [
-            'studentCode'=>'Mã số sinh viên',
+            'accountName'=>'Tên tài khoản',
             'password'=>'Mật khẩu'
         ];
     }
