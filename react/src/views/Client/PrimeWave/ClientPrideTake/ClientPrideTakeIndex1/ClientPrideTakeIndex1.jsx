@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 function ClientPrideTakeIndex1({ avatar, setAvatar, setIndex }) {
 
+    
     const imageRef = useRef(null)
 
     const handleImageClick = () => {
@@ -32,7 +33,28 @@ function ClientPrideTakeIndex1({ avatar, setAvatar, setIndex }) {
                     <br/>
                     để sẵn sàng khám phá đại dương bao la.
                 </p>
-                <div></div>
+                <div className='client-pride-1-mess'></div>
+            </div>
+            <div className='client-pride-1-image phone'>
+                <div className='client-pride-1-input' onClick={handleImageClick}>
+                    {
+                        !avatar 
+                        ?
+                        <i className="image fa-regular fa-image"></i>
+                        :
+                        <img className='image' src={avatar}/>
+                    }
+                    <button>
+                        <i className="fa-solid fa-arrow-up-from-bracket"></i>
+                        Tải ảnh lên
+                    </button>
+                    <input 
+                        type='file' 
+                        ref={imageRef}
+                        accept='.png, .jpeg, .jpg'
+                        onChange={handleChangValue}
+                    />
+                </div>
             </div>
             <div className='client-pride-1-nav'>
                 <Link className="secondary-button btn" to={'/primewave'}>
@@ -47,7 +69,7 @@ function ClientPrideTakeIndex1({ avatar, setAvatar, setIndex }) {
                     </button> 
                 }
             </div>
-            <div className='client-pride-1-image'>
+            <div className='client-pride-1-image lap'>
                 <div className='client-pride-1-input' onClick={handleImageClick}>
                     {
                         !avatar 

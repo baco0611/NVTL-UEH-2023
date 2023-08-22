@@ -11,7 +11,8 @@ function ClientPrideTake() {
     useEffect(() => setPath('/primewave'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
-    const [ index, setIndex ] = useState(2)
+    const urlParams = new URLSearchParams(window.location.search);
+    const [ index, setIndex ] = useState(urlParams.get('index'))
     const navigate = useNavigate()
 
     const [ avatar, setAvatar ] = useState('')
@@ -20,8 +21,26 @@ function ClientPrideTake() {
     useEffect(() => {
         if(!index) {
             navigate('/primewave/pridetake?index=1')
-        } 
-    }, [])
+            setIndex(1)
+        }
+        else {
+            navigate(`/primewave/pridetake?index=${index}`)
+        }
+    }, [index])
+
+    const [ value, setValue ] = useState({
+        down: 0,
+        right: 0,
+        scale: 1,
+        rotate: 0,
+    })
+
+    const [ name, setName ] = useState('')
+
+    useEffect(() => {
+        const Params = new URLSearchParams(window.location.search);
+        setIndex(Params.get('index'))
+    }, [window.location.href])
 
     return (
         <section id='client-pride'>
@@ -39,11 +58,16 @@ function ClientPrideTake() {
                     avatar={avatar}
                     setResult={setResult}
                     setIndex={setIndex}
+                    value={value}
+                    setValue={setValue}
+                    name={name}
+                    setName={setName}
                 />
             : index == 3
             ?
                 <ClientPrideTakeIndex3
                     result={result}
+                    setIndex={setIndex}
                 />
             :
                 <Navigate to={'/error'}/>
