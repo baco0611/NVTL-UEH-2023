@@ -81,7 +81,6 @@ function ClientPrideTakeIndex2({ avatar, setResult, setIndex, value, setValue, n
     const handleNext = async () => {
         domtoimage.toPng(avataRef.current)
         .then(dataURL => {
-            console.log(dataURL)
             setResult(dataURL)
             setIndex(3)
         })

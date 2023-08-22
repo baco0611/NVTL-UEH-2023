@@ -5,6 +5,7 @@ import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 import ClientPrideTakeIndex1 from './ClientPrideTakeIndex1/ClientPrideTakeIndex1'
 import ClientPrideTakeIndex2 from './ClientPrideTakeIndex2/ClientPrideTakeIndex2'
 import ClientPrideTakeIndex3 from './ClientPrideTakeIndex3/ClientPrideTakeIndex3'
+import RequestLogin from '../../../../components/RequestLogin/RequestLogin'
 
 function ClientPrideTake() {
     const { setPath } = useContext(UserContext)
@@ -36,6 +37,7 @@ function ClientPrideTake() {
     })
 
     const [ name, setName ] = useState('')
+    const user = JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER'))
 
     useEffect(() => {
         const Params = new URLSearchParams(window.location.search);
@@ -44,6 +46,10 @@ function ClientPrideTake() {
 
     return (
         <section id='client-pride'>
+        {
+            user == null &&
+            <RequestLogin/>
+        }
         {
             index == 1 
             ?

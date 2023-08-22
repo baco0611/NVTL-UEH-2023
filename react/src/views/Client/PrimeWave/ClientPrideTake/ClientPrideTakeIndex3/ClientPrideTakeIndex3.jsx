@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import './ClientPrideTakeIndex3.scss'
 import turtle from './img/turtle.png'
 import shark from './img/shark.png'
@@ -6,8 +6,13 @@ import sanhophai from './img/sanhophai.png'
 import sanhotrai from './img/sanhotrai.png'
 import title from './img/title.png'
 import subtitle from './img/subtitle.png'
+import axiosClient from '../../../../../context/axiosClient'
+import { UserContext } from '../../../../../context/ContextProvider'
+import Swal from 'sweetalert2'
 
 function ClientPrideTakeIndex3({result, setIndex}) {
+    const { user, getUserId } = useContext(UserContext)
+
     useEffect(() => {
         if(!result) {
             setIndex(1)
@@ -19,12 +24,47 @@ function ClientPrideTakeIndex3({result, setIndex}) {
     }
 
     const handleDownload = async () => {
-        //api
+        const id = getUserId(user.id)
+        const result = await axiosClient.post('/insertPrideTake' ,{
+            id: id.real
+        })
+        .then(response => {
+            if(response.data.status == 200)
+                return true
+            return false
+        })
+        .catch(error => {
+            console.log(error)
+            return false
+        })
 
-        const button = document.createElement('a')
-        button.href = result
-        button.download = 'yourAvata.png'
-        button.click()
+        if(result) {
+            const button = document.createElement('a')
+            button.href = result
+            button.download = 'yourAvata.png'
+            button.click()
+        }
+        else {
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    icon: 'error',
+                    html: `
+                        <div class="user-update-success">
+                            <h1>CÓ LỖI VUI LÒNG THỬ LẠI SAU</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+                    confirmButtonColor: "#3288f3"
+                })
+        }
     }
  
     return (
