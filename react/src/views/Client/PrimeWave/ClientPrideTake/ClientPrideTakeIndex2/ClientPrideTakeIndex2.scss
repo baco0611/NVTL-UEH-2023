@@ -63,6 +63,10 @@ $deepBlue-color: #2641a5;
                 transform: translateY(11px);   
             }
         }
+        .key-q {
+            height: 128%;
+            transform: translateY(7px);
+        }
     }
 
     &-left {
@@ -298,4 +302,29 @@ $deepBlue-color: #2641a5;
     .client-pride-2-right .client-pride-2-input {
         font-size: 16px;
     }
-}   
+
+    .space {
+        width: 10px;
+    }
+
+
+    .key-nang {
+        height: 130%;
+        transform: translateY(7px) !important;
+    }
+
+    .key-dau-nang {
+        height: 160%;
+        transform: translateY(7px) !important;
+
+        &-o {
+            height: 155%;
+            transform: translateY(8px) !important;   
+        }
+    }
+    .key-q {
+        height: 128%;
+        transform: translateY(5px) !important;
+    }
+} 
+

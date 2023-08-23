@@ -193,7 +193,7 @@ function SignUp({ state, setState }) {
                             type='text'
                             value={state.studentCode}
                             name='studentCode'
-                            placeholder='Mã số sinh viên'
+                            placeholder='MSSV (số điện thoại nếu chưa có MSSV)'
                             onChange={handleChangeValue}
                             autoComplete='off'
                             className={clsx({'filled': state.studentCode})}
