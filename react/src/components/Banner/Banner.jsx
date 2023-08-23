@@ -27,9 +27,9 @@ function Banner() {
                     modules={[Autoplay, Pagination, Navigation]}
                     className="mySwiper"
                 >
-                    <SwiperSlide className='banner'>
+                    {/* <SwiperSlide className='banner'>
                         <img src={bannerCasting}/>
-                    </SwiperSlide>
+                    </SwiperSlide> */}
                     <SwiperSlide className='banner'>
                         <img src={bannerPrimewave}/>
                     </SwiperSlide>

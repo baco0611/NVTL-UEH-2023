@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { UserContext } from '../../../../context/ContextProvider'
+import ComingSoon from '../../../../components/ComingSoon/ComingSoon'
+
 
 function Weekly() {
     const { setPath } = useContext(UserContext)
@@ -7,7 +9,8 @@ function Weekly() {
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (
-        <section>Weekly</section>
+        <ComingSoon/>
+        // <section>Weekly</section>
     )
 }
 

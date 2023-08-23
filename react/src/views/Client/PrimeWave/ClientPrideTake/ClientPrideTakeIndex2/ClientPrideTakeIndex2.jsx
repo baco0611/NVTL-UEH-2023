@@ -265,6 +265,10 @@ function ClientPrideTakeIndex2({ avatar, setResult, setIndex, value, setValue, n
                                                 return <img className='key-mu' key={index} src={alphabet.YR}/>    
                                             case 'Ỵ':
                                                 return <img className='key-nang' key={index} src={alphabet.YJ}/>    
+                                            case 'Đ':
+                                                return <img key={index} src={alphabet.DD}/>    
+                                            case 'Q':
+                                                return <img className='key-q' key={index} src={alphabet.Q}/>    
                                             default:
                                                 return <img key={index} src={alphabet[item]}/>
                                         }
@@ -365,7 +369,7 @@ function ClientPrideTakeIndex2({ avatar, setResult, setIndex, value, setValue, n
                             <i className="fa-solid fa-arrow-left-long"></i>
                             Quay lại
                         </button> 
-                        <button className="secondary-button btn" onClick={handleNext}>
+                        <button className="secondary-button btn" onClick={handleNextStep}>
                             Tiếp tục
                             <i className="fa-solid fa-arrow-right-long"></i>
                         </button> 

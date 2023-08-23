@@ -20,9 +20,9 @@ function LogBanner() {
                 modules={[Autoplay, Pagination, Navigation]}
                 className="mySwiper logSwiper"
             >
-                <SwiperSlide className='logBanner'>
+                {/* <SwiperSlide className='logBanner'>
                     <img src={bannerCasting}/>
-                </SwiperSlide>
+                </SwiperSlide> */}
                 <SwiperSlide className='logBanner'>
                     <img src={bannerPrimewave}/>
                 </SwiperSlide>

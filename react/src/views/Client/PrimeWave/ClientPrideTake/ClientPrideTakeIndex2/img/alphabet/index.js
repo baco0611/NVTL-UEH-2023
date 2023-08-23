@@ -103,4 +103,4 @@ export { default as YF } from './YF.png'
 export { default as YX } from './YX.png'
 export { default as YJ } from './YJ.png'
 
-// export { default as } from './.png'
+export { default as DD } from './DD.png'
