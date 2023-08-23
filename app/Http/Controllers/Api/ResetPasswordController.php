@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\PasswordReset;
 use App\Notifications\ResetPasswordRequest;
 use App\Service\LoginService;
+use Illuminate\Http\Response as HttpResponse;
 
 class ResetPasswordController extends Controller
 {
@@ -21,6 +22,14 @@ class ResetPasswordController extends Controller
      */
     public function sendMail(Request $request)
     {
+        $userService= new LoginService();
+        $item= $userService->checkEmail($request['email']);
+        if (Empty(json_decode($item))) {
+            return response()->json([
+                'mess' =>'Email chưa được đăng kí',
+                'status'=>HttpResponse::HTTP_UNPROCESSABLE_ENTITY
+            ]);
+        }
         $user = Login::where('email', $request['email'])->firstOrFail();
         $passwordReset = PasswordReset::updateOrCreate([
             'email' => $user->email,
@@ -59,6 +68,7 @@ class ResetPasswordController extends Controller
         $passwordReset->delete();
         return response()->json([
             'success' => boolval($updatePasswordUser),
+            'status'=>HttpResponse::HTTP_OK
         ]);
     }
 }

@@ -28,10 +28,10 @@ Route::get('listStatusPage', [StatusPageController::class, 'statusPage'])->name(
 Route::get('listAccount', [LoginController::class, 'userAccount'])->name('userAccount_show');
 Route::get('listPrideTake', [PrideTakeController::class, 'getPrideTake'])->name('prideTake_show');
 Route::get('listProudMate', [ProudMateController::class, 'getProudMate'])->name('proudMate_show');
+Route::post('sortByTime', [PrideTakeController::class,'sortByTime'])->name('sortByTime');
 #Client
 #PrideTake
 Route::post('insertPrideTake', [PrideTakeController::class,'insertPrideTake'])->name('insertPrideTake');
-Route::post('sortByTime', [PrideTakeController::class,'sortByTime'])->name('sortByTime');
 
 #Login
 Route::post('registerAccount', [LoginController::class,'registerAccount'])->name('register');

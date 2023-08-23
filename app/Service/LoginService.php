@@ -101,4 +101,10 @@ class LoginService
         ]);
         return $result ;
     }
+    public function checkEmail($email) {
+        $user= DB::table('login')
+        ->where('email', $email)
+        ->get();
+        return $user;
+    }
 }
