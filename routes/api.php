@@ -28,7 +28,7 @@ Route::get('listStatusPage', [StatusPageController::class, 'statusPage'])->name(
 Route::get('listAccount', [LoginController::class, 'userAccount'])->name('userAccount_show');
 Route::get('listPrideTake', [PrideTakeController::class, 'getPrideTake'])->name('prideTake_show');
 Route::get('listProudMate', [ProudMateController::class, 'getProudMate'])->name('proudMate_show');
-Route::post('sortByTime', [PrideTakeController::class,'sortByTime'])->name('sortByTime');
+Route::post('prideTake/sortByTime', [PrideTakeController::class,'sortByTime'])->name('sortByTime');
 #Client
 #PrideTake
 Route::post('insertPrideTake', [PrideTakeController::class,'insertPrideTake'])->name('insertPrideTake');
@@ -44,3 +44,5 @@ Route::post('reset-password/{token}', [ResetPasswordController::class,'reset'])-
 
 #News
 Route::post('newsUpload', [NewsController::class,'storeNews'])->name('newsUpload');
+Route::get('newsAdmin/{category}', [NewsController::class, 'showHome'])->name('showHome');
+Route::post('newsAdmin/sortByTime', [NewsController::class,'sortByTime'])->name('sortByTime');

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class NewsResource extends JsonResource
 {
@@ -15,7 +16,7 @@ class NewsResource extends JsonResource
     public function convertImage()
     {
         $fileName=$this->thumbnail;
-        $pathFull = '/imageNews'.$fileName;
+        $pathFull = '/imageNews/'.$fileName;
         return 'http://localhost:8000' .$pathFull;
     }
     public function toArray($request)
@@ -25,8 +26,8 @@ class NewsResource extends JsonResource
             'title'=>$this->title,
             'subTitle'=>$this->subTitle,
             'thumbnail'=>$this->convertImage(),
-            'link'=>$this->linkPost,
-            'category'=>$this->category
+            'linkPost'=>$this->linkPost,
+            'createTime'=>Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d/m/Y H:i:s')
         ];
     }
 }
