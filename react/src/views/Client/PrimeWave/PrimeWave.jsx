@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react"
 import { UserContext } from "../../../context/ContextProvider"
 import "./PrimeWave.scss"
 import { Link } from 'react-router-dom'
+import ComingSoon from "../../../components/ComingSoon/ComingSoon"
 
 function PrimeWave() {
     const { setPath } = useContext(UserContext)
@@ -13,12 +14,7 @@ function PrimeWave() {
             <div className="client-prime-block">
                 <Link className="secondary-button btn" to={'/primewave/pridetake?index=1'}>Khám phá thêm</Link>    
             </div>
-            <div className="client-prime-block">
-                <Link className="primary-button btn" to={'/primewave/proudmate'}>Khám phá thêm</Link>    
-            </div>
-            <div className="client-prime-block">
-                <Link className="primary-button btn" to={'/primewave/wonderu'}>Khám phá thêm</Link>    
-            </div>
+            <ComingSoon/>
         </section>
     )
 }

@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react"
 import { UserContext } from "../../../context/ContextProvider"
+import ComingSoon from "../../../components/ComingSoon/ComingSoon"
 
 function Recruitment() {
     const { setPath } = useContext(UserContext)
@@ -7,7 +8,8 @@ function Recruitment() {
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (
-        <section>Recruitment</section>
+        <ComingSoon/>
+        // <section>Recruitment</section>
     )
 }
 
