@@ -32,6 +32,7 @@ class LoginService
     public function checkPassAccount($accountName,$pass) {
         $name=DB::table('login')
         ->orwhere('studentCode', $accountName)
+        ->where('password', $pass)
         ->orWhere('email',$accountName)
         ->where('password', $pass)
         ->get();
@@ -99,5 +100,11 @@ class LoginService
             'password'=>md5($request['new_password'])
         ]);
         return $result ;
+    }
+    public function checkEmail($email) {
+        $user= DB::table('login')
+        ->where('email', $email)
+        ->get();
+        return $user;
     }
 }
