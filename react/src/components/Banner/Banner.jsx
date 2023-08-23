@@ -10,7 +10,7 @@ import { UserContext } from '../../context/ContextProvider';
 function Banner() {
     const { path } = useContext(UserContext)
 
-    if(path != '/login' && path != '/user')
+    if(!['/login', '/recruitment', '/user'].includes(path))
         return (
             <>
                 <Swiper

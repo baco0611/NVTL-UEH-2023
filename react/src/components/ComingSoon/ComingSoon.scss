@@ -1,0 +1,44 @@
+.coming {
+    width: 100%;
+    height: 100vh;
+    background: url('./img/Background.png');
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    &-quote {
+        width: 100%;
+        height: 225px;
+        background: url('./img/quote.png');
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & img {
+            width: max(55%, 425px);
+        }
+    }
+
+    &.recruit {
+        background: url('./img/TBackground.png');
+        background-size: cover;
+
+        .coming-quote {
+            width: 100%;
+            height: 225px;
+            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (max-width: 700) {
+    .coming {
+        height: 75vh;
+    }
+}
