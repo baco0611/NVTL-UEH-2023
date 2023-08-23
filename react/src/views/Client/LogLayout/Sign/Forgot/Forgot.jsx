@@ -2,13 +2,14 @@ import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import './Forgot.scss'
 import { Link } from 'react-router-dom'
-import { sendRequest } from '../../scripts/resetPassword'
+import { emailForgotError, sendRequest } from '../../scripts/resetPassword'
 import Validator from '../../scripts/validForm'
 import Reset from './Reset'
+import Swal from 'sweetalert2'
 
 function ForgotPassword() {
     const [ email, setEmail ] = useState('')
-    const [ error, setError ] = useState({})
+    const [ error, setError ] = useState()
     const buttonTimeOutRef = useRef(null)
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -33,8 +34,54 @@ function ForgotPassword() {
     
         buttonTimeOutRef.current = await setTimeout(async () => {
             const request = await sendRequest(email, setError)
+            console.log(request)
+            if(request == true) {
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i class="fa-regular fa-circle-check"></i>
+                            <h1>Hãy kiểm tra mail của bạn</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn"><a style="color: white;" href="/">Trở lại trang chủ</h2>',
+                    confirmButtonColor: "#3288f3"
+                })
+            } else 
+            Swal.fire({
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                },
+                customClass: {
+                    confirmButton: 'user-update-success-button'
+                },
+                html: `
+                    <div class="user-update-success">
+                        <i class="fa-regular fa-circle-xmark"></i>
+                        <h1>Có lỗi</h1>
+                    </div>
+                `,
+                confirmButtonText: '<h2 class="user-update-success-btn"><a style="color: white;" href="/">Trở lại trang chủ</h2>',
+                confirmButtonColor: "#3288f3"
+            })
         }, 1000)
     }
+
+    useEffect(() => {
+        if(error)
+            emailForgotError(error)
+    }, [error])
     
 
     if(token)

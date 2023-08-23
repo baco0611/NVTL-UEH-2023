@@ -49,3 +49,13 @@
         }
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .client-log-forgot {
+        padding: 150px 40px;
+    }
+
+    .client-log-forgot-container {
+        width: max(60%, 475px);
+    }
+}

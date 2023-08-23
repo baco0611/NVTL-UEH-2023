@@ -5,7 +5,12 @@ const sendRequest = async (email, setError) => {
     return await axiosClient.post('/reset-password', {email})
     .then(response => {
         console.log(response)
-        return true
+        if(response.data.status == 200) {
+            return true
+        } else {
+            setError(response.data)
+            return email
+        }
     })
     .catch(error => {
         console.log(error)
@@ -21,15 +26,36 @@ const sendPassword = async (token, state, setError) => {
     return await axiosClient.post(`/reset-password/${token}`, payload)
     .then(response => {
         console.log(response)
-        return true
+        if(response.data.status == 200)
+            return true
+        else return false
     })
     .catch(error => {
-        console.log(error)
         return false
     })
 }
 
+const emailForgotError = error => {
+    console.log(error)
+    function getParent(element, selector) {
+        while(element.parentElement) {
+            if(element.parentElement.matches(selector))
+                return element.parentElement
+            
+            element = element.parentElement
+        }
+    }
+
+    const $ = document.querySelector.bind(document)
+    const mail = $('#client-email')
+    const boxElement = getParent(mail, '.client-sign-item')
+    boxElement.classList.add('invalid')  
+    const spanElement = boxElement.querySelector('span')
+    spanElement.innerText = error.mess 
+}
+
 export {
     sendRequest,
-    sendPassword
+    sendPassword,
+    emailForgotError
 }

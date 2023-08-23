@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { sendPassword } from '../../scripts/resetPassword'
 import Validator from '../../scripts/validForm'
+import Swal from 'sweetalert2'
+
 
 function Reset({ token }) {
     const [ state, setState ] = useState({
@@ -28,6 +30,47 @@ function Reset({ token }) {
     
         buttonTimeOutRef.current = await setTimeout(async () => {
             const request = await sendPassword(token, state, setError)
+            if(request){
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i class="fa-regular fa-circle-check"></i>
+                            <h1>Cập nhật thành công</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn"><a style="color: white;" href="/login">Đăng nhập</h2>',
+                    confirmButtonColor: "#3288f3"
+                })
+            } else {
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                            <h1>Yêu cầu lỗi, vui lòng kiểm tra email mới nhất</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn"><a style="color: white;" href="/">Trở lại trang chủ</h2>',
+                    confirmButtonColor: "#3288f3"
+                })
+            }
         }, 1000)
     }
 

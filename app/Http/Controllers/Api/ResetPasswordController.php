@@ -40,7 +40,8 @@ class ResetPasswordController extends Controller
             $user->notify(new ResetPasswordRequest($passwordReset->token));
         }
         return response()->json([
-        'message' => 'Chúng tôi đã gửi đến email bạn liên kết đặt lại mật khẩu!'
+        'message' => 'Chúng tôi đã gửi đến email bạn liên kết đặt lại mật khẩu!',
+        'status' => HttpResponse::HTTP_OK
         ]);
     }
 
