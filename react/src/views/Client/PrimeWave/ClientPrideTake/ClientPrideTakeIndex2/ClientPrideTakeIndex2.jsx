@@ -10,12 +10,12 @@ import moveStar from './img/moveStar.png'
 import frame from './img/frame.png'
 import rotate from './img/rotate.png'
 import zoom from './img/zoom.png'
-import domtoimage, { htmlToImage } from 'dom-to-image'
+import domtoimage from 'dom-to-image'
 import * as alphabet from './img/alphabet'
+import html2canvas from 'html2canvas'
 
 function ClientPrideTakeIndex2({ avatar, setResult, setIndex, value, setValue, name, setName }) {
     
-    const imageURL = avatar || 'https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/12/1228045/Lisa-Blackpink6.jpeg'
     const avataRef = useRef(null)
 
     const handleChangValue = e => {
@@ -86,6 +86,13 @@ function ClientPrideTakeIndex2({ avatar, setResult, setIndex, value, setValue, n
         })
     }
 
+    const handleNextStep = async () => {
+        const canvas = await html2canvas(avataRef.current)
+        const image = canvas.toDataURL("image/png", 1.0)
+        setResult(image)
+        setIndex(3)
+    }
+
     const handleBack = () => {
         setIndex(1)
         setName('')
@@ -111,7 +118,7 @@ function ClientPrideTakeIndex2({ avatar, setResult, setIndex, value, setValue, n
                         <img className='frame' src={frame}/>
                         <img 
                             className='avatar' 
-                            src={imageURL}
+                            src={avatar}
                             style={{
                                 transform: `translateY(${value.down}px) translateX(${value.right}px) scale(${value.scale}) rotate(${value.rotate}deg)`
                             }}    

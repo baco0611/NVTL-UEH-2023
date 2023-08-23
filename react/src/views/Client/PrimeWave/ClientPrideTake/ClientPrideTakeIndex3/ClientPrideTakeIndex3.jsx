@@ -25,7 +25,7 @@ function ClientPrideTakeIndex3({result, setIndex}) {
 
     const handleDownload = async () => {
         const id = getUserId(user.id)
-        const result = await axiosClient.post('/insertPrideTake' ,{
+        const resultPost = await axiosClient.post('/insertPrideTake' ,{
             id: id.real
         })
         .then(response => {
@@ -38,7 +38,7 @@ function ClientPrideTakeIndex3({result, setIndex}) {
             return false
         })
 
-        if(result) {
+        if(resultPost) {
             const button = document.createElement('a')
             button.href = result
             button.download = 'yourAvata.png'

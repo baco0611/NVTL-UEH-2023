@@ -41,6 +41,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            
+            &.forgotBtn {
+                opacity: 0.3;
+                pointer-events: none;
+            }
         }
     }
 }

@@ -4,10 +4,10 @@ import './UserLayout.scss'
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../../context/ContextProvider'
-import SidePic from '../LogLayout/img/SidePic.png'
 import clsx from 'clsx'
 import UserInformation from './UserInformation'
 import UserPassword from './UserPassword'
+import LogBanner from '../LogLayout/Sign/LogBanner/LogBanner'
 
 function User() {
     const { user, setPath } = useContext(UserContext)
@@ -27,7 +27,7 @@ function User() {
 
     return (
         <section id='client-log' className='client-log'>
-            <img src={SidePic}></img>
+            <LogBanner/>
             <div className='client-log-side client-log-sign'>
                 <div className='client-log-container'>
                     <div className='client-log-sign-header'>
