@@ -31,19 +31,21 @@ class NewsController extends Controller
     {
         $img=$request['thumbnail'];
         $image_name=$request['thumbnailName'];
-        $folderPath = public_path() . '/' . 'images/';
+        $folderPath = public_path() . '/' . 'imageNews/';
         $image_parts = explode(";base64,", $img);
+        // $image_type_aux = explode("application/", $image_parts[0]);
+        // $image_type_aux = explode("video/", $image_parts[0]);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
         $file = $folderPath . $image_name . '.' . $image_type;
         file_put_contents($file, $image_base64);
-        $imageFile=$image_name.$image_type;
+        $imageFile=$image_name.'.'.$image_type;
         $newsService= new NewsService();
         $item= $newsService->insertData($request,$imageFile);
-        $newsResource =NewsResource::collection($item);
+        $newsResource= NewsResource::collection($item);
         return response()->json([
-            'news'=>$newsResource,
+            'data'=>$newsResource,
             'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
@@ -54,10 +56,6 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -66,9 +64,16 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function sortByTime(Request $request)
     {
-        //
+        $newsService= new NewsService();
+        $listItem= $newsService->sortTime($request);
+        $newsResource= NewsResource::collection($listItem);
+        return response()->json([
+            'category'=>$request['category'],
+            'data'=>$newsResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
     }
 
     /**
