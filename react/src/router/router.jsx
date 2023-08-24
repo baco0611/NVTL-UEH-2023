@@ -30,6 +30,8 @@ import ClientPrideTake from "../views/Client/PrimeWave/ClientPrideTake/ClientPri
 import ClientProudMate from "../views/Client/PrimeWave/ClientProudMate/ClientProudMate"
 import ClientWonderU from "../views/Client/PrimeWave/ClientWonderU/ClientWonderU"
 import ForgotPassword from "../views/Client/LogLayout/Sign/Forgot/Forgot"
+import CastingMC from "../views/Client/Casting/CastingMC/CastingMC"
+import CastingStage from "../views/Client/Casting/CastingStage/CastingStage"
 
 const router = createBrowserRouter([
     {
@@ -83,6 +85,14 @@ const router = createBrowserRouter([
             {
                 path: '/casting',
                 element: <Casting/>
+            },
+            {
+                path: '/casting/mc',
+                element: <CastingMC/>
+            },
+            {
+                path: '/casting/stage',
+                element: <CastingStage/>
             },
             {
                 path: '/recruitment',

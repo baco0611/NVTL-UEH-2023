@@ -140,6 +140,16 @@ Validator.isEmail = (selector, message) => {
     }
 }
 
+Validator.isFacebook = (selector, message) => {
+    return {
+        selector,
+        test(value) {
+            var regex = /(?:https?:\/\/)?(?:www\.)?(mbasic.facebook|m\.facebook|facebook|fb)\.(com|me)\/(?:(?:\w\.)*#!\/)?(?:pages\/)?(?:[\w\-\.]*\/)*([\w\-\.]*)/
+            return regex.test(value) ? undefined : message || 'Trường này phải là Facebook'
+        }
+    }
+}
+
 Validator.minLength = (selector, min, message) => {
     return {
         selector,
