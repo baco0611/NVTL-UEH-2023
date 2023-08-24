@@ -56,25 +56,26 @@ function ForgotPassword() {
                     confirmButtonColor: "#3288f3"
                 })
             } else 
-            Swal.fire({
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                },
-                customClass: {
-                    confirmButton: 'user-update-success-button'
-                },
-                html: `
-                    <div class="user-update-success">
-                        <i class="fa-regular fa-circle-xmark"></i>
-                        <h1>Có lỗi</h1>
-                    </div>
-                `,
-                confirmButtonText: '<h2 class="user-update-success-btn"><a style="color: white;" href="/">Trở lại trang chủ</h2>',
-                confirmButtonColor: "#3288f3"
-            })
+            if(request==false)
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                            <h1>Có lỗi</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn"><a style="color: white;" href="/">Trở lại trang chủ</h2>',
+                    confirmButtonColor: "#3288f3"
+                })
         }, 1000)
     }
 

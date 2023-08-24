@@ -53,5 +53,34 @@
                 "linkPost": ""
             }
         ]
+    },
+    "castingMC": {
+        "fullName": "",
+        "phone": "",
+        "schoolName": "",
+        "className": "",
+        "studentCode": "",
+        "accountLink": "",
+        "email": "",
+        "portrait": "",
+        "portraitName": "",
+        "clipIntroduce": "",
+        "clipIntroduceName": "",
+        "prize": ""
+    },
+    "castingStage": {
+        "fullName": "",
+        "phone": "",
+        "schoolName": "",
+        "className": "",
+        "studentCode": "",
+        "accountLink": "",
+        "email": "",
+        "categoryStage": "",
+        "fileMusic": "",
+        "fileMusicName": "",
+        "clipTemplate": "",
+        "clipTemplateName": "",
+        "prize": ""
     }
 }

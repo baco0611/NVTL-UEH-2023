@@ -31,6 +31,8 @@ function SignUp({ state, setState }) {
     const [hidePassword, setHidePassword] = useState(true)
     const [hidePassword2, setHidePassword2] = useState(true)
 
+    const buttonRef = useRef(null)
+
     const setFocus = () => {
         setIsDepartment(!isDepartment)
         setIsFocus(true)
@@ -102,6 +104,14 @@ function SignUp({ state, setState }) {
     useEffect(() => {
         signUpError(error)
     }, [error])
+
+    const handleClick = async () => {
+        if(buttonRef.current) {
+            clearTimeout(buttonRef.current)
+        }
+
+        buttonRef.current = await setTimeout(async () => await handleSignUp({ state, setIsSuccess, setUserValue, setError }), 1000)
+    }
 
     return (
         <>
@@ -250,7 +260,7 @@ function SignUp({ state, setState }) {
                             active: isSubmit && isValid && isFocus
                         }
                     )}
-                    onClick={async () => await handleSignUp({ state, setIsSuccess, setUserValue, setError })}
+                    onClick={handleClick}
                 >Đăng ký</button>
             </div>
         </>
