@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('fullName',500);
             $table->string('phone',50);
             $table->string('schoolName',500);
-            $table->string('className',500);
-            $table->string('studentCode',500);
-            $table->string('AcountLink',500);
+            $table->string('className',500)->nullable();
+            $table->string('studentCode',500)->nullable();
+            $table->string('accountLink',500);
             $table->string('email',500);
             $table->string('categoryStage',500);
             $table->string('fileMusic',500);

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\CastingController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\PrideTakeController;
 use App\Http\Controllers\Api\ProudMateController;
 use App\Http\Controllers\Api\StatusPageController;
 use App\Http\Controllers\Api\ResetPasswordController;
+use App\Models\CastingMC;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,5 +46,7 @@ Route::post('reset-password/{token}', [ResetPasswordController::class,'reset'])-
 
 #News
 Route::post('newsUpload', [NewsController::class,'storeNews'])->name('newsUpload');
-Route::get('newsAdmin/{category}', [NewsController::class, 'showHome'])->name('showHome');
 Route::post('newsAdmin/sortByTime', [NewsController::class,'sortByTime'])->name('sortByTime');
+#Casting
+Route::post('castingMC', [CastingController::class,'insertCastingMC'])->name('castingMC');
+Route::post('castingStage', [CastingController::class,'insertCastingStage'])->name('castingStage');
