@@ -5,6 +5,7 @@ import Validator from '../../scripts/validForm'
 import { UserContext } from '../../../../../context/ContextProvider'
 import { handleSignUp, signUpError } from '../../scripts/signUpdate'
 import { useNavigate } from 'react-router-dom'
+import shark from "../../../../../components/RequestLogin/img/shark.png"
 
 function SignUp({ state, setState }) {
     const { listDepartment, setUser, setPath } = useContext(UserContext)
@@ -27,6 +28,7 @@ function SignUp({ state, setState }) {
     const [ isSuccess, setIsSuccess ] = useState(false)
     const [ userValue, setUserValue ] = useState(null)
     const [ error, setError ] = useState(null)
+    const loadingRef = useRef()
 
     const [hidePassword, setHidePassword] = useState(true)
     const [hidePassword2, setHidePassword2] = useState(true)
@@ -110,7 +112,10 @@ function SignUp({ state, setState }) {
             clearTimeout(buttonRef.current)
         }
 
-        buttonRef.current = await setTimeout(async () => await handleSignUp({ state, setIsSuccess, setUserValue, setError }), 1000)
+        buttonRef.current = await setTimeout(async () =>{ 
+            loadingRef.current.classList.remove('none')
+            await handleSignUp({ state, setIsSuccess, setUserValue, setError })
+        }, 1000)
     }
 
     return (
@@ -262,6 +267,12 @@ function SignUp({ state, setState }) {
                     )}
                     onClick={handleClick}
                 >Đăng ký</button>
+            </div>
+            <div ref={loadingRef} className="loading none">
+                <div className="loading-container">
+                    <img className="animate__animated animate__swing animate__infinite animate__slow" src={shark}/>
+                    <div className="continuous"></div>
+                </div>
             </div>
         </>
     )

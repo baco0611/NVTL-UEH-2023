@@ -5,7 +5,7 @@ import Validator from "../../LogLayout/scripts/validForm"
 import Swal from 'sweetalert2'
 import { getBase64 } from "../scripts/base64"
 import { handleUpdateStage } from "../scripts/updateDatabase"
-import shark from "../img/shark.png"
+import shark from "../../../../components/RequestLogin/img/shark.png"
 
 function CastingStage() {
     const { setPath } = useContext(UserContext)

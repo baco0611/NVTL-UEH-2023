@@ -5,12 +5,12 @@ import Validator from "../../LogLayout/scripts/validForm"
 import Swal from 'sweetalert2'
 import { getBase64 } from "../scripts/base64"
 import { handleUpdateMC } from "../scripts/updateDatabase"
-import shark from "../img/shark.png"
+import shark from "../../../../components/RequestLogin/img/shark.png"
 
 function CastingMC() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/casting'), [])
-    // useEffect(() => {window.scrollTo(0, 0)}, [])
+    useEffect(() => {window.scrollTo(0, 0)}, [])
 
     const [ state, setState ] = useState({
         fullName: "",
