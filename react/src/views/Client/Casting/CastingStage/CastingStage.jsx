@@ -4,11 +4,13 @@ import clsx from 'clsx'
 import Validator from "../../LogLayout/scripts/validForm"
 import Swal from 'sweetalert2'
 import { getBase64 } from "../scripts/base64"
+import { handleUpdateStage } from "../scripts/updateDatabase"
+import shark from "../img/shark.png"
 
 function CastingStage() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/casting'), [])
-    // useEffect(() => {window.scrollTo(0, 0)}, [])
+    useEffect(() => {window.scrollTo(0, 0)}, [])
     
     const [ state, setState ] = useState({
         fullName: "",
@@ -50,6 +52,8 @@ function CastingStage() {
 
     const musicRef = useRef()
     const videoRef = useRef()
+    const loadingRef = useRef()
+    const buttonTimeOutRef = useRef(null) 
 
     const handleChangeValue = e => {
         setState({
@@ -140,10 +144,70 @@ function CastingStage() {
         }
     }
 
-    const handleUploadData = () => {
+    const handleUploadData = async() => {
         if(state.clipTemplateName && state.fileMusicName) {
-            console.log("HI")
+            loadingRef.current.classList.remove('none')
+            const result = await handleUpdateStage(state)
+            if(result) {
+                loadingRef.current.classList.add('none')
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i class="fa-regular fa-circle-check"></i>
+                            <h1>Bạn đã đăng kí thành công</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn"><a href="/" style="color:white">Về lại trang chủ</a></h2>',
+                    confirmButtonColor: "#3288f3"
+                }) 
+                setState({
+                    fullName: "",
+                    phone: "",
+                    schoolName: "",
+                    className: "",
+                    studentCode: "",
+                    accountLink: "",
+                    email: "",
+                    categoryStage: "",
+                    fileMusic: null,
+                    fileMusicName: "",
+                    clipTemplate: null,
+                    clipTemplateName: "",
+                    prize: ""
+                })
+            } else {
+                loadingRef.current.classList.add('none')
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                            <h1>Đăng kí thất bại, vui lòng thử lại sau</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+                    confirmButtonColor: "#3288f3"
+                }) 
+            }
         } else {
+            loadingRef.current.classList.add('none')
             Swal.fire({
                 showClass: {
                     popup: 'animate__animated animate__fadeInDown'
@@ -335,6 +399,12 @@ function CastingStage() {
             </div>
             <div className="client-casting-btn">
                 <button id="submit-button" className="secondary-button">Đăng ký</button>
+            </div>
+            <div ref={loadingRef} className="loading none">
+                <div className="loading-container">
+                    <img className="animate__animated animate__swing animate__infinite animate__slow" src={shark}/>
+                    <div className="continuous"></div>
+                </div>
             </div>
         </div>
     )
