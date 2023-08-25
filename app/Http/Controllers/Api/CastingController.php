@@ -59,7 +59,7 @@ class CastingController extends Controller
         $music_type_aux = explode("audio/", $music_parts[0]);
         $music_type = $music_type_aux[1];
         $music_base64 = base64_decode($music_parts[1]);
-        $file = $folderPath . $music_name . '.' . $music_type;
+        $file = $folderPath . $music_name.'_'. uniqid(). '.' . $music_type;
         file_put_contents($file, $music_base64);
         $fileMusic=$music_name.'.'.$music_type;
 
@@ -70,7 +70,7 @@ class CastingController extends Controller
         $clip_type_aux = explode("video/", $clip_parts[0]);
         $clip_type = $clip_type_aux[1];
         $clip_base64 = base64_decode($clip_parts[1]);
-        $file = $folderPath . $clip_name . '.' . $clip_type;
+        $file = $folderPath . $clip_name .'_'. uniqid(). '.' . $clip_type;
         file_put_contents($file, $clip_base64);
         $clipTemplate=$clip_name.'.'.$clip_type;
         $stageService= new CastingService();
@@ -120,7 +120,7 @@ class CastingController extends Controller
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
-        $file = $folderPath . $image_name . '.' . $image_type;
+        $file = $folderPath . $image_name. '_'. uniqid(). '.' . $image_type;
         file_put_contents($file, $image_base64);
         $imageFile=$image_name.'.'.$image_type;
 
@@ -131,7 +131,7 @@ class CastingController extends Controller
         $clip_type_aux = explode("video/", $clip_parts[0]);
         $clip_type = $clip_type_aux[1];
         $clip_base64 = base64_decode($clip_parts[1]);
-        $file = $folderPath . $clip_name . '.' . $clip_type;
+        $file = $folderPath . $clip_name . '_'. uniqid().'.' . $clip_type;
         file_put_contents($file, $clip_base64);
         $clipIntroduce=$clip_name.'.'.$clip_type;
         $stageService= new CastingService();
