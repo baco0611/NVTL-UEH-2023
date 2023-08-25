@@ -31,7 +31,7 @@ class NewsController extends Controller
     {
         $img=$request['thumbnail'];
         $image_name=$request['thumbnailName'];
-        $folderPath = public_path() . '/' . 'imageNews/';
+        $folderPath = public_path() . '/media/' . 'imageNews/';
         $image_parts = explode(";base64,", $img);
         // $image_type_aux = explode("application/", $image_parts[0]);
         // $image_type_aux = explode("video/", $image_parts[0]);
