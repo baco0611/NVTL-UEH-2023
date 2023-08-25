@@ -64,6 +64,7 @@
         img {
             width: 65vw;
             transform: translateY(-150px);
+            margin: 0 auto;
         }
     }
 
@@ -281,6 +282,42 @@
         font-weight: 900;
         text-transform: uppercase;
         font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .client-casting {
+        h1 {
+            font-size: 30px;
+            padding-bottom: 30px;
+        }
+
+        &-content {
+            padding: 75px 10vw 100px 10vw;
+
+            p {
+                font-size: 18px;
+                line-height: 24px;
+            }
+
+            li {
+                padding: 15px 0;
+                padding-left: 10px;
+            }
+        }
+    }
+
+    .client-casting-quote img {
+        width: 70%;
+        transform: translateY(-75px);
+    }
+
+    .client-casting-timeline {
+        width: 70%;
+    }
+
+    .client-casting-nav a {
+        font-size: 22px;
     }
 }
 
