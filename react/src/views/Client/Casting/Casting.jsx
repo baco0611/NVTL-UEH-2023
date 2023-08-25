@@ -28,7 +28,7 @@ function Casting() {
                 <ul>
                     <li>
                         <div className="client-casting-content-main">
-                            <p><span></span>Có cơ hội thể hiện tài năng của bản thân</p>
+                            <p><span></span>Có cơ hội thể hiện tài năng của bản thân.</p>
                             <img src={iconFlower}/>
                         </div>
                     </li>

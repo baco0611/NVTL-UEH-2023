@@ -4,7 +4,7 @@ const sendRequest = async (email, setError) => {
     console.log(email)
     return await axiosClient.post('/reset-password', {email})
     .then(response => {
-        console.log(response)
+        // console.log(response)
         if(response.data.status == 200) {
             return true
         } else {
@@ -25,7 +25,7 @@ const sendPassword = async (token, state, setError) => {
 
     return await axiosClient.post(`/reset-password/${token}`, payload)
     .then(response => {
-        console.log(response)
+        // console.log(response)
         if(response.data.status == 200)
             return true
         else return false
@@ -54,8 +54,13 @@ const emailForgotError = error => {
     spanElement.innerText = error.mess 
 }
 
+const resetError = error => {
+
+}
+
 export {
     sendRequest,
     sendPassword,
-    emailForgotError
+    emailForgotError,
+    resetError
 }

@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { sendPassword } from '../../scripts/resetPassword'
+import { resetError, sendPassword } from '../../scripts/resetPassword'
 import Validator from '../../scripts/validForm'
 import Swal from 'sweetalert2'
-
+import shark from '../../../../../components/RequestLogin/img/shark.png'
 
 function Reset({ token }) {
     const [ state, setState ] = useState({
@@ -23,13 +23,17 @@ function Reset({ token }) {
     const [ hidePassword2, setHidePassword2 ] = useState(true)
     const [ error, setError ] = useState({})
     const buttonTimeOutRef = useRef(null)
+    const loadingRef = useRef()
 
     const handleChangePassword = async() => {
         if(buttonTimeOutRef.current)
             clearTimeout(buttonTimeOutRef.current)
     
         buttonTimeOutRef.current = await setTimeout(async () => {
+            loadingRef.current.classList.remove('none')
             const request = await sendPassword(token, state, setError)
+
+            loadingRef.current.classList.add('none')
             if(request){
                 Swal.fire({
                     showClass: {
@@ -90,6 +94,10 @@ function Reset({ token }) {
         })
     }, [state])
 
+    useEffect(() => {
+        resetError(error)
+    }, [error])
+
     return (
         <div className='client-log-side client-log-forgot'>
             <div className='client-log-forgot-container'>
@@ -141,6 +149,12 @@ function Reset({ token }) {
                 </div>
                 <div className='client-log-forgot-nav'>
                     <button id='forgotBtn' className='primary-button btn' onClick={handleChangePassword}>Lưu</button>
+                </div>
+            </div>
+            <div ref={loadingRef} className="loading none">
+                <div className="loading-container">
+                    <img className="animate__animated animate__swing animate__infinite animate__slow" src={shark}/>
+                    <div className="continuous"></div>
                 </div>
             </div>
         </div>

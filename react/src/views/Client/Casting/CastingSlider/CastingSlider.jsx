@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react'
 
 function CastingSlider() {
     const [ index , setIndex ] = useState(0)
-    const width = window.innerWidth * 0.75
+    const width = Math.max(window.innerWidth, 500) * 0.75
     
     const addIndex = () => {
         if(index == 3) setIndex(0)

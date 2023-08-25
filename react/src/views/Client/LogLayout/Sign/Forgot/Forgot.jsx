@@ -6,11 +6,13 @@ import { emailForgotError, sendRequest } from '../../scripts/resetPassword'
 import Validator from '../../scripts/validForm'
 import Reset from './Reset'
 import Swal from 'sweetalert2'
+import shark from '../../../../../components/RequestLogin/img/shark.png'
 
 function ForgotPassword() {
     const [ email, setEmail ] = useState('')
     const [ error, setError ] = useState()
     const buttonTimeOutRef = useRef(null)
+    const loadingRef = useRef()
 
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token')
@@ -33,9 +35,11 @@ function ForgotPassword() {
             clearTimeout(buttonTimeOutRef.current)
     
         buttonTimeOutRef.current = await setTimeout(async () => {
+            loadingRef.current.classList.remove('none')
             const request = await sendRequest(email, setError)
-            console.log(request)
+            // console.log(request)
             if(request == true) {
+                loadingRef.current.classList.add('none')
                 Swal.fire({
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
@@ -56,7 +60,8 @@ function ForgotPassword() {
                     confirmButtonColor: "#3288f3"
                 })
             } else 
-            if(request==false)
+            if(request==false) {
+                loadingRef.current.classList.add('none')
                 Swal.fire({
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
@@ -76,6 +81,7 @@ function ForgotPassword() {
                     confirmButtonText: '<h2 class="user-update-success-btn"><a style="color: white;" href="/">Trở lại trang chủ</h2>',
                     confirmButtonColor: "#3288f3"
                 })
+            }
         }, 1000)
     }
 
@@ -115,6 +121,12 @@ function ForgotPassword() {
                 <div className='client-log-forgot-nav'>
                     <Link to={'/login'} className='primary-button btn'>Quay lại</Link>
                     <button id='forgotBtn' className='primary-button btn' onClick={handleSendRequest}>Gửi</button>
+                </div>
+            </div>
+            <div ref={loadingRef} className="loading none">
+                <div className="loading-container">
+                    <img className="animate__animated animate__swing animate__infinite animate__slow" src={shark}/>
+                    <div className="continuous"></div>
                 </div>
             </div>
         </div>
