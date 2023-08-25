@@ -231,7 +231,7 @@ function CastingMC() {
             <h1>CASTING MC</h1>
             
             <div className="client-casting-item-content">
-                <form className='client-sign-form client-casting-form' id='client-sign-up'>
+                <form className='client-sign-form client-casting-form mc' id='client-sign-up'>
                     <div className='client-sign-item input-1' style={{gridColumn: '1/3'}}>
                         <input 
                             id='client-fullName'
