@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { getBase64 } from "../scripts/base64"
 import { handleUpdateStage } from "../scripts/updateDatabase"
 import shark from "../../../../components/RequestLogin/img/shark.png"
+import RequestLaptop from "../../../../components/RequestLaptop/RequestLaptop"
 
 function CastingStage() {
     const { setPath } = useContext(UserContext)
@@ -406,6 +407,10 @@ function CastingStage() {
                     <div className="continuous"></div>
                 </div>
             </div>
+            {
+                window.innerWidth < 1024 &&
+                <RequestLaptop/>
+            }
         </div>
     )
 }

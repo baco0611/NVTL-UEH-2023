@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { getBase64 } from "../scripts/base64"
 import { handleUpdateMC } from "../scripts/updateDatabase"
 import shark from "../../../../components/RequestLogin/img/shark.png"
+import RequestLaptop from "../../../../components/RequestLaptop/RequestLaptop"
 
 function CastingMC() {
     const { setPath } = useContext(UserContext)
@@ -389,6 +390,10 @@ function CastingMC() {
                     <div className="continuous"></div>
                 </div>
             </div>
+            {
+                window.innerWidth < 1024 &&
+                <RequestLaptop/>
+            }
         </div>
     )
 }
