@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProudMateResource;
+use App\Http\Resources\SearchProudMateResource;
 use App\Service\ProudMateService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
@@ -42,9 +43,10 @@ class ProudMateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function checkProudMate($id)
     {
-        //
+       //
+ 
     }
 
     /**
@@ -54,9 +56,17 @@ class ProudMateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function searchMember(Request $request)
     {
-        //
+        $key = $request['searchKey'];
+        $proudMateService = new ProudMateService();
+        $listSearch = $proudMateService->searchMember($key);
+        $listResource= SearchProudMateResource::collection($listSearch);
+        return response()->json([
+            'data'=>$listResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
+
     }
 
     /**

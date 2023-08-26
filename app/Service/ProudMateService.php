@@ -19,4 +19,14 @@ class ProudMateService
         From proud_mate as p');
         return $result;
     }
+    public function searchMember($key){
+        $result=DB::table('login')
+            ->orWhere('studentCode' ,'like', '%'.$key.'%')
+            ->orwhere('fullName', 'like', '%'.$key.'%')
+            ->take(10)
+            ->get();
+            return $result;
+
+    }
+    
 }

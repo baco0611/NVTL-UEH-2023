@@ -36,16 +36,16 @@ class NewsService
             ->where('category',$request['category'])
             ->where('title', 'like', '%'.$request['search'].'%')
             ->orderBy('created_at')
-            ->get()
-;            return $result;
+            ->get();
+            return $result;
         }
         if ($request['createTime']=='decrease'){
             $result=DB::table('news')
             ->where('category',$request['category'])
             ->where('title', 'like', '%'.$request['search'].'%')
             ->orderBy('created_at','desc')
-            ->get()
-;            return $result;
+            ->get();
+             return $result;
         }
     }
 }
