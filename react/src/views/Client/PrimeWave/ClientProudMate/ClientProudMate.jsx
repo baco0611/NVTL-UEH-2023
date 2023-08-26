@@ -7,6 +7,7 @@ import ClientProudMateIndex2 from './ClientProudMateIndex2/ClientProudMateIndex2
 import ClientProudMateIndex3 from './ClientProudMateIndex3/ClientProudMateIndex3'
 import ClientProudMateIndex4 from './ClientProudMateIndex4/ClientProudMateIndex4'
 import RequestLogin from '../../../../components/RequestLogin/RequestLogin'
+import axiosClient from '../../../../context/axiosClient'
 
 function ClientProudMate() {
     const { setPath } = useContext(UserContext)
@@ -16,6 +17,7 @@ function ClientProudMate() {
     const [ index, setIndex ] = useState(urlParams.get('index'))
     const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER'))
+    const { getUserId } = useContext(UserContext)
     // const [ proudMateInfo, setProudMateInfo ] = useState()
     // const [ proudMateInfo, setProudMateInfo ] = useState({
     //     status: 200,
@@ -54,6 +56,17 @@ function ClientProudMate() {
         const Params = new URLSearchParams(window.location.search);
         setIndex(Params.get('index'))
     }, [window.location.href])
+
+    useEffect(() => {
+        axiosClient.get('/getProudMate/' + getUserId(user.id).real)
+        .then(response => {
+            if(response.data.condition)
+                setProudMateInfo({
+                    condition: true,
+                    teamInformation: response.data.data[0]
+                })
+        })
+    }, [])
 
     return (
         <section id='client-proud'>

@@ -346,6 +346,7 @@ function ClientProudMateInput({ setIndex, setProudMateInfo}) {
             </form>
 
             <div className='client-proud-2-btn'>
+                <button className='secondary-button' onClick={() => {setIndex(1)}}>Quay lại</button>
                 <button className='secondary-button' onClick={handleClickSaving}>Lưu thông tin</button>
                 <div className={clsx('client-proud-2-notification', {none: !noti})}>
                     <div className='container'>

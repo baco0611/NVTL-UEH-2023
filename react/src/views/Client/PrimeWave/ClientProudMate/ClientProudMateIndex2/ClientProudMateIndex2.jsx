@@ -11,14 +11,28 @@ export default function ClientProudMateIndex2({ setIndex, proudMateInfo, setProu
         <div className='client-proud-2'>
             <div className='client-proud-2-left'>
                 <img className='title' src={title}/>
-                <img className='title' src={subTitle}/>
-                <p>* Hãy đảm bảo các thành viên đều đã tạo tài khoản và chưa thuộc đội nào để có thể đăng ký tham gia</p>
+                {
+                    !proudMateInfo.condition 
+                    ?
+                    <>
+                        <img className='title' src={subTitle}/>
+                        <p>* Hãy đảm bảo các thành viên đều đã tạo tài khoản và chưa thuộc đội nào để có thể đăng ký tham gia</p>
+                    </>
+                    :
+                    <>
+                        <h3>NHÓM</h3>
+                        <h1>{proudMateInfo.teamInformation.teamName}</h1>
+                    </>
+                }
             </div>
             <div className='client-proud-2-right'>
             {
                 proudMateInfo.condition 
                 &&
-                <ClientProudMateInfo/>
+                <ClientProudMateInfo
+                    proudMateInfo={proudMateInfo.teamInformation}
+                    setIndex={setIndex}
+                />
                 ||
                 <ClientProudMateInput
                     setProudMateInfo={setProudMateInfo}
