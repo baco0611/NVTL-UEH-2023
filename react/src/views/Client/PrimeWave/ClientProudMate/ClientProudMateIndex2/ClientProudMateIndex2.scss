@@ -1,0 +1,42 @@
+.client-proud-2 {
+    padding: 75px 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &-left, &-right {
+        width: 50%;
+    }
+
+    &-left {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .title {
+            width: 70%;
+
+            &:nth-child(2) {
+                padding: 30px 0;
+                width: 85%;
+            }
+        }
+
+        p {
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 24px;
+        }
+    }
+}
+
+.client-proud-2-content {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

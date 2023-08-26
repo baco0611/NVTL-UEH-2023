@@ -1,0 +1,113 @@
+{
+    "getProudmate/{id}": {
+        "__comment_api": "cái ni để check và lấy thông tin nè, get theo id",
+        "data_nếu_chưa_tồn_tại": {
+            "status": 200,
+            "condition": false
+        },
+        "data_nếu_đã_tồn_tại": {
+            "status": 200,
+            "condition": true,
+            "teamInformation": {
+                "idProudMate": "",
+                "teamName": "",
+                "memberName1": "",
+                "memberStudentCode1": "",
+                "memberName2": "",
+                "memberStudentCode2": "",
+                "memberName3": "",
+                "memberStudentCode3": "",
+                "proof": true,
+                "__comment_proof": "Kiểu t chỉ cần là đã có minh chứng hay chưa nên để true/false hé -> cái ni để allow null vì có thể up minh chứng sau ơ"
+            }
+        }
+    },
+    "postProudmate": {
+        "__comment_api": "cái ni để t gửi thông tin đội về (khi chưa có đội)",
+        "idMember1": "",
+        "idMember2": "",
+        "idMember3": "",
+        "teamName": "",
+
+
+
+        "data_trả_lên": {
+            "status": 200,
+            "condition": true,
+            "teamInformation": {
+                "idProudMate": "",
+                "teamName": "",
+                "memberName1": "",
+                "memberStudentCode1": "",
+                "memberName2": "",
+                "memberStudentCode2": "",
+                "memberName3": "",
+                "memberStudentCode3": "",
+                "proof": true,
+                "__comment_proof": "Kiểu t chỉ cần là đã có minh chứng hay chưa nên để true false hé -> cái ni để allow null vì có thể up minh chứng sau ơ"
+            }
+        }
+    },
+    "searchMember": {
+        "__comment_api": "Vì yêu cầu thành viên là đều đã đăng kí (do dùng id) nên phải search nha",
+        "searchKey": "",
+        "__comment_searchKey": "Cái ni seach cho cả MSSV với Tên luôn hé (như đợt trước search môn), trả lên list 5 đứa",
+
+
+
+        "data_trả_lên": {
+            "listSearch": [
+                {
+                    "id": "",
+                    "fullName": "",
+                    "studentCode": ""
+                },
+                {
+                    "id": "",
+                    "fullName": "",
+                    "studentCode": ""
+                },
+                {
+                    "id": "",
+                    "fullName": "",
+                    "studentCode": ""
+                },
+                {
+                    "id": "",
+                    "fullName": "",
+                    "studentCode": ""
+                },
+                {
+                    "id": "",
+                    "fullName": "",
+                    "studentCode": ""
+                }
+            ],
+            "status": 200
+        }
+    },
+    "postProof": {
+        "idProudMate": "",
+        "proof": "",
+        "proofName": "",
+
+
+
+        "data_trả_lên": {
+            "status": 200,
+            "condition": true,
+            "teamInformation": {
+                "idProudMate": "",
+                "teamName": "",
+                "memberName1": "",
+                "memberStudentCode1": "",
+                "memberName2": "",
+                "memberStudentCode2": "",
+                "memberName3": "",
+                "memberStudentCode3": "",
+                "proof": true,
+                "__comment_proof": "Kiểu t chỉ cần là đã có minh chứng hay chưa nên để true false hé -> cái ni để allow null vì có thể up minh chứng sau ơ"
+            }
+        }
+    }
+}

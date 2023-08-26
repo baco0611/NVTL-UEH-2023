@@ -13,7 +13,7 @@ import timeline from './img/timeline.png'
 function Casting() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/casting'), [])
-    // useEffect(() => {window.scrollTo(0, 0)}, [])
+    useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (
         <section id="client-casting" className="client-casting">

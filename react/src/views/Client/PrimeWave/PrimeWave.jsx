@@ -14,6 +14,9 @@ function PrimeWave() {
             <div className="client-prime-block">
                 <Link className="secondary-button btn" to={'/primewave/pridetake?index=1'}>Khám phá thêm</Link>    
             </div>
+            <div className="client-prime-block">
+                <Link className="secondary-button btn" to={'/primewave/proudmate?index=1'}>Khám phá thêm</Link>    
+            </div>
             <ComingSoon/>
         </section>
     )
