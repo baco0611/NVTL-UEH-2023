@@ -22,9 +22,7 @@ return new class extends Migration
             $table->foreign('member2')->references('id')->on('login');
             $table->foreignId('member3');
             $table->foreign('member3')->references('id')->on('login');
-            $table->string('proof1', 500);
-            $table->string('proof2', 500);
-            $table->string('proof3', 500);
+            $table->string('proof', 500)->nullable();
             $table->boolean('status')->default(false);
             $table->timestamp('created_at')->useCurrent();
         });
