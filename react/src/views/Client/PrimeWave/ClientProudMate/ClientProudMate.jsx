@@ -91,6 +91,7 @@ function ClientProudMate() {
             ?
                 <ClientProudMateIndex3
                     setIndex={setIndex}
+                    proudMateInfo={proudMateInfo}
                 />
             : index == 4
             ?

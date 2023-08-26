@@ -50,8 +50,8 @@ function ClientProudMateInfo({ proudMateInfo, setIndex }) {
             </form>
 
             <div className='client-proud-2-btn'>
-                <button className='secondary-button' onClick={() => {setIndex(1)}}>Quay lại</button>
-                <button className='secondary-button' onClick={() => {setIndex(3)}}>Tiếp theo</button>
+                <button className='secondary-button' onClick={() => {setIndex(1)}}><i className="fa-solid fa-left-long"></i>Quay lại</button>
+                <button className='secondary-button' onClick={() => {setIndex(3)}}>Tiếp theo<i className="fa-solid fa-right-long"></i></button>
             </div>
         </div>
     )

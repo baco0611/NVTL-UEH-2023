@@ -88,6 +88,10 @@ $filled-color: #3288f3;
         width: 175px;
         height: 50px;
         font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
 }
 
