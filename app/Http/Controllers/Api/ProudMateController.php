@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\GetProudMateResource;
 use App\Http\Resources\ProudMateResource;
 use App\Http\Resources\SearchProudMateResource;
 use App\Service\ProudMateService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Arr;
 
 class ProudMateController extends Controller
 {
@@ -45,7 +47,20 @@ class ProudMateController extends Controller
      */
     public function checkProudMate($id)
     {
-       //
+        $proudMateService = new ProudMateService();
+        $listItem = $proudMateService->checkProudMate($id);
+        if (Empty($listItem)) {
+            return response()->json([
+                "condition"=> false,
+                'status'=>HttpResponse::HTTP_OK
+            ]);
+        }
+        $listResource= GetProudMateResource::collection($listItem);
+        return response()->json([
+            'data'=>$listResource,
+            "condition"=> true,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
  
     }
 
@@ -61,7 +76,14 @@ class ProudMateController extends Controller
         $key = $request['searchKey'];
         $proudMateService = new ProudMateService();
         $listSearch = $proudMateService->searchMember($key);
-        $listResource= SearchProudMateResource::collection($listSearch);
+        $tmp=array();
+        foreach($listSearch as $val) {
+            $item= $proudMateService->checkProudMate($val->id);  
+            if (Empty($item)) {
+                array_push($tmp, $val);
+            }
+        }
+        $listResource= SearchProudMateResource::collection($tmp);
         return response()->json([
             'data'=>$listResource,
             'status'=>HttpResponse::HTTP_OK
