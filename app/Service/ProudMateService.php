@@ -39,8 +39,26 @@ class ProudMateService
             ->take(10)
             ->get();
         return $result;
-        
-
     }
-    
+    public function insertData($request){
+        $result=DB::table('proud_mate')
+        ->insert([
+            'member1'=>$request['idMember1'],
+            'member2'=>$request['idMember2'],
+            'member3'=>$request['idMember3'],
+            'teamName'=>$request['teamName']
+        ]);
+        return $result;
+    }
+    public function updateProudMate($request,$imageName){
+        DB::table('proud_mate')
+         ->where('id',$request['idProudMate'])
+         ->update([
+             'proof'=>$imageName
+         ]);
+         $result = DB::table('login')
+         ->where('idProudMate',$request['idProudMate'])
+         ->get();
+         return $result;
+     }
 }

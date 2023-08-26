@@ -9,5 +9,7 @@ class ProudMate extends Model
 {
     use HasFactory;
     protected $table = 'proud_mate';
-    
+    protected $fillable = [
+        'member1', 'member2','member3','teamName'
+    ];
 }

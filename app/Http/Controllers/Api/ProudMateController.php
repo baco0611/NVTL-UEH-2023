@@ -34,11 +34,44 @@ class ProudMateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function postProudMate(Request $request)
     {
-        //
+        $proudMateService = new ProudMateService();
+        $itemService= $proudMateService->insertData($request);
+        if ($itemService){
+            return response()->json([
+                'mess'=>$itemService,
+                'status'=>HttpResponse::HTTP_OK
+            ], HttpResponse::HTTP_OK);
+        }
+        else{
+            return response()->json([
+                'mess'=>$itemService,
+                'status'=>HttpResponse::HTTP_NOT_IMPLEMENTED
+            ]);
+        }
     }
-
+    public function postProof(Request $request)
+    {
+        $img=$request['proof'];
+        $image_name=$request['proofName'];
+        $folderPath = public_path() . '/' . 'proudmate/';
+        $image_parts = explode(";base64,", $img);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $file = $folderPath . $image_name . '.' . $image_type;
+        file_put_contents($file, $image_base64);
+        $imageName=$image_name.'.'.$image_type;
+        $proudMateService = new ProudMateService();
+        $itemService= $proudMateService->updateProudMate($request,$imageName);
+        $itemResource= GetProudMateResource::collection($itemService);
+        return response()->json([
+            'data'=>$itemResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
+ 
+    }
     /**
      * Display the specified resource.
      *
@@ -71,6 +104,7 @@ class ProudMateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function searchMember(Request $request)
     {
         $key = $request['searchKey'];

@@ -53,3 +53,5 @@ Route::post('castingStage', [CastingController::class,'insertCastingStage'])->na
 #Proudmate
 Route::get('getProudMate/{id}', [ProudMateController::class, 'checkProudMate'])->name('checkProudMate');
 Route::post('searchMember', [ProudMateController::class,'searchMember'])->name('searchMember');
+Route::post('postProudMate', [ProudMateController::class,'postProudMate'])->name('postProudMate');
+Route::post('postProof', [ProudMateController::class,'postProof'])->name('postProof');
