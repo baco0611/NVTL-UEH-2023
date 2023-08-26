@@ -1,4 +1,5 @@
 $border-color: #6fced4;
+$filled-color: #3288f3;
 
 .client-proud-2 {
     padding: 75px 50px;
@@ -54,6 +55,17 @@ $border-color: #6fced4;
         border: $border-color 3px solid;
         border-radius: 50px;
         padding: 0 50px;
-        font-weight: 500;
+        font-weight: 600;
+        color: $border-color;
+        
+        &.filled, &:focus {
+            color: $filled-color;
+            border: $filled-color 3px solid;
+        }
+
+        &.invalid {
+            border: #aa001d 3px solid;
+            color: #aa001d;
+        }
     }
 }

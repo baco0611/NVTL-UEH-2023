@@ -20,7 +20,10 @@ export default function ClientProudMateIndex2({ setIndex, proudMateInfo, setProu
                 &&
                 <ClientProudMateInfo/>
                 ||
-                <ClientProudMateInput/>
+                <ClientProudMateInput
+                    setProudMateInfo={setProudMateInfo}
+                    setIndex={setIndex}
+                />
             }
             </div>
         </div>

@@ -10,7 +10,8 @@ const UserContext = createContext({
     listDepartment: [],
     getUserId: () => {},
     adminURL: '',
-    mainURL: ''
+    mainURL: '',
+    getParent: () => {}
 })
 
 function StateContext({ children }) {
@@ -81,6 +82,17 @@ function StateContext({ children }) {
         'Viện Đổi mới sáng tạo (UII)'
     ]
 
+    function getParent(element, selector) {
+        while(element.parentElement) {
+            if(element.parentElement.matches(selector))
+                return element.parentElement
+            
+            element = element.parentElement
+        }
+
+        return element
+    }
+
     return (
         <UserContext.Provider value={{
                 user,
@@ -92,7 +104,8 @@ function StateContext({ children }) {
                 listDepartment,
                 getUserId,
                 adminURL,
-                mainURL
+                mainURL,
+                getParent
             }
         }>
             {children}

@@ -1,4 +1,5 @@
 $border-color: #6fced4;
+$filled-color: #3288f3;
 
 .client-proud-2-input {
     .teamName {
@@ -7,5 +8,128 @@ $border-color: #6fced4;
         padding: 0 50px;
         font-size: 30px;
         text-align: center;        
+    }
+
+    .proud-input-box {
+        background: url('../img/formBack.png');
+        padding: 40px;
+        width: 100%;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        img {
+            width: 50%;
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            font-size: 22px;
+        }
+    }
+
+    .proud-input-item {
+        width: 100%;
+        position: relative;
+        input {
+            z-index: 3;
+        }
+    }
+
+    .proud-input-list {
+        background: $filled-color;
+        padding: 10px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 50px;
+        z-index: 4;
+
+        li {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            height: 45px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 10px;
+
+            &:hover {
+                background-color: $border-color;
+            }
+
+            p {
+                color: white;
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.client-proud-2-btn {
+    padding: 30px 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        width: 175px;
+        height: 50px;
+        font-size: 18px;
+    }
+}
+
+.client-proud-2-notification {
+    position: fixed;
+    top: 65px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+
+    &.none {
+        display: none !important;
+    }
+
+    .container {
+        width: max(450px, 50vw);
+        padding: 50px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 50px;
+        border-radius: 10px;
+
+        img {
+            width: 50%;
+        }
+
+        h1 {
+            color: #3288f3;
+            font-size: 28px;
+            text-align: center;
+            line-height: 32px;
+        }
+
+        .button {
+            display: flex;
+            gap: 20px;
+        }
     }
 }
