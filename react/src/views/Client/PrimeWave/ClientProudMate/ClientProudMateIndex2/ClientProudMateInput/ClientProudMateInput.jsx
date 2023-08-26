@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './ClientProudMateInput.scss'
+import ProudMateInputElement from './ProudMateInputElement'
 
 function ClientProudMateInput() {
     const [ teamInformation, setTeamInfomation ] = useState({
@@ -17,7 +18,20 @@ function ClientProudMateInput() {
 
     return (
         <div className='client-proud-2-content'>
-        
+            <form id='client-proud-2-form' className='client-proud-2-input'>
+                <input
+                    type='text'
+                    className='teamName'
+                    placeholder='Tên đội'
+                />
+                <ProudMateInputElement
+                    state={teamInformation}
+                    setState={setTeamInfomation}
+                    id="idMember2"
+                    name="memberName2"
+                    studentCode="studentCode2"
+                />
+            </form>
         </div>
     )
 }
