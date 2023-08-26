@@ -54,7 +54,7 @@ class CastingController extends Controller
         ));
         $music=$request['fileMusic'];
         $music_name=$request['fileMusicName'];
-        $folderPath = public_path() . '/' . 'media/casting/music/';
+        $folderPath = public_path() . '/media/' . 'casting/music/';
         $music_parts = explode(";base64,", $music);
         $music_type_aux = explode("audio/", $music_parts[0]);
         $music_type = $music_type_aux[1];
@@ -65,7 +65,7 @@ class CastingController extends Controller
 
         $clip=$request['clipTemplate'];
         $clip_name=$request['clipTemplateName'];
-        $folderPath = public_path() . '/' . 'media/casting/video/';
+        $folderPath = public_path() . '/media/' . 'casting/video/';
         $clip_parts = explode(";base64,", $clip);
         $clip_type_aux = explode("video/", $clip_parts[0]);
         $clip_type = $clip_type_aux[1];
@@ -115,7 +115,7 @@ class CastingController extends Controller
         ));
         $img=$request['portrait'];
         $image_name=$request['portraitName'];
-        $folderPath = public_path() . '/' . 'media/casting/image/';
+        $folderPath = public_path() . '/media/' . 'casting/image/';
         $image_parts = explode(";base64,", $img);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
@@ -126,7 +126,7 @@ class CastingController extends Controller
 
         $clip=$request['clipIntroduce'];
         $clip_name=$request['clipIntroduceName'];
-        $folderPath = public_path() . '/' . 'media/casting/video/';
+        $folderPath = public_path() . '/media/' . 'casting/video/';
         $clip_parts = explode(";base64,", $clip);
         $clip_type_aux = explode("video/", $clip_parts[0]);
         $clip_type = $clip_type_aux[1];

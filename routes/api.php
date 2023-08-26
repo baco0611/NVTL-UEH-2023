@@ -31,7 +31,7 @@ Route::get('listAccount', [LoginController::class, 'userAccount'])->name('userAc
 Route::get('listPrideTake', [PrideTakeController::class, 'getPrideTake'])->name('prideTake_show');
 Route::get('listProudMate', [ProudMateController::class, 'getProudMate'])->name('proudMate_show');
 Route::post('prideTake/sortByTime', [PrideTakeController::class,'sortByTime'])->name('sortByTime');
-#Client
+
 #PrideTake
 Route::post('insertPrideTake', [PrideTakeController::class,'insertPrideTake'])->name('insertPrideTake');
 
@@ -50,3 +50,8 @@ Route::post('newsAdmin/sortByTime', [NewsController::class,'sortByTime'])->name(
 #Casting
 Route::post('castingMC', [CastingController::class,'insertCastingMC'])->name('castingMC');
 Route::post('castingStage', [CastingController::class,'insertCastingStage'])->name('castingStage');
+#Proudmate
+Route::get('getProudMate/{id}', [ProudMateController::class, 'checkProudMate'])->name('checkProudMate');
+Route::post('searchMember', [ProudMateController::class,'searchMember'])->name('searchMember');
+Route::post('postProudMate', [ProudMateController::class,'postProudMate'])->name('postProudMate');
+Route::post('postProof', [ProudMateController::class,'postProof'])->name('postProof');
