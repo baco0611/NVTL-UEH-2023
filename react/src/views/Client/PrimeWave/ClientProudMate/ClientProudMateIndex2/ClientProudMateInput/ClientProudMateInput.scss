@@ -138,3 +138,18 @@ $filled-color: #3288f3;
         }
     }
 }
+
+@media screen and (max-width: 1270px){
+    .client-proud-1-banner {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .client-proud-1-mainRight {
+        display: none;
+    }
+    .client-proud-1-mainLeft {
+        width: 100%;
+    }
+}

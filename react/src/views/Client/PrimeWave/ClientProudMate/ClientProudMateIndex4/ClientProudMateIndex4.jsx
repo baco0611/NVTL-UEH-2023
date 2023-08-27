@@ -5,10 +5,13 @@ import { UserContext } from '../../../../../context/ContextProvider'
 import clsx from 'clsx'
 import { getBase64 } from '../../../Casting/scripts/base64'
 import care from './img/care.png'
+import fish from './img/fish.png'
 import { handleUploadProof } from './handleUploadProof'
 import shark from '../../../../../components/RequestLogin/img/shark.png'
+import Swal from 'sweetalert2'
+import axiosClient from '../../../../../context/axiosClient'
 
-export default function ClientProudMateIndex4({ setIndex, proudMateInfo }) {
+export default function ClientProudMateIndex4({ setIndex, proudMateInfo, setProudMateInfo }) {
 
     if(!proudMateInfo.condition)
         return <Navigate to={'/primewave/proudmate'}/>
@@ -38,13 +41,85 @@ export default function ClientProudMateIndex4({ setIndex, proudMateInfo }) {
     }
 
     const handleSaving = async() => {
-        loadingRef.current.classList.remove('none')
-        const postResult = await handleUploadProof(proof)
-        loadingRef.current.classList.add('none')
+        if(proof.proofName) {
+            loadingRef.current.classList.remove('none')
+            const postResult = await handleUploadProof(proof)
+            if(postResult) {
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i class="fa-regular fa-circle-check"></i>
+                            <h1>Bạn đã đăng kí thành công</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn"><a href="/" style="color:white">Về lại trang chủ</a></h2>',
+                    confirmButtonColor: "#3288f3"
+                }) 
+                axiosClient.get('/getProudMate/' + teamInformation.idMember1)
+                .then(response => 
+                    setProudMateInfo({
+                        teamInformation: response.data.data[0],
+                        condition: true
+                    })
+                )
+            } else {
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                            <h1>Gửi minh chứng thất bại, vui lòng thử lại sau</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+                    confirmButtonColor: "#3288f3"
+                }) 
+            }
+            loadingRef.current.classList.add('none')
+        } else {
+            Swal.fire({
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                },
+                customClass: {
+                    confirmButton: 'user-update-success-button'
+                },
+                html: `
+                    <div class="user-update-success">
+                        <i class="fa-regular fa-circle-xmark"></i>
+                        <h1>Vui lòng tải file minh chứng trước khi gửi</h1>
+                    </div>
+                `,
+                confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+                confirmButtonColor: "#3288f3"
+            }) 
+        }
     }
 
     return (
         <div className="client-proud-4">
+        {
+            !proudMateInfo.teamInformation.proof &&
             <div className='client-proud-4-main'>
                 <div className='client-proud-4-teamName'>
                     <h1>{proudMateInfo.teamInformation.teamName}</h1>
@@ -78,6 +153,18 @@ export default function ClientProudMateIndex4({ setIndex, proudMateInfo }) {
                     </p>
                 </div>
             </div>
+            ||
+            <div className='client-proud-4-main'>
+                <div className='client-proud-4-teamName'>
+                    <h1>{proudMateInfo.teamInformation.teamName}</h1>
+                    <h2>{proudMateInfo.teamInformation.teamName}</h2>
+                </div>
+                <div className='client-proud-4-success'>
+                    <img src={fish}/>
+                    <h1>Chúc mừng bạn đã hoàn thành thử thách</h1>
+                </div>
+            </div>
+        }
             <div className='client-proud-4-btn'>
                 <button className='secondary-button' onClick={() => setIndex(1)}>Quay lại</button>
                 {

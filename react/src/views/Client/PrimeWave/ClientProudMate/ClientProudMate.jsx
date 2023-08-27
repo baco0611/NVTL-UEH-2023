@@ -98,6 +98,7 @@ function ClientProudMate() {
                 <ClientProudMateIndex4
                     setIndex={setIndex}
                     proudMateInfo={proudMateInfo}
+                    setProudMateInfo={setProudMateInfo}
                 />
             :
                 <Navigate to={'/error'}/>

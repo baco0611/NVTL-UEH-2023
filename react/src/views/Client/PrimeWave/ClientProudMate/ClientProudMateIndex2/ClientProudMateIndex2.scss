@@ -42,11 +42,12 @@ $filled-color: #3288f3;
 
         h1 {
             text-transform: uppercase;
-            font-size: 55px;
+            font-size: 48px;
             font-weight: 900;
             color: white;
             text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
             padding: 20px 40px;
+            text-align: center;
             
             background: url('./img/nameBack.png');
             background-size: 100% 100%;
@@ -85,5 +86,37 @@ $filled-color: #3288f3;
             border: #aa001d 3px solid;
             color: #aa001d;
         }
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .client-proud-2 {
+        display: block;
+
+        &-left, &-right {
+            width: 100%;
+            input {
+                padding: 0 20px !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 750px){
+    .client-proud-2 {
+        &-left, &-right {
+            width: 100%;
+            input {
+                padding: 0 20px !important;
+            }
+        }
+    }
+
+    .client-proud-2-content {
+        padding: 50px 20px;
+    }
+
+    .client-proud-2-input .proud-input-box {
+        padding: 15px !important;
     }
 }

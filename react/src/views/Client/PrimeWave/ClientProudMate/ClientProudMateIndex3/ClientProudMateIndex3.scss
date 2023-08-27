@@ -87,3 +87,23 @@
         }
     }
 }
+
+@media screen and (max-width: 800px){
+    .client-proud-3 .quote {
+        width: 90vw;
+    }
+
+    .client-proud-3 h1 {
+        padding: 35px 0;
+        font-size: 40px;
+    }
+
+    .client-proud-3-main {
+        height: 425px;
+        gap: 35px;
+    }
+
+    .client-proud-3 .card-container {
+        width: 225px;
+    }
+}
