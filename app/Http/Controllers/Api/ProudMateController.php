@@ -132,8 +132,15 @@ class ProudMateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function updateChoice(Request $request)
     {
-        //
+        $proudMateService = new ProudMateService();
+        $itemService= $proudMateService->updateChoiceTemplate($request);
+        $listResource= GetProudMateResource::collection($itemService);
+        return response()->json([
+            'data'=>$listResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
+ 
     }
 }

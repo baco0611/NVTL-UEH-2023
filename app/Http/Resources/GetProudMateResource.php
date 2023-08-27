@@ -38,6 +38,7 @@ class GetProudMateResource extends JsonResource
             "memberName3"=>$this->name3,
             "memberStudentCode3"=>$this->studentCode3,
             "proof"=> $this->checkProof(),
+            "choice"=>$this->choice
         ];
     }
 }
