@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import './ClientProudMateIndex3.scss'
 import clsx from 'clsx'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import quote from './img/quote.png'
 import leftCard from './img/leftCard.png'
 import rightCard from './img/rightCard.png'
@@ -9,10 +9,8 @@ import template1 from '../img/Template1.png'
 import template2 from '../img/Template2.png'
 
 export default function ClientProudMateIndex3({ setIndex, proudMateInfo}) {
-    useEffect(() => {
-        if(!proudMateInfo.condition)
-            setIndex(2)
-    }, [])
+    if(!proudMateInfo.condition)
+        return <Navigate to={'/primewave/proudmate'}/>
 
     const [ select, setSelect ] = useState(0)
     const navigate = useNavigate()
