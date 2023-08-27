@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('member3')->references('id')->on('login');
             $table->string('proof', 500)->nullable();
             $table->boolean('status')->default(false);
+            $table->boolean('choice')->default(false);
             $table->timestamp('created_at')->useCurrent();
         });
     }

@@ -55,3 +55,4 @@ Route::get('getProudMate/{id}', [ProudMateController::class, 'checkProudMate'])-
 Route::post('searchMember', [ProudMateController::class,'searchMember'])->name('searchMember');
 Route::post('postProudMate', [ProudMateController::class,'postProudMate'])->name('postProudMate');
 Route::post('postProof', [ProudMateController::class,'postProof'])->name('postProof');
+Route::post('updateTemplateChoice', [ProudMateController::class,'updateChoice'])->name('updateChoice');
