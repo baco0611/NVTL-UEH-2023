@@ -10,21 +10,23 @@ import template2 from '../img/Template2.png'
 
 export default function ClientProudMateIndex3({ setIndex, proudMateInfo}) {
     if(!proudMateInfo.condition)
-        return <Navigate to={'/primewave/proudmate'}/>
+        setIndex(2)
 
     const [ select, setSelect ] = useState(0)
     const navigate = useNavigate()
 
     const handleSaving = () => {
-        const a = document.createElement('a')
-        if(select == 1)
-            a.href = template1
-        else
-            a.href = template2
-
-        a.download = "proudmate-template"
-        a.click()
-        setTimeout(() => navigate('/primewave/proudmate'), 1200)
+        if(select) {
+            const a = document.createElement('a')
+            if(select == 1)
+                a.href = template1
+            else
+                a.href = template2
+    
+            a.download = "proudmate-template"
+            a.click()
+            setTimeout(() => navigate('/primewave/proudmate'), 1200)
+        }
     }
 
     return (

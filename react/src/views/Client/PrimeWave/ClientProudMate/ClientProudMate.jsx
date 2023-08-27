@@ -18,7 +18,6 @@ function ClientProudMate() {
     const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER'))
     const { getUserId } = useContext(UserContext)
-    // const [ proudMateInfo, setProudMateInfo ] = useState()
     // const [ proudMateInfo, setProudMateInfo ] = useState({
     //     status: 200,
     //     condition: true,
@@ -39,8 +38,6 @@ function ClientProudMate() {
         status: 200,
         condition: false
     })
-
-    console.log(proudMateInfo)
 
     useEffect(() => {
         if(!index) {

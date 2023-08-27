@@ -17,7 +17,7 @@
     }
 
     &:nth-child(2) {
-        background: url('./img/blockBackground.png');
+        background: url('./img/lapProudMateBack.png');
         background-size: cover;
     }
 
@@ -60,6 +60,11 @@
         
         &:nth-child(1) {
             background: url('./img/phonePrideTakeBack.png');
+            background-size: cover;
+        }
+
+        &:nth-child(2) {
+            background: url('./img/phoneProudMateBack.png');
             background-size: cover;
         }
     }

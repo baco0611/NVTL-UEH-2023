@@ -10,11 +10,12 @@ import { handleUploadProof } from './handleUploadProof'
 import shark from '../../../../../components/RequestLogin/img/shark.png'
 import Swal from 'sweetalert2'
 import axiosClient from '../../../../../context/axiosClient'
+import RequestLaptop from '../../../../../components/RequestLaptop/RequestLaptop'
 
 export default function ClientProudMateIndex4({ setIndex, proudMateInfo, setProudMateInfo }) {
 
     if(!proudMateInfo.condition)
-        return <Navigate to={'/primewave/proudmate'}/>
+        setIndex(2)
     
     const { getUserId } = useContext(UserContext)
 
@@ -45,6 +46,7 @@ export default function ClientProudMateIndex4({ setIndex, proudMateInfo, setProu
             loadingRef.current.classList.remove('none')
             const postResult = await handleUploadProof(proof)
             if(postResult) {
+                loadingRef.current.classList.add('none')
                 Swal.fire({
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
@@ -61,7 +63,7 @@ export default function ClientProudMateIndex4({ setIndex, proudMateInfo, setProu
                             <h1>Bạn đã đăng kí thành công</h1>
                         </div>
                     `,
-                    confirmButtonText: '<h2 class="user-update-success-btn"><a href="/" style="color:white">Về lại trang chủ</a></h2>',
+                    confirmButtonText: '<h2 class="user-update-success-btn"><a href="/primewave" style="color:white">Về lại trang Prime Wave</a></h2>',
                     confirmButtonColor: "#3288f3"
                 }) 
                 axiosClient.get('/getProudMate/' + teamInformation.idMember1)
@@ -72,6 +74,7 @@ export default function ClientProudMateIndex4({ setIndex, proudMateInfo, setProu
                     })
                 )
             } else {
+                loadingRef.current.classList.add('none')
                 Swal.fire({
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
@@ -178,6 +181,10 @@ export default function ClientProudMateIndex4({ setIndex, proudMateInfo, setProu
                     <div className="continuous"></div>
                 </div>
             </div>
+            {
+                window.innerWidth < 1024 &&
+                <RequestLaptop/>
+            }
         </div>
     )
 }
