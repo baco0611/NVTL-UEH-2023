@@ -52,11 +52,11 @@ class ProudMateService
     }
     public function updateProudMate($request,$imageName){
         DB::table('proud_mate')
-         ->where('id',$request['idProudMate'])
+         ->where('idProudMate',$request['idProudMate'])
          ->update([
              'proof'=>$imageName
          ]);
-         $result = DB::table('login')
+         $result = DB::table('proud_mate')
          ->where('idProudMate',$request['idProudMate'])
          ->get();
          return $result;
