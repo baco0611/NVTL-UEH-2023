@@ -38,6 +38,7 @@ function ClientProudMate() {
         status: 200,
         condition: false
     })
+    console.log(proudMateInfo)
 
     useEffect(() => {
         if(!index) {
