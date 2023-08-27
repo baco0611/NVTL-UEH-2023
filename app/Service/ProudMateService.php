@@ -56,9 +56,16 @@ class ProudMateService
          ->update([
              'proof'=>$imageName
          ]);
-         $result = DB::table('proud_mate')
-         ->where('idProudMate',$request['idProudMate'])
-         ->get();
+         $result = DB::select('
+        SELECT p.idProudMate,p.teamName,(select l.fullName from login as l where l.id=p.member1) as name1,
+        (select l.studentCode from login as l where l.id=p.member1) as studentCode1,
+        (select l.fullName from login as l where l.id=p.member2) as name2,
+        (select l.studentCode from login as l where l.id=p.member2) as studentCode2,
+        (select l.fullName from login as l where l.id=p.member3) as name3,
+        (select l.studentCode from login as l where l.id=p.member3) as studentCode3,
+        p.proof,p.status
+        From proud_mate as p
+        where p.member1='.$request['idProudMate'].' or p.member2='.$request['idProudMate'].' or p.member3='.$request['idProudMate']);
          return $result;
      }
 }
