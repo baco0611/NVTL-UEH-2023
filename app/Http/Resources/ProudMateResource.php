@@ -24,7 +24,7 @@ class ProudMateResource extends JsonResource
             'studentCode2'=>$this->studentCode2,
             'member3'=>$this->name3,
             'studentCode3'=>$this->studentCode3,
-            "choice"=>boolval($this->choice),
+            "choice"=>$this->choice,
             'proof1'=>$this->proof,
             'status'=>$this->status
         ];
