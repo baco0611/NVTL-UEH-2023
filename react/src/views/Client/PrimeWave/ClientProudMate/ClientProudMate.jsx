@@ -56,14 +56,16 @@ function ClientProudMate() {
     }, [window.location.href])
 
     useEffect(() => {
-        axiosClient.get('/getProudMate/' + getUserId(user.id).real)
-        .then(response => {
-            if(response.data.condition)
-                setProudMateInfo({
-                    condition: true,
-                    teamInformation: response.data.data[0]
-                })
-        })
+        if(user) {
+            axiosClient.get('/getProudMate/' + getUserId(user.id).real)
+            .then(response => {
+                if(response.data.condition)
+                    setProudMateInfo({
+                        condition: true,
+                        teamInformation: response.data.data[0]
+                    })
+            })
+        }
     }, [])
 
     return (

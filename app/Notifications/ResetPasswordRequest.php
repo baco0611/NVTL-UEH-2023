@@ -36,8 +36,8 @@ class ResetPasswordRequest extends Notification implements ShouldQueue
      public function toMail($notifiable)
      {
         // $url = url('https://test.nvtl2023ueh.com//login/forgot?token=' . $this->token);
-        // $url = url('https://nvtl2023ueh.com//login/forgot?token=' . $this->token);
-        $url = url('http://localhost:3100/login/forgot?token=' . $this->token);
+        $url = url('https://nvtl2023ueh.com//login/forgot?token=' . $this->token);
+        // $url = url('http://localhost:3100/login/forgot?token=' . $this->token);
         return (new MailMessage)
             ->line('Bạn nhận được email này vì chúng tôi nhận được yêu cầu đặt lại mật khẩu của bạn.')
             ->action('Reset Password', url($url))

@@ -28,7 +28,7 @@ function ClientProudMateIndex1({ setIndex }) {
                             </li>
                             <li>
                                 <img src={Text2}/>
-                                <p>Đăng tải template đã hoàn thành lên story facebook (ít nhất 12 tiếng) và tag 2 đồng đội của mình.</p>
+                                <p>Sau khi hoàn thành, các bạn chèn hình ảnh minh chứng 3 hoạt động lên template tương ứng và đăng tải lên Story Facebook trong vòng 12 tiếng.</p>
                             </li>
                             <li>
                                 <img src={Text3}/>

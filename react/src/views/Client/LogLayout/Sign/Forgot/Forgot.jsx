@@ -81,6 +81,8 @@ function ForgotPassword() {
                     confirmButtonText: '<h2 class="user-update-success-btn"><a style="color: white;" href="/">Trở lại trang chủ</h2>',
                     confirmButtonColor: "#3288f3"
                 })
+            } else {
+                loadingRef.current.classList.add('none')
             }
         }, 1000)
     }
