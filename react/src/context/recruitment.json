@@ -1,0 +1,82 @@
+{
+    "recruitment_post": {
+        "fullName": "",
+        "grade": "",
+        "studentCode": "",
+        "email": "",
+        "phone": "",
+        "accountLink": "",
+        "aspiration1": "",
+        "aspiration2": "",
+        "file": [
+            {
+                "type": "",
+                "__comment_type1": "có 3 type: information, aspiration1 và aspiration2 ứng với 3 phần là giới thiệu bản thân, nguyện vọng 1, nguyện vọng 2",
+                "__comment_type2": "Mỗi type nớ sẽ có nhiều file á (ví dụ: giới thiệu bản thân 2 file, nv1 3 file, nv2 2 file",
+                "__comment_type3": "Mỗi phần tử ni ứng với 1 file",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            },
+            {
+                "type": "",
+                "fileName": "",
+                "file": "" 
+            }
+        ]
+    }
+}

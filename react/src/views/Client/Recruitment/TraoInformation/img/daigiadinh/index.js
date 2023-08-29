@@ -1,0 +1,6 @@
+export { default as daigiadinh1 } from './1.png'
+export { default as daigiadinh2 } from './2.png'
+export { default as daigiadinh3 } from './3.png'
+export { default as daigiadinh4 } from './4.png'
+export { default as daigiadinh5 } from './5.png'
+export { default as daigiadinh6 } from './6.png'

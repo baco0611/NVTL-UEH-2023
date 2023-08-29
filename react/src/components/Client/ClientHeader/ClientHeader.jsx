@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import uehlogo from './img/header_uehlogo.png'
 import hoisvlogo from './img/header_hoisvlogo.png'
+import doanlogo from './img/header_doanlogo.png'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
 import ClientInformation from './ClientInformation'
@@ -168,7 +169,13 @@ function ClientHeader() {
             </div>
             <div className='client-header-logo'>
                 <Link to={'/'}><img src={uehlogo}/></Link>
-                <Link to={'/'}><img src={hoisvlogo}/></Link>
+                {
+                    path != '/recruitment'
+                    &&
+                    <Link to={'/'}><img src={hoisvlogo}/></Link>
+                    ||
+                    <Link to={'/'}><img src={doanlogo}/></Link>
+                }
             </div>
 
             <nav className='client-header-nav'>

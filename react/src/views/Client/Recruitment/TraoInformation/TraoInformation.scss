@@ -1,0 +1,175 @@
+@import '../variable.scss';
+
+#trao-information {
+    width: 100%;
+    padding: 75px 0;
+    padding-bottom: 0;
+}
+
+.trao-information {
+    .title {
+        height: 65px;
+    }
+
+    .swiper-button-prev, .swiper-button-next {
+        color: $primary-color;
+        background-color: #fff7ee1d;
+        border-radius: 20px;
+        padding: 50px 15px;
+    }
+
+    .mySwiper {
+        box-shadow: 10px 10px 10px #be2a1fcd;
+    }
+
+    &-venhatrao {
+        padding: 0 10vw;
+        padding-bottom: 100px;
+
+        .container {
+            width: 100%;
+            display: flex;
+            gap: 50px;
+
+            &-left {
+                width: calc((100% - 50px) * 0.4);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 20px;
+                gap: 20px;
+
+                img {
+                    width: 65%;
+                }
+
+                p {
+                    text-align: center;
+                    color: $primary-color;
+                    font-weight: 900;
+                    font-size: 20px;
+                }
+            }
+
+            &-right {
+                padding-top: 20px;
+                width: calc((100% - 50px) * 0.6);
+
+                .space {
+                    height: 50px;
+                }
+
+                p {
+                    color: $primary-color;
+                    font-size: 22px;
+                    text-align: justify;
+                    line-height: 26px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+    
+    
+    .line-box {
+        display: flex;
+        width: 100%;
+        
+        .line {
+            width: 50%;
+            height: 12px;
+            background-color: $primary-color;
+        }
+
+        .spaceLeft {
+            width: 50%;
+        }
+    }
+
+    &-rightTitle {
+        padding: 0 8vw;
+        padding-top: 50px;
+        padding-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+            align-self: flex-end;
+        }
+
+        .container {
+            width: 70vw;
+            padding: 35px 0;
+        }
+    }
+
+    &-leftTitle {
+        padding: 0 8vw;
+        padding-top: 50px;
+        padding-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+            align-self: flex-start;
+        }
+
+        .container {
+            width: 70vw;
+            padding: 35px 0;
+        }
+
+        .nav-container {
+            padding: 35px 0;
+            width: 100%;
+        }
+
+        .nav-box {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+
+            a {
+                display: block;
+                width: calc((100% - 20px)/5);
+            }
+
+            img {
+                width: 100%;
+                transition: all ease-in-out 250ms;
+
+                &:hover {
+                    transform: scale3d(1.1, 1.1, 1.5) translateY(-5%);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .trao-information-venhatrao .container {
+        flex-direction: column;
+
+        &-left, &-right {
+            width: 100%;
+        }
+
+        &-left {
+            img {
+                width: max(40%, 250px);
+            }
+        }
+    }
+
+    .title {
+        height: 48px !important;
+    }
+
+    .trao-information-rightTitle .container,
+    .trao-information-leftTitle .container {
+        width: max(450px, 80vw);
+    }
+}
