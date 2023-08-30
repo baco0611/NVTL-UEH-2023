@@ -33,14 +33,15 @@ class NewsController extends Controller
         $image_name=$request['thumbnailName'];
         $folderPath = public_path() . '/media/' . 'imageNews/';
         $image_parts = explode(";base64,", $img);
+        $uniqid= uniqid();
         // $image_type_aux = explode("application/", $image_parts[0]);
         // $image_type_aux = explode("video/", $image_parts[0]);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
-        $file = $folderPath . $image_name . '.' . $image_type;
+        $file = $folderPath . $image_name . '_'.$uniqid.'.' . $image_type;
         file_put_contents($file, $image_base64);
-        $imageFile=$image_name.'.'.$image_type;
+        $imageFile=$image_name. '_'.$uniqid.'.'.$image_type;
         $newsService= new NewsService();
         $item= $newsService->insertData($request,$imageFile);
         $newsResource= NewsResource::collection($item);

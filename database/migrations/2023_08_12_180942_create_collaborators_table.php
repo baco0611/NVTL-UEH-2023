@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('grade',50);
             $table->string('studentCode',500);
             $table->string('phone',50);
-            $table->string('acountLink',500);
+            $table->string('accountLink',500);
             $table->string('email',500);
             $table->string('aspiration1',500);
-            $table->string('aspiration2',500);
+            $table->string('aspiration2',500)->nullable();
             $table->string('note')->nullable();
             $table->boolean('status',500)->default(false);
         });
