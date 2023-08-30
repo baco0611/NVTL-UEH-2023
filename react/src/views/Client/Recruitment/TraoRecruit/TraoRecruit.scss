@@ -79,7 +79,7 @@
 
         .container {
             display: grid;
-            grid-template-columns: calc((100% - 120px)/3) calc((100% - 120px)/3) calc((100% - 120px)/3);
+            grid-template-columns: calc((100% - 80px)/3) calc((100% - 80px)/3) calc((100% - 80px)/3);
 
             row-gap: 50px;
             column-gap: 40px;
@@ -173,3 +173,9 @@
     }
 }
 
+@media screen and (max-width: 920px) {
+    .trao-recruit-position .container .position-item-button button {
+        font-size: 12px;
+        width: 80%;
+    }
+}

@@ -9,9 +9,8 @@ import TraoRecruit from "./TraoRecruit/TraoRecruit"
 function Recruitment() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/recruitment'), [])
-    // useEffect(() => {window.scrollTo(0, 0)}, [])
-    const [ page, setPage ] = useState(2)
-
+    useEffect(() => {window.scrollTo(0, 0)}, [])
+    const [ page, setPage ] = useState(1)
 
     return (
         <section id="client-recruitment" className="client-recruit">

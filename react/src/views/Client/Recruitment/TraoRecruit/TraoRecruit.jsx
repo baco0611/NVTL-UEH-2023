@@ -47,7 +47,7 @@ function TraoRecruit() {
                         <div>
                             <h1>ĐỐI TƯỢNG THAM GIA</h1>
                             <h3>Sinh viên UEH ĐHCQ K48 và K49</h3>
-                            <Link to={'/recruitment?page=form'}>
+                            <Link to={'/recruitment/form'}>
                                 <img className='ungtuyenBtn' src={ungtuyenBtn}/>
                             </Link>
                         </div>
@@ -188,7 +188,7 @@ function TraoRecruit() {
                 <img className='title' src={thoihanungtuyen}/>
                 <TraoRecruitClock/>
                 <div className='clock-btn'>
-                    <Link to={'/recruitment?page=form'}>
+                    <Link to={'/recruitment/form'}>
                         <img className='ungtuyenBtn' src={ungtuyenBtn}/>
                     </Link>
                 </div>

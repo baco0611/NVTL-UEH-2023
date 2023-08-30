@@ -36,3 +36,33 @@
         }
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .tick {
+        font-size: 70px !important;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .tick {
+        font-size: 45px !important;
+    }
+
+    .time-dots {
+        width: 10px !important;
+        margin: 0 15px;
+        transform: translateY(-100%) !important;     
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .tick {
+        font-size: 34px !important;
+    }
+
+    .time-dots {
+        width: 10px !important;
+        margin: 0 15px;
+        transform: translateY(-100%) !important;     
+    }
+}

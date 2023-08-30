@@ -11,6 +11,7 @@ import Day4 from '../views/Client/Weekly/Day4/Day4'
 import NightFest from '../views/Client/NightFest/NightFest'
 import Casting from '../views/Client/Casting/Casting'
 import Recruitment from '../views/Client/Recruitment/Recruitment'
+import TraoForm from "../views/Client/Recruitment/TraoForm/TraoForm"
 import LogLayout from "../views/Client/LogLayout/LogLayout"
 import Sign from "../views/Client/LogLayout/Sign/Sign"
 import UserLayout from "../views/Client/UserLayout/UserLayout"
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
             {
                 path: '/recruitment',
                 element: <Recruitment/>
+            }, 
+            {
+                path: '/recruitment/form',
+                element: <TraoForm/>
             }, 
             {
                 path: '/login',
