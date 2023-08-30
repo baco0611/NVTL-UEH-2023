@@ -9,12 +9,12 @@ import TraoRecruit from "./TraoRecruit/TraoRecruit"
 function Recruitment() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/recruitment'), [])
-    useEffect(() => {window.scrollTo(0, 0)}, [])
-    const [ page, setPage ] = useState(1)
+    // useEffect(() => {window.scrollTo(0, 0)}, [])
+    const [ page, setPage ] = useState(2)
 
 
     return (
-        <section id="client-recruitment">
+        <section id="client-recruitment" className="client-recruit">
             <div className="client-recruit-nav">
                 <div
                     className={clsx('client-recruit-nav-item', {active: page == 1})}

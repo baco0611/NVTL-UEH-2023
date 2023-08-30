@@ -69,22 +69,6 @@
             }
         }
     }
-    
-    
-    .line-box {
-        display: flex;
-        width: 100%;
-        
-        .line {
-            width: 50%;
-            height: 12px;
-            background-color: $primary-color;
-        }
-
-        .spaceLeft {
-            width: 50%;
-        }
-    }
 
     &-rightTitle {
         padding: 0 8vw;

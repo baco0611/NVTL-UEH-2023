@@ -1,0 +1,38 @@
+@import '../../variable.scss';
+
+.trao-recruit-clock-main {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .tick {
+        font-size: 100px;
+    }
+
+    .tick-flip-panel {
+        background-color: $primary-color;
+        color: $subPrimary-color;
+        font-weight: 800;
+    }
+
+    .time-dots {
+        width: 20px;
+        margin: 0 15px;
+        transform: translateY(-35%);
+    }
+
+    .trao-recruit-clock-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+
+        p {
+            font-size: 24px;
+            color: $primary-color;
+            font-weight: 900;
+            text-shadow: 3px 3px 3px $subPrimary-color;
+        }
+    }
+}

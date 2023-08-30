@@ -1,0 +1,6 @@
+export { default as coms } from './coms.png'
+export { default as creative } from './creative.png'
+export { default as graphic } from './graphic.png'
+export { default as hr } from './hr.png'
+export { default as sceno } from './sceno.png'
+export { default as video } from './video.png'
