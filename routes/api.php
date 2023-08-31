@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\PrideTakeController;
 use App\Http\Controllers\Api\ProudMateController;
 use App\Http\Controllers\Api\StatusPageController;
 use App\Http\Controllers\Api\ResetPasswordController;
+use App\Http\Controllers\Api\CollaboratorsController;
 use App\Models\CastingMC;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -56,3 +57,5 @@ Route::post('searchMember', [ProudMateController::class,'searchMember'])->name('
 Route::post('postProudMate', [ProudMateController::class,'postProudMate'])->name('postProudMate');
 Route::post('postProof', [ProudMateController::class,'postProof'])->name('postProof');
 Route::post('updateTemplateChoice', [ProudMateController::class,'updateChoice'])->name('updateChoice');
+#CTV
+Route::post('recruitment_post', [CollaboratorsController::class,'postCollaborators'])->name('postCollaborators');
