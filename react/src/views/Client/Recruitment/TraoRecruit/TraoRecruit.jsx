@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import vaotrao from './img/vaotrao.png'
 import timeline from './img/timeline.png'
 import vitrinhatrao from './img/vitrinhatrao.png'
+import moreInformation from './img/moreInformation.png'
 import thoihanungtuyen from './img/thoihanungtuyen.png'
 import timelineMap from './img/timelineMap.png'
 import themeCover from './img/themeCover.png'
@@ -43,7 +44,10 @@ function TraoRecruit() {
                 <div className='container'>
                     <img src={themeCover}/>
                     <div className='container-theme'>
-                        <h1>CHỦ ĐỀ</h1>
+                        <div>
+                            <h1>TRÀO 2023: HIGH FIRE</h1>
+                            <p>Mang trong mình ngọn lửa nhiệt huyết cùng nguồn năng lượng trẻ trung luôn sôi sục cháy bỏng, các bạn chính là những mũi tên lửa không ngừng bức phá vươn lên, thể hiện được tinh thần tiên phong, bản lĩnh nhằm thành công chạm đến những khát vọng trên chặng đường tương lai của bản thân.</p>
+                        </div>
                         <div>
                             <h1>ĐỐI TƯỢNG THAM GIA</h1>
                             <h3>Sinh viên UEH ĐHCQ K48 và K49</h3>
@@ -71,6 +75,7 @@ function TraoRecruit() {
 
             <div className='trao-recruit-position'>
                 <img className='title' src={vitrinhatrao}/>
+                <img className='title' style={{marginTop: "10px"}} src={moreInformation}/>
                 <div className='container'>
                     <div className='position-head'>
                         <img src={Position.head}/>

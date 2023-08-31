@@ -4,6 +4,7 @@ import './Recruitment.scss'
 import clsx from 'clsx'
 import TraoInformation from "./TraoInformation/TraoInformation"
 import TraoRecruit from "./TraoRecruit/TraoRecruit"
+import banner from './img/banner.png'
 
 
 function Recruitment() {
@@ -14,6 +15,7 @@ function Recruitment() {
 
     return (
         <section id="client-recruitment" className="client-recruit">
+            <img style={{width: "100%"}} src={banner}/>
             <div className="client-recruit-nav">
                 <div
                     className={clsx('client-recruit-nav-item', {active: page == 1})}
