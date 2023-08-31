@@ -8,9 +8,13 @@ import Validator from '../../LogLayout/scripts/validForm'
 import { getBase64 } from "../../Casting/scripts/base64"
 import { UserContext } from '../../../../context/ContextProvider'
 import Swal from 'sweetalert2'
+import { errorInformation, handleApply } from './script/applyForm'
+import loadingImg from './img/loading.png'
 
 function TraoForm() {
-    const { getParent } = useContext(UserContext)
+    const { getParent, setPath } = useContext(UserContext)
+    useEffect(() => setPath('/recruitment'), [])
+    useEffect(() => {window.scrollTo(0, 0)}, [])
 
     const [ informationValue, setInformationValue ] = useState({
         fullName: "",
@@ -199,7 +203,10 @@ function TraoForm() {
         return () => window.removeEventListener('click', handleClose)
     }, [])
 
-    const clickApply = () => {
+    const loadingRef = useRef()
+    const [ error, setError ] = useState({})
+
+    const clickApply = async () => {
         if( informationValue.fullName=="" || 
             informationValue.accountLink=="" ||
             informationValue.email=="" ||
@@ -326,8 +333,71 @@ function TraoForm() {
             }
 
             console.log(value)
+            loadingRef.current.classList.remove('none')
+            const applyResult = await handleApply(value, setError)
+            if(applyResult) {
+                loadingRef.current.classList.add('none')
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i style="background: #be291f" class="fa-regular fa-circle-check"></i>
+                            <h1>Đăng ký thành công</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+                    confirmButtonColor: "#be291f"
+                })
+
+                setInformationValue({
+                    fullName: "",
+                    studentCode: "",
+                    email: "",
+                    phone: "",
+                    accountLink: "",
+                    grade: "K48"
+                })
+
+                setIntroduceFile([])
+                setAspiration1Value('')
+                setAspiration2Value('')
+                window.scrollTo(0, 0)
+            } else {
+                loadingRef.current.classList.add('none')
+                Swal.fire({
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        confirmButton: 'user-update-success-button'
+                    },
+                    html: `
+                        <div class="user-update-success">
+                            <i style="background: #be291f" class="fa-regular fa-circle-xmark"></i>
+                            <h1>Đã xảy ra lỗi, vui lòng kiểm tra thông tin hoặc thử lại sau</h1>
+                        </div>
+                    `,
+                    confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+                    confirmButtonColor: "#be291f"
+                })
+            }
         }
     }
+
+    useEffect(() => {
+        errorInformation(error)
+    }, [error])
 
     return (
         <section id="client-recruitment" className='client-recruit-form'>
@@ -629,6 +699,12 @@ function TraoForm() {
             </div>
             <div className='client-apply'>
                 <button onClick={clickApply}>APPLY</button>
+            </div>
+            <div ref={loadingRef} className='recruit-form-loading none'>
+                <div className='main'>
+                    <img src={loadingImg}/>
+                    <div className="continuous"></div>
+                </div>
             </div>
         </section>
     )
