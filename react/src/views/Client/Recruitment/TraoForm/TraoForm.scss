@@ -1,7 +1,7 @@
 @import '../variable.scss';
 
 .client-recruit-form {
-    padding: 100px;
+    padding: 100px 0;
 
     .form-title {
         width: 100%;
@@ -106,7 +106,7 @@
             width: 100%;
         
             .file-list-item {
-                width: 50%;
+                width: 75%;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -124,6 +124,8 @@
 
                 span {
                     padding-top: 0;
+                    display: block;
+                    font-size: 16px;
 
                     &:hover {
                         opacity: 0.5;
@@ -154,7 +156,7 @@
                 font-size: 38px;
                 cursor: pointer;
                 
-                &.disbale {
+                &.disable {
                     pointer-events: none;
                 }
 
@@ -256,6 +258,7 @@
                     font-size: 24px;
                     font-weight: 800;
                     text-align: center;
+                    line-height: 30px;
                 }
             }
         }
@@ -340,6 +343,20 @@
           
         @keyframes ct4 {
             100% {left: calc(100% + 20px)}
+        }
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .client-recruit-form form .client-recruit-input {
+        gap: 25px;
+
+        ul {
+            width: calc(100% - 100px - 25px);
+        }
+
+        li {
+            font-size: 14px !important;
         }
     }
 }

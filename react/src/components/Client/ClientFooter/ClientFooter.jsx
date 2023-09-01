@@ -54,9 +54,6 @@ function ClientFooter() {
             {
                 path != '/login' && path != '/user' &&
                 <div className='client-footer-sns'>
-                    <Link to={'https://www.tiktok.com/@bptueh'} target='blank'>
-                        <i className="fa-brands fa-tiktok"></i>
-                    </Link>
                     <Link to={'https://www.facebook.com/BPTUEH/'} target='blank'>
                         <i className="fa-brands fa-facebook-f"></i>
                     </Link>
@@ -68,6 +65,9 @@ function ClientFooter() {
                     </Link>
                     <Link to={'https://www.youtube.com/channel/UCukkP4Wu3VH5kqK1inZNOAg'} target='blank'>
                         <i className="fa-brands fa-youtube"></i>
+                    </Link>
+                    <Link to={'https://www.tiktok.com/@bptueh'} target='blank'>
+                        <i className="fa-brands fa-tiktok"></i>
                     </Link>
                 </div>
             }

@@ -49,6 +49,22 @@
             }
         }
     }
+
+    .request.recruit {
+        background: url('../../views/Client/Recruitment/TraoForm/img/loading.png');
+        background-size: cover;
+        background-position: center;
+        aspect-ratio: 4/3;
+        position: relative;
+
+        h1 {
+            color: white;
+            position: absolute;
+            bottom: 5%;
+            font-weight: 500;
+            font-size: 22px;
+        }
+    }
 }
 
 @media screen and (max-width: 900px) {

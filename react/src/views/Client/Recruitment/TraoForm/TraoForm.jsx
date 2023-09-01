@@ -8,8 +8,10 @@ import Validator from '../../LogLayout/scripts/validForm'
 import { getBase64 } from "../../Casting/scripts/base64"
 import { UserContext } from '../../../../context/ContextProvider'
 import Swal from 'sweetalert2'
-import { errorInformation, handleApply } from './script/applyForm'
+import { checkFile, errorInformation, handleApply } from './script/applyForm'
 import loadingImg from './img/loading.png'
+import clsx from 'clsx'
+import RequestLaptop from '../../../../components/RequestLaptop/RequestLaptop'
 
 function TraoForm() {
     const { getParent, setPath } = useContext(UserContext)
@@ -51,28 +53,58 @@ function TraoForm() {
         })
     }, [informationValue])
 
-
     const [ introduceFile, setIntroduceFile ] = useState([])
 
     const introduceRef = useRef()
+
+    const SwalFile = value => {
+        const [error, maxSize] = value
+        const MB = maxSize / (1024*1024)
+
+        Swal.fire({
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            },
+            customClass: {
+                confirmButton: 'user-update-success-button'
+            },
+            html: `
+                <div class="user-update-success">
+                    <i style="background: #be291f" class="fa-regular fa-circle-xmark"></i>
+                    <h1>${error} bạn tải lên đã vượt quá ${MB}MB. Vui lòng tải lại file khác.</h1>
+                </div>
+            `,
+            confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+            confirmButtonColor: "#be291f"
+        })
+    }
 
     const appendIntroduceFile = async (e) => {
         const files = e.target.files
 
         Array.from(files).forEach(async file => {
-            const fileName = file.name.replace(/[^A-Z0-9]+/ig, "_")
-            const _file = await getBase64(file)
-            
-            setIntroduceFile(prev => {
-                return [
-                    ...prev,
-                    {
-                        fileName,
-                        file: _file,
-                        type: 'information'
-                    }
-                ]
-            })
+            const check = checkFile(file)
+
+            if(check == true) {
+                const fileName = file.name.replace(/[^A-Z0-9]+/ig, "_")
+                const _file = await getBase64(file)
+                
+                setIntroduceFile(prev => {
+                    return [
+                        ...prev,
+                        {
+                            fileName,
+                            file: _file,
+                            type: 'information'
+                        }
+                    ]
+                })
+            } else {
+                SwalFile(check)
+            }
         })
     }
 
@@ -121,19 +153,25 @@ function TraoForm() {
         const files = e.target.files
 
         Array.from(files).forEach(async file => {
-            const fileName = file.name.replace(/[^A-Z0-9]+/ig, "_")
-            const _file = await getBase64(file)
-            
-            setAspiration1File(prev => {
-                return [
-                    ...prev,
-                    {
-                        fileName,
-                        file: _file,
-                        type: 'aspiration1'
-                    }
-                ]
-            })
+            const check = checkFile(file)
+
+            if(check == true) {
+                const fileName = file.name.replace(/[^A-Z0-9]+/ig, "_")
+                const _file = await getBase64(file)
+                
+                setAspiration1File(prev => {
+                    return [
+                        ...prev,
+                        {
+                            fileName,
+                            file: _file,
+                            type: 'aspiration1'
+                        }
+                    ]
+                })
+            } else {
+                SwalFile(check)
+            }
         })
     }
 
@@ -160,19 +198,25 @@ function TraoForm() {
         const files = e.target.files
 
         Array.from(files).forEach(async file => {
-            const fileName = file.name.replace(/[^A-Z0-9]+/ig, "_")
-            const _file = await getBase64(file)
-            
-            setAspiration2File(prev => {
-                return [
-                    ...prev,
-                    {
-                        fileName,
-                        file: _file,
-                        type: 'aspiration2'
-                    }
-                ]
-            })
+            const check = checkFile(file)
+
+            if(check == true) {
+                const fileName = file.name.replace(/[^A-Z0-9]+/ig, "_")
+                const _file = await getBase64(file)
+                
+                setAspiration2File(prev => {
+                    return [
+                        ...prev,
+                        {
+                            fileName,
+                            file: _file,
+                            type: 'aspiration2'
+                        }
+                    ]
+                })
+            } else {
+                SwalFile(check)
+            }
         })
     }
 
@@ -529,9 +573,9 @@ function TraoForm() {
                                 </div>
                                 <ul>
                                     <li>Quy định về định dạng</li>
-                                    <li><span></span>Đối với ảnh: .jpeg, .jpg, .png</li>
-                                    <li><span></span>Đối với video: .mp4, .webp</li>
-                                    <li><span></span>Đối với văn bản: .pdf</li>
+                                    <li><span></span>{`Đối với video: .mp4, .webp' (<=50MB)`}</li>
+                                    <li><span></span>{'Đối với ảnh: .jpeg, .jpg, .png (<=2.5MB)'}</li>
+                                    <li><span></span>{'Đối với văn bản: .pdf (<=25MB)'}</li>
                                 </ul>
                             </div>
                         </div>
@@ -574,7 +618,7 @@ function TraoForm() {
                             <img className='image-question' src={Question[aspirationQues[aspiration1]]}/>
                             ||
                             <div className='client-aspiration-question-none'>
-                                <p>HÃY CHỌN NGUYỆN VỌNG 1 (BẮT BUỘC)</p>
+                                <p>HÃY CHỌN NGUYỆN VỌNG 1<br/>(BẮT BUỘC)</p>
                             </div>
                         }
                         </div>
@@ -603,13 +647,13 @@ function TraoForm() {
                                         onChange={appendAspiration1File}
                                         multiple
                                     />
-                                    <div className='input-item' onClick={() => aspiration1Ref.current.click()}>
+                                    <div className={clsx("input-item", {"disable": !aspiration1})} onClick={() => aspiration1Ref.current.click()}>
                                         <i className="fa-solid fa-arrow-up-from-bracket"></i>
                                     </div>
                                     <ul>
                                         <li>Quy định về định dạng</li>
-                                        <li><span></span>Đối với ảnh: .jpeg, .jpg, .png</li>
-                                        <li><span></span>Đối với văn bản: .pdf</li>
+                                        <li><span></span>{'Đối với ảnh: .jpeg, .jpg, .png (<=2.5MB)'}</li>
+                                        <li><span></span>{'Đối với văn bản: .pdf (<=25MB)'}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -653,7 +697,7 @@ function TraoForm() {
                                 <img className='image-question' src={Question[aspirationQues[aspiration2]]}/>
                                 ||
                                 <div className='client-aspiration-question-none'>
-                                    <p>HÃY CHỌN NGUYỆN VỌNG 2 (KHÔNG BẮT BUỘC)</p>
+                                    <p>HÃY CHỌN NGUYỆN VỌNG 2<br/>(KHÔNG BẮT BUỘC)</p>
                                 </div>
                             }
                             </div>
@@ -682,13 +726,13 @@ function TraoForm() {
                                             onChange={appendAspiration2File}
                                             multiple
                                         />
-                                        <div className='input-item' onClick={() => aspiration2Ref.current.click()}>
+                                        <div className={clsx("input-item", {"disable": !aspiration1})} onClick={() => aspiration2Ref.current.click()}>
                                             <i className="fa-solid fa-arrow-up-from-bracket"></i>
                                         </div>
                                         <ul>
                                             <li>Quy định về định dạng</li>
-                                            <li><span></span>Đối với ảnh: .jpeg, .jpg, .png</li>
-                                            <li><span></span>Đối với văn bản: .pdf</li>
+                                            <li><span></span>{'Đối với ảnh: .jpeg, .jpg, .png (<=2.5MB)'}</li>
+                                            <li><span></span>{'Đối với văn bản: .pdf (<=25MB)'}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -706,6 +750,10 @@ function TraoForm() {
                     <div className="continuous"></div>
                 </div>
             </div>
+            {
+                window.innerWidth < 1024 &&
+                <RequestLaptop/>
+            }
         </section>
     )
 }

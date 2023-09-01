@@ -190,3 +190,34 @@
         width: 80%;
     }
 }
+
+@media screen and (max-width: 1100px) {
+    .trao-recruit-vaotrao .container {
+        flex-direction: column;
+        gap: 35px;
+        align-items: center; 
+        
+        & img {
+            width: max(60%, 400px);
+        }
+
+        .container-theme {
+            width: max(60%, 400px);
+        }
+    }
+
+    .trao-recruit-vaotrao .container-theme p {
+        padding-right: 0;
+    }
+
+    .trao-recruit-position .title:nth-child(2) {
+        width: 80%;
+        height: auto !important;
+        aspect-ratio: 792.312/48;
+    }
+
+    .trao-recruit-position .container {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+}

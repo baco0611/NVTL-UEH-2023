@@ -9,14 +9,15 @@ const handleApply = async (value, setError) => {
         return false
     })
     .catch(error => {
-        console.log(error)
-        setError(error.response.data.errors)
+        // console.log(error)
+        if(error.response)
+            setError(error.response.data.errors)
         return false
     })
 }
 
 const errorInformation = (error) => {
-    console.log(error)
+    // console.log(error)
 
     function getParent(element, selector) {
         while(element.parentElement) {
@@ -64,4 +65,22 @@ const errorInformation = (error) => {
     }
 }
 
-export { handleApply, errorInformation }
+const checkFile = (file) => {
+    const fileType = file.type.split('/')[0]
+    const fileSize = file.size
+    
+    const maxImage = 1024 * 1024 * 2.5
+    const maxVideo = 1024 * 1024 * 50
+    const maxFile = 1024 * 1024 * 25
+
+    switch(fileType) {
+        case 'video': 
+            return fileSize > maxVideo ? ['Video', maxVideo] : true
+        case 'image': 
+            return fileSize > maxImage ? ['Ảnh', maxImage] : true
+        case 'application': 
+            return fileSize > maxFile ? ['File', maxFile] : true
+    }
+}
+
+export { handleApply, errorInformation, checkFile }
