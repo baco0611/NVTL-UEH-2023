@@ -1,15 +1,52 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../../context/ContextProvider'
-import ComingSoon from '../../../../components/ComingSoon/ComingSoon'
+import { Navigate, useNavigate } from 'react-router-dom'
+import RequestLogin from '../../../../components/RequestLogin/RequestLogin'
+import ClientWonderUIndex1 from './ClientWonderUIndex1/ClientWonderUIndex1'
+import ClientWonderUIndex2 from './ClientWonderUIndex2/ClientWonderUIndex2'
+import './ClientWonderU.scss'
 
 function ClientWonderU() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/primewave'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
+    const urlParams = new URLSearchParams(window.location.search);
+    const [ index, setIndex ] = useState(urlParams.get('index'))
+    const navigate = useNavigate()
+    const user = JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER'))
+    const { getUserId } = useContext(UserContext)
+
+    useEffect(() => {
+        if(!index) {
+            navigate('/primewave/wonderu?index=1')
+            setIndex(1)
+        }
+        else {
+            navigate(`/primewave/wonderu?index=${index}`)
+        }
+    }, [index])
 
     return (
-        <ComingSoon/>
-        // <section>ClientWonderU</section>
+        <section id='client-wonder'>
+        {
+            user == null &&
+            <RequestLogin/>
+        }
+        {
+            index == 1 
+            ?
+                <ClientWonderUIndex1
+
+                />
+            : index == 2
+            ?
+                <ClientWonderUIndex2
+
+                />
+            :
+                <Navigate to={'/error'}/>
+        }
+        </section>
     )
 }
 

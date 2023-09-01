@@ -1,0 +1,21 @@
+.client-wonder-1 {
+    width: 100%;
+    padding-top: 75px;
+    padding-bottom: 50px;
+    position: relative;
+
+    .back {
+        position: absolute;
+        width: 15vw;
+        bottom: 0;
+        z-index: 4;
+
+        &-left {
+            left: 0;
+        }
+
+        &-right {
+            right: 0;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "wonderu_post": {
+        "idUser": "",
+        "proof": "",
+        "proofName": "",
+        "__comment-file": "ảnh thoi ạ, lưu như lưu proudmate",
+
+
+
+        "data_trả_lên": {
+            "data": {
+                "status": 200,
+                "mess": "OK"
+            },
+
+            "dataError": {
+                "status": 500,
+                "__comment": "Nói chung là trả lỗi"
+            }
+        }
+    }
+}

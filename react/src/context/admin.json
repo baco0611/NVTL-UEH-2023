@@ -1,0 +1,115 @@
+{
+    "castingMCAdmin": {
+        "request": {
+            "seachKey": "",
+            "__comment_searchKey": "Nếu là chuỗi rỗng thì trả hết, có thì tìm kiếm",
+            "createTime": "",
+            "__comment_createTime": "increase hoặc decrease",
+            "pass": "",
+            "__comment_pass": "all (trả lên hết), checked (trả lên đã checked), unchecked (trả lên chưa checked)",
+            "__COMMENT": "Phân trang / mỗi trang 25 người"
+        },
+
+
+        "data_trả_lên": {
+            "castingList": [
+                {
+                    "id": "nchfnsmaj-1-2-5",
+                    "__id_comment": "[chuỗi hash bất kì]-[id]-[id*2]-[id*5]",
+                    "createTime": "",
+                    "fullName": "",
+                    "phone": "",
+                    "schoolName": "",
+                    "className": "",
+                    "studentCode": "",
+                    "accountLink": "",
+                    "email": "",
+                    "portrait": "",
+                    "portraitName": "",
+                    "clipIntroduce": "",
+                    "clipIntroduceName": "",
+                    "prize": "",
+                    "note": "",
+                    "pass": ""
+                },
+                {
+                    "id": "nchfnsmaj-1-2-5",
+                    "__id_comment": "[chuỗi hash bất kì]-[id]-[id*2]-[id*5]",
+                    "createTime": "",
+                    "fullName": "",
+                    "phone": "",
+                    "schoolName": "",
+                    "className": "",
+                    "studentCode": "",
+                    "accountLink": "",
+                    "email": "",
+                    "portrait": "",
+                    "portraitName": "",
+                    "clipIntroduce": "",
+                    "clipIntroduceName": "",
+                    "prize": "",
+                    "note": "",
+                    "pass": ""
+                }
+            ]
+        }
+    },
+
+    "castingStageAdmin": {
+        "request": {
+            "seachKey": "",
+            "__comment_searchKey": "Nếu là chuỗi rỗng thì trả hết, có thì tìm kiếm",
+            "createTime": "",
+            "__comment_createTime": "increase hoặc decrease",
+            "pass": "",
+            "__comment_pass": "all (trả lên hết), checked (trả lên đã checked), unchecked (trả lên chưa checked)",
+            "__COMMENT": "Phân trang / mỗi trang 25 người"
+        },
+
+
+        "data_trả_lên": {
+            "castingList": [
+                {
+                    "id": "nchfnsmaj-1-2-5",
+                    "__id_comment": "[chuỗi hash bất kì]-[id]-[id*2]-[id*5]",
+                    "createTime": "",
+                    "fullName": "",
+                    "phone": "",
+                    "schoolName": "",
+                    "className": "",
+                    "studentCode": "",
+                    "accountLink": "",
+                    "email": "",
+                    "categoryStage": "",
+                    "fileMusic": "",
+                    "fileMusicName": "",
+                    "clipTemplate": "",
+                    "clipTemplateName": "",
+                    "prize": "",
+                    "note": "",
+                    "pass": ""
+                },
+                {
+                    "id": "nchfnsmaj-1-2-5",
+                    "__id_comment": "[chuỗi hash bất kì]-[id]-[id*2]-[id*5]",
+                    "createTime": "",
+                    "fullName": "",
+                    "phone": "",
+                    "schoolName": "",
+                    "className": "",
+                    "studentCode": "",
+                    "accountLink": "",
+                    "email": "",
+                    "categoryStage": "",
+                    "fileMusic": "",
+                    "fileMusicName": "",
+                    "clipTemplate": "",
+                    "clipTemplateName": "",
+                    "prize": "",
+                    "note": "",
+                    "pass": ""
+                }
+            ]
+        }
+    }
+}
