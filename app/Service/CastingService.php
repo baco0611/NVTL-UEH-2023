@@ -40,5 +40,78 @@ class CastingService
          ]);
          return $result;
      }
-    
+     public function sortTimeMC($request){
+        $keyTime=$request['createTime'];
+        $keyPass=$request['pass'];
+        $keySearch=$request['searchKey'];
+        if ($keyTime=='increase'){
+            $keyTime='asc';
+        }
+        if ($keyTime=='decrease'){
+            $keyTime='desc';
+        }
+        if ($keyPass=='checked'){
+            $result=DB::table('casting_mc')
+            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status',1)
+            ->orderBy('created_at',$keyTime)
+            ->get();
+            return $result;
+        }
+        if ($keyPass=='unchecked'){
+            $result=DB::table('casting_mc')
+            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status',0)
+            ->orderBy('created_at',$keyTime)
+            ->get();
+            return $result;
+        }
+        if ($keyPass=='all'){
+            $result=DB::table('casting_mc')
+            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->orderBy('created_at',$keyTime)
+            ->get();
+            return $result;
+        }
+     }
+     public function sortTimeStage($request){
+        $keyTime=$request['createTime'];
+        $keyPass=$request['pass'];
+        $keySearch=$request['searchKey'];
+        if ($keyTime=='increase'){
+            $keyTime='asc';
+        }
+        if ($keyTime=='decrease'){
+            $keyTime='desc';
+        }
+        if ($keyPass=='checked'){
+            $result=DB::table('casting_stage')
+            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status',1)
+            ->orderBy('created_at',$keyTime)
+            ->get();
+            return $result;
+        }
+        if ($keyPass=='unchecked'){
+            $result=DB::table('casting_stage')
+            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status',0)
+            ->orderBy('created_at',$keyTime)
+            ->get();
+            return $result;
+        }
+        if ($keyPass=='all'){
+            $result=DB::table('casting_stage')
+            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->orderBy('created_at',$keyTime)
+            ->get();
+            return $result;
+        }
+     }
 }
