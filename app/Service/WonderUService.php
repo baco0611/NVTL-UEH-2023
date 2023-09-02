@@ -24,9 +24,11 @@ class WonderUService
         return $result;
     }
     public function getWonderU($idUser) {
-        $result = DB::table('wonder_u')
-        ->where('idUser',$idUser)
-        ->get();
+        $result = DB::select('
+        SELECT l.id,w.proof1,w.proof2
+        from login as l 
+        left join wonder_u as w on w.idUser=l.id 
+        where l.id='.$idUser);
         return $result;
     }
 }

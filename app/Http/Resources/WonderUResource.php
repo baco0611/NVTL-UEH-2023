@@ -21,7 +21,7 @@ class WonderUResource extends JsonResource
     }
     public function toArray($request)
     {
-        $fakeId= Str::random(10)."-".strval($this->idWonderU)."-".strval($this->idWonderU*4)."-".strval($this->idWonderU*5).'-'.Str::random(9);
+        $fakeId= Str::random(10)."-".strval($this->id)."-".strval($this->id*4)."-".strval($this->id*5).'-'.Str::random(9);
         return [
             "id"=>$fakeId,
             "isSuccess"=>$this->checkProof()
