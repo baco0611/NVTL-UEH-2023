@@ -14,7 +14,6 @@ function ClientWonderU() {
     const [ index, setIndex ] = useState(urlParams.get('index'))
     const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('ACCESS_USER')) || JSON.parse(sessionStorage.getItem('ACCESS_USER'))
-    const { getUserId } = useContext(UserContext)
 
     useEffect(() => {
         if(!index) {
@@ -36,14 +35,14 @@ function ClientWonderU() {
             index == 1 
             ?
                 <ClientWonderUIndex1
-
+                    setIndex={setIndex}
                 />
             : index == 2
             ?
                 <ClientWonderUIndex2
-
+                    setIndex={setIndex}
                 />
-            :
+            :   
                 <Navigate to={'/error'}/>
         }
         </section>

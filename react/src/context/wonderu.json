@@ -1,8 +1,10 @@
 {
     "wonderu_post": {
         "idUser": "",
-        "proof": "",
-        "proofName": "",
+        "proof1": "",
+        "proof1Name": "",
+        "proof2": "",
+        "proof2Name": "",
         "__comment-file": "ảnh thoi ạ, lưu như lưu proudmate",
 
 
@@ -17,6 +19,16 @@
                 "status": 500,
                 "__comment": "Nói chung là trả lỗi"
             }
+        }
+    },
+    "wonderu_get": {
+        "idUser": "",
+
+
+        "data_trả_lên": {
+            "id": "mã hóa",
+            "isSuccess": true,
+            "__comment_isSuccess": "true/false => đã nộp minh chứng chưa"
         }
     }
 }

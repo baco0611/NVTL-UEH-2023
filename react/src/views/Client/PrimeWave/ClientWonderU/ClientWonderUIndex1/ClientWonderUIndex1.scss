@@ -1,6 +1,9 @@
+$text-color: #0052ba;
+$highlight-text: #3288f3;
+
 .client-wonder-1 {
     width: 100%;
-    padding-top: 75px;
+    padding-top: 100px;
     padding-bottom: 50px;
     position: relative;
 
@@ -16,6 +19,89 @@
 
         &-right {
             right: 0;
+        }
+    }
+
+    &-main {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        padding: 0 100px;
+        padding-bottom: 75px;
+        z-index: 3;
+    }
+
+    &-left {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 45px;
+
+        .header {
+            width: 70%;
+        }
+
+        .main {
+            width: 100%;
+            background: url('./img/mainBack.png');
+            background-size: 100% 100%;
+            border-radius: 20px;
+            padding: 40px;
+
+            p {
+                color: $text-color;
+                text-align: justify;
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 26px;
+            }
+
+            li {
+                padding-top: 50px;
+                display: flex;
+                align-items: flex-start;
+                gap: 20px;
+                padding-right: 25px;
+
+                span {
+                    font-weight: 800;
+                    font-style: italic;
+                    color: $highlight-text;
+                }
+
+                img {
+                    width: 100px;
+                }
+            }
+
+            .space {
+                height: 30px;
+            }
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+
+            button {
+                width: 225px;
+                height: 50px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    &-right {
+        width: calc(40% - 50px);
+
+        .template {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
         }
     }
 }
