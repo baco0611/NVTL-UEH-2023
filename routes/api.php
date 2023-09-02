@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ProudMateController;
 use App\Http\Controllers\Api\StatusPageController;
 use App\Http\Controllers\Api\ResetPasswordController;
 use App\Http\Controllers\Api\CollaboratorsController;
+use App\Http\Controllers\Api\WonderUController;
 use App\Models\CastingMC;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -59,3 +60,6 @@ Route::post('postProof', [ProudMateController::class,'postProof'])->name('postPr
 Route::post('updateTemplateChoice', [ProudMateController::class,'updateChoice'])->name('updateChoice');
 #CTV
 Route::post('recruitment_post', [CollaboratorsController::class,'postCollaborators'])->name('postCollaborators');
+#wonderU
+Route::post('wonderU_post', [WonderUController::class,'postWonderU'])->name('postWonderU');
+Route::get('wonderU_get/{idUser}', [WonderUController::class,'getWonderU'])->name('getWonderU');

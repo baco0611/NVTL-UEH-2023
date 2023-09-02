@@ -9,5 +9,8 @@ class WonderU extends Model
 {
     use HasFactory;
     protected $table = 'wonder_u';
-    
+    protected $fillable = [
+        'idUser','proof1','proof2'
+    ];
+
 }

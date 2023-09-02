@@ -59,10 +59,10 @@ class CastingController extends Controller
         $music_type_aux = explode("audio/", $music_parts[0]);
         $music_type = $music_type_aux[1];
         $music_base64 = base64_decode($music_parts[1]);
-        $uniqid= uniqid();
-        $file = $folderPath . $music_name.'_'. $uniqid. '.' . $music_type;
+        $uniqid1= uniqid();
+        $file = $folderPath . $music_name.'_'. $uniqid1. '.' . $music_type;
         file_put_contents($file, $music_base64);
-        $fileMusic=$music_name.'_'. $uniqid. '.'.$music_type;
+        $fileMusic=$music_name.'_'. $uniqid1. '.'.$music_type;
 
         $clip=$request['clipTemplate'];
         $clip_name=$request['clipTemplateName'];
@@ -71,10 +71,10 @@ class CastingController extends Controller
         $clip_type_aux = explode("video/", $clip_parts[0]);
         $clip_type = $clip_type_aux[1];
         $clip_base64 = base64_decode($clip_parts[1]);
-        $uniqid= uniqid();
-        $file = $folderPath . $clip_name .'_'. $uniqid. '.' . $clip_type;
+        $uniqid2= uniqid();
+        $file = $folderPath . $clip_name .'_'. $uniqid2. '.' . $clip_type;
         file_put_contents($file, $clip_base64);
-        $clipTemplate=$clip_name.'_'. $uniqid.'.'.$clip_type;
+        $clipTemplate=$clip_name.'_'. $uniqid2.'.'.$clip_type;
         $stageService= new CastingService();
         $item = $stageService->insertCastingStage($request,$clipTemplate,$fileMusic);
         if($item){
@@ -122,10 +122,10 @@ class CastingController extends Controller
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
-        $uniqid=uniqid();
-        $file = $folderPath . $image_name. '_'. $uniqid. '.' . $image_type;
+        $uniqid1=uniqid();
+        $file = $folderPath . $image_name. '_'. $uniqid1. '.' . $image_type;
         file_put_contents($file, $image_base64);
-        $imageFile=$image_name.'_'. $uniqid .'.'.$image_type;
+        $imageFile=$image_name.'_'. $uniqid1 .'.'.$image_type;
 
         $clip=$request['clipIntroduce'];
         $clip_name=$request['clipIntroduceName'];
@@ -134,10 +134,10 @@ class CastingController extends Controller
         $clip_type_aux = explode("video/", $clip_parts[0]);
         $clip_type = $clip_type_aux[1];
         $clip_base64 = base64_decode($clip_parts[1]);
-        $uniqid=uniqid();
-        $file = $folderPath . $clip_name . '_'. $uniqid.'.' . $clip_type;
+        $uniqid2=uniqid();
+        $file = $folderPath . $clip_name . '_'. $uniqid2.'.' . $clip_type;
         file_put_contents($file, $clip_base64);
-        $clipIntroduce=$clip_name.'_'. $uniqid.'.'.$clip_type;
+        $clipIntroduce=$clip_name.'_'. $uniqid2.'.'.$clip_type;
         $stageService= new CastingService();
         $item = $stageService->insertCastingMC($request,$clipIntroduce,$imageFile);
         if($item){

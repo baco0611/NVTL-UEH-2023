@@ -42,7 +42,7 @@ class CollaboratorsController extends Controller
             if ($key=='image'){
                 $folderPath = public_path() . '/media/' . 'CTV/image/';
             }
-            if ($key=='audio'){
+            if ($key=='video'){
                 $folderPath = public_path() . '/media/' . 'CTV/video/';
             }
             if ($key=='application'){

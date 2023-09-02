@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id('idWonderU');
             $table->foreignId('idUser');
             $table->foreign('idUser')->references('id')->on('login');
-            $table->string('proof1',500);
-            $table->string('proof2',500);
-            $table->string('proof3',500);
+            $table->string('proof1',500)->nullable();
+            $table->string('proof2',500)->nullable();
             $table->boolean('status')->default(false);
             $table->timestamp('created_at')->useCurrent();
         });
