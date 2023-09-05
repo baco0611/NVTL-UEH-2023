@@ -55,6 +55,13 @@
         }
     },
 
+    "castingUpdate": {
+        "id": "",
+        "note": "",
+        "pass": "",
+        "__comment": "Note là text, còn pass là boolean"
+    },
+
     "castingStageAdmin": {
         "request": {
             "seachKey": "",

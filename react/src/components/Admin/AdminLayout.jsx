@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import AdminHeader from './AdminHeader/AdminHeader'
 import { UserContext } from '../../context/ContextProvider'
 import "./AdminVariable.scss"
+import "../../views/Admin/global.scss"
 
 function AdminLayout() {
     const { user } = useContext(UserContext)
