@@ -46,7 +46,6 @@ class CollaboratorsService
         ->where('idCollaborator',$id)
         ->delete();
     }
-   
 
 
     
