@@ -28,13 +28,13 @@ class CastingMCResource extends JsonResource
     }
     public function toArray($request)
     {
-        $fakeId= Str::random(10)."-".strval($this->id)."-".strval($this->id*2)."-".strval($this->id*5);
+        $fakeId= Str::random(10)."-".strval($this->idCasting)."-".strval($this->idCasting*2)."-".strval($this->idCasting*5);
         return [
             'id'=>$fakeId,
             "createTime"=> Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d/m/Y H:i:s'),
             "fullName"=>$this->fullName,
             "phone"=>$this->phone,
-            "schoolName"=>$this->school,
+            "schoolName"=>$this->schoolName,
             "className"=>$this->className,
             "studentCode"=>$this->studentCode,
             "accountLink"=>$this->accountLink,

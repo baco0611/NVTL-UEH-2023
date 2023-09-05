@@ -53,9 +53,23 @@ class CollaboratorsController extends Controller
             $file = $folderPath . $fileNameDB;
             file_put_contents($file, $file_base64);//ghi file vào 
             $result = $collaboratorsService->insert_file_Collaborators($typeDB,$fileNameDB,$idCollaborator);
+            if(empty($result)){
+                $collaboratorsService->deleteCollaborators($idCollaborator);
+                return response()->json([
+                    'mess'=>false,
+                    'status'=>HttpResponse::HTTP_NOT_IMPLEMENTED
+                ], HttpResponse::HTTP_OK);
+            }
+        }
+        if(empty($result)){
+            $collaboratorsService->deleteCollaborators($idCollaborator);
+            return response()->json([
+                'mess'=>false,
+                'status'=>HttpResponse::HTTP_NOT_IMPLEMENTED
+            ], HttpResponse::HTTP_OK);
         }
         return response()->json([
-            'mess'=>$result,
+            'mess'=>true,
             'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
