@@ -55,10 +55,10 @@ const router = createBrowserRouter([
                 path: '/primewave/proudmate',
                 element: <ClientProudMate/>
             },
-            {
-                path: '/primewave/wonderu',
-                element: <ClientWonderU/>
-            },
+            // {
+            //     path: '/primewave/wonderu',
+            //     element: <ClientWonderU/>
+            // },
             {
                 path: '/weekly',
                 element: <Weekly/>,
