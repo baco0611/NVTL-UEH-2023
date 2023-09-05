@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class CollaboratorsService
 {
-    public function getCollaborator($studentCode){
+    public function getCollaborator($email){
         $result=DB::table('collaborators')
-        ->where('studentCode',$studentCode)
+        ->where('email',$email)
         ->get();
         return $result;
     }
@@ -26,7 +26,7 @@ class CollaboratorsService
             "aspiration2"=>$request['aspiration2']
          ]);
          $collaboratorsService= new CollaboratorsService();
-         $id=$collaboratorsService->getCollaborator($request['studentCode'])[0]->idCollaborator;
+         $id=$collaboratorsService->getCollaborator($request['email'])[0]->idCollaborator;
          return $id;
     }
     public function insert_file_Collaborators($type,$fileName,$id){
@@ -37,7 +37,15 @@ class CollaboratorsService
             "idCollaborator"=>$id
         ]);
         return $result;
-   }
+    }
+    public function deleteCollaborators($id){
+        DB::table('file_collaborators')
+        ->where('idCollaborator',$id)
+        ->delete();
+        DB::table('collaborators')
+        ->where('idCollaborator',$id)
+        ->delete();
+    }
    
 
 

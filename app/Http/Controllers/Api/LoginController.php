@@ -110,9 +110,9 @@ class LoginController extends Controller
         $id=$request['idUser'];
         $valid=$this->validate($request, array(
             'fullName'=>'required',
-            'studentCode' => "required|unique:login,studentCode,$id,idUser",
+            'studentCode' => "required|unique:login,studentCode,$id,id",
             'department'=>'required',
-            'email'=>"required|email|unique:login,email,$id,idUser",
+            'email'=>"required|email|unique:login,email,$id,id",
             'phone'=>'required|min:10|max:11',
         ),array(
             'required' => ':attribute không được bỏ trống',

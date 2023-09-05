@@ -5,6 +5,7 @@ namespace App\Service;
 use Illuminate\Support\Facades\DB;
 
 
+
 class CastingService
 {
     public function insertCastingMC($request,$clipIntroduce,$portrait){
@@ -52,28 +53,31 @@ class CastingService
         }
         if ($keyPass=='checked'){
             $result=DB::table('casting_mc')
-            ->orwhere('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
             ->where('status',1)
+            ->where('fullName', 'like', '%'.$keySearch.'%')
+            ->orwhere('studentCode','like', '%'.$keySearch.'%')
             ->orderBy('created_at',$keyTime)
-            ->get();
+            ->select('*')
+            ->paginate(25);
             return $result;
         }
         if ($keyPass=='unchecked'){
             $result=DB::table('casting_mc')
-            ->orwhere('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
-            ->where('status',0)
+            ->where('status','=',0)
+            ->Where('studentCode','like', '%'.$keySearch.'%')
+            ->orWhere('fullName', 'like', '%'.$keySearch.'%')
             ->orderBy('created_at',$keyTime)
-            ->get();
+            ->select('*')
+            ->paginate(25);
             return $result;
         }
         if ($keyPass=='all'){
             $result=DB::table('casting_mc')
-            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->where('studentCode','like', '%'.$keySearch.'%')
             ->orwhere('fullName', 'like', '%'.$keySearch.'%')
             ->orderBy('created_at',$keyTime)
-            ->get();
+            ->select('*')
+            ->paginate(25);
             return $result;
         }
      }
@@ -89,29 +93,44 @@ class CastingService
         }
         if ($keyPass=='checked'){
             $result=DB::table('casting_stage')
-            ->orwhere('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
             ->where('status',1)
+            ->where('studentCode','like', '%'.$keySearch.'%')
+            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
             ->orderBy('created_at',$keyTime)
-            ->get();
+            ->select('*')
+            ->paginate(25);
             return $result;
         }
         if ($keyPass=='unchecked'){
             $result=DB::table('casting_stage')
-            ->orwhere('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
             ->where('status',0)
+            ->where('studentCode','like', '%'.$keySearch.'%')
+            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
             ->orderBy('created_at',$keyTime)
-            ->get();
+            ->select('*')
+            ->paginate(25);
             return $result;
         }
         if ($keyPass=='all'){
             $result=DB::table('casting_stage')
-            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->where('studentCode','like', '%'.$keySearch.'%')
             ->orwhere('fullName', 'like', '%'.$keySearch.'%')
             ->orderBy('created_at',$keyTime)
-            ->get();
+            ->select('*')
+            ->paginate(25);
             return $result;
         }
+     }
+     public function updateCasting($request){
+        $result= DB::table('collaborators')
+        ->where('idCollaborator',$request['id'])
+        ->update([
+            'status'=>boolval($request['pass']), 
+            'note'=>$request['note']
+        ]);
+        $item= DB::table('collaborators')
+        ->where('idCollaborator',$request['id'])
+        ->get();
+        return $item;
      }
 }
