@@ -122,15 +122,29 @@ class CastingService
         }
      }
      public function updateCasting($request){
-        $result= DB::table('collaborators')
-        ->where('idCollaborator',$request['id'])
+        if($request['key']=='MC'){
+         $result= DB::table('casting_mc')
+        ->where('idCasting',$request['id'])
         ->update([
             'status'=>boolval($request['pass']), 
             'note'=>$request['note']
         ]);
-        $item= DB::table('collaborators')
-        ->where('idCollaborator',$request['id'])
+        $item= DB::table('casting_mc')
+        ->where('idCasting',$request['id'])
         ->get();
         return $item;
+        }
+        if($request['key']=='Stage'){
+        $result= DB::table('casting_stage')
+        ->where('idCasting',$request['id'])
+        ->update([
+            'status'=>boolval($request['pass']), 
+            'note'=>$request['note']
+        ]);
+        $item= DB::table('casting_mc')
+        ->where('idCasting',$request['id'])
+        ->get();
+        return $item;
+        }
      }
 }
