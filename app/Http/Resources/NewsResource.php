@@ -16,7 +16,7 @@ class NewsResource extends JsonResource
     public function convertImage()
     {
         $fileName=$this->thumbnail;
-        $pathFull = '/imageNews/'.$fileName;
+        $pathFull = '/media/imageNews/'.$fileName;
         return 'http://localhost:8000' .$pathFull;
     }
     public function toArray($request)

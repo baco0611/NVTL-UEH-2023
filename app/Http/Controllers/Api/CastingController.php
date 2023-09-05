@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CastingMCResource;
+use App\Http\Resources\CastingStageResource;
 use App\Service\CastingService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
@@ -159,11 +161,28 @@ class CastingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function sortByTimeMC(Request $request)
     {
-        //
+        $castingService= new CastingService();
+        $listItem=$castingService->sortTimeMC($request)->Paginate(25);
+        dd($listItem);
+        $listItemResource=CastingMCResource::collection($listItem)->response()->getData(true);
+        return response()->json([
+            'castingList'=>$listItemResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
     }
-
+    public function sortByTimeStage(Request $request)
+    {
+        $castingService= new CastingService();
+        $listItem=$castingService->sortTimeStage($request)->Paginate(25);
+        dd($listItem);
+        $listItemResource=CastingStageResource::collection($listItem)->response()->getData(true);
+        return response()->json([
+            'castingList'=>$listItemResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
+    }
     /**
      * Update the specified resource in storage.
      *
