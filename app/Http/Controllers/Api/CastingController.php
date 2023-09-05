@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CastingMCResource;
+use App\Http\Resources\CastingStageResource;
+use App\Models\CastingMC;
 use App\Service\CastingService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\DB;
 
 class CastingController extends Controller
 {
@@ -14,6 +18,7 @@ class CastingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         //
@@ -159,11 +164,26 @@ class CastingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function sortByTimeMC(Request $request)
     {
-        //
+        $castingService= new CastingService();
+        $listItem=$castingService->sortTimeMC($request);
+        $listItemResource=CastingMCResource::collection($listItem)->response()->getData(true);
+        return response()->json([
+            'castingList'=>$listItemResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
     }
-
+    public function sortByTimeStage(Request $request)
+    {
+        $castingService= new CastingService();
+        $listItem=$castingService->sortTimeStage($request);
+        $listItemResource=CastingStageResource::collection($listItem)->response()->getData(true);
+        return response()->json([
+            'castingList'=>$listItemResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -171,9 +191,25 @@ class CastingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateCasting(Request $request)
     {
-        //
+        $castingService= new CastingService();
+        $itemUpdate= $castingService->updateCasting($request);
+        if ($request['key']=='MC'){
+            $itemResource = CastingMCResource::collection($itemUpdate);
+            return response()->json([
+                'castingUpdateMC'=>$itemResource,
+                'status'=>HttpResponse::HTTP_OK
+            ], HttpResponse::HTTP_OK);
+        }
+        if ($request['key']=='Stage'){
+            $itemResource = CastingStageResource::collection($itemUpdate);
+            return response()->json([
+                'castingUpdateStage'=>$itemResource,
+                'status'=>HttpResponse::HTTP_OK
+            ], HttpResponse::HTTP_OK);
+        }
+        
     }
 
     /**
