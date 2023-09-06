@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { UserContext } from "../../../context/ContextProvider"
-import './MC.scss'
+import axiosClient from '../../../context/axiosClient'
+import axios from "axios"
 
 function MC() {
     const { setPath } = useContext(UserContext)
@@ -14,471 +15,67 @@ function MC() {
     })
     const height = window.innerHeight - 118 - 65 - 25
 
-    console.log(search)
-
-    const [ castingList, setCastingList ] = useState([
-        {
-            "id": "nchfnsmaj-1-2-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "Giải nhất GDX, giải đồng tuổi trẻ, giải nhất lắc đít",
-            "note": "",
-            "pass": true
+    const [ castingList, setCastingList ] = useState([])
+    const [ information, setInformation ] = useState({
+        links: {
+            "first": null,
+            "last": null,
+            "prev": null,
+            "next": null
         },
-        {
-            "id": "nchfnsmaj-2-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-3-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-4-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-5-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-6-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-7-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-8-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-9-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-10-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-11-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-12-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-13-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-14-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-15-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-16-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-17-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-18-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-19-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-20-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-21-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-22-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-23-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-24-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
-        },
-        {
-            "id": "nchfnsmaj-25-4-5",
-            "createTime": "2023-08-26 23:39:02",
-            "fullName": "Hà Nhật Mai",
-            "phone": "0988182335",
-            "schoolName": "UEH",
-            "className": "K48 - ADC06",
-            "studentCode": "31221024979",
-            "accountLink": "https://www.facebook.com/hanhatmai.289",
-            "email": "maiha.31221024979@st.ueh.edu.vn",
-            "portrait": "https://www.facebook.com/",
-            "portraitName": "z4639351560786_87fd70e1d2f7766c2e5dbdd42fe74ff2_jpg_64ea2aa5d9297.jpeg",
-            "clipIntroduce": "https://www.facebook.com/",
-            "clipIntroduceName": "HA_NHAT_MAI_VIDEO_mp4_64ea2aa615f81.mp4",
-            "prize": "",
-            "note": "",
-            "pass": ""
+        meta: {
+            "current_page": 1,
+            "from": 1,
+            "last_page": 0,
         }
-    ])
+    })
     
     useEffect(() => {
-        //fetchAPI ở đây
+        axiosClient.post('/castingMC_Admin', search)
+        .then(response => {
+            console.log(response)
+            setCastingList(response.data.castingList.data)
+            setInformation({
+                links: response.data.castingList.links,
+                meta: response.data.castingList.meta
+            })
+        })  
+        .catch(error => {
+            console.log(error)
+        })
     }, [])
 
+    const clickButton = (url) => {
+        if(url) {
+            axios.post(url, search)
+            .then(response => {
+                console.log(response)
+                setCastingList(response.data.castingList.data)
+                setInformation({
+                    links: response.data.castingList.links,
+                    meta: response.data.castingList.meta
+                })
+            })  
+            .catch(error => {
+                console.log(error)
+            })
+        }
+    }
+
     const showImage = (url, name) => {
-        console.log(url, name)
+        const a = document.createElement('a')
+        a.href = url
+        a.target = 'blank'
+        a.title.name
+        a.click()
     }
 
     const showVideo = (url, name) => {
-        console.log(url, name)
+        const a = document.createElement('a')
+        a.href = url
+        a.target = 'blank'
+        a.title=name
+        a.click()
     }
 
     const handleChangeNote = (id, e) => {
@@ -513,11 +110,30 @@ function MC() {
         })
     }
 
+    const searchRef = useRef(null)
+
     const handleChangeSearch = e => {
-        setSearch({
-            ...search,
-            [e.target.name]: e.target.value
-        })
+        const result = {...search, [e.target.name]: e.target.value}
+        setSearch(result)
+
+        if(searchRef.current) 
+            clearTimeout(searchRef.current)
+    
+        searchRef.current = setTimeout(() => {
+            axiosClient.post('/castingMC_Admin', result)
+            .then(response => {
+                console.log(response)
+                setCastingList(response.data.castingList.data)
+                setInformation({
+                    links: response.data.castingList.links,
+                    meta: response.data.castingList.meta
+                })
+            })  
+            .catch(error => {
+                console.log(error)
+            })
+        }, 750)
+
     }
  
     return (
@@ -557,6 +173,14 @@ function MC() {
                                 <option value='checked'>Đậu</option>
                                 <option value='unchecked'>Rớt</option>
                             </select>
+                        </div>
+                        <div className="control-box">
+                            <label>Trang</label>
+                            <div className="control-page">
+                                <button onClick={() => clickButton(information.links.prev)}>Trước</button>
+                                <p>{information.meta.current_page} / {information.meta.last_page}</p>
+                                <button onClick={() => clickButton(information.links.next)}>Sau</button>
+                            </div>
                         </div>
                     </div>
                 </div>

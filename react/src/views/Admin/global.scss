@@ -53,6 +53,7 @@ section {
     
     div {
         border-bottom: 1px solid #8C8C8C;
+        min-height: 30px;
     }
 
     &-item {
@@ -62,7 +63,7 @@ section {
         color: #646262;
         background-color: white;
         width: 100%;
-        min-height: 30px;
+        height: 100%;
         word-wrap: break-word;
         text-wrap: wrap;
         z-index: 0;
@@ -130,6 +131,9 @@ section {
     gap: 50px;
 
     &-box {
+        display: flex;
+        align-items: center;
+
         label, select {
             font-size: 16px;
         }
@@ -141,6 +145,26 @@ section {
         select {
             border: #646262 solid 2px;
             border-radius: 5px;
+        }
+    }
+
+    &-page {
+        display: flex;
+        align-items: center;
+        
+        p {
+            font-size: 16px;
+            padding: 0 10px;
+        }
+
+        button {
+            font-size: 16px;
+            border: none;
+            color: #646262;
+            background-color: transparent;
+            border: #646262 solid 2px;
+            border-radius: 5px;
+            padding: 2px;
         }
     }
 }
