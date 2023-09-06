@@ -35,7 +35,8 @@ Route::get('listProudMate', [ProudMateController::class, 'getProudMate'])->name(
 Route::post('prideTake/sortByTime', [PrideTakeController::class,'sortByTime'])->name('sortByTime');
 Route::post('castingMC_Admin', [CastingController::class,'sortByTimeMC'])->name('castingMCAdmin_sortByTime');
 Route::post('castingStage_Admin', [CastingController::class,'sortByTimeStage'])->name('castingStageAdmin_sortByTime');
-Route::post('updateCasting', [CastingController::class,'updateCasting'])->name('updateCasting');
+Route::post('updateCasting/note', [CastingController::class,'updateCastingNote'])->name('updateCasting_note');
+Route::post('updateCasting/pass', [CastingController::class,'updateCastingPass'])->name('updateCasting__pass');
 #PrideTake
 Route::post('insertPrideTake', [PrideTakeController::class,'insertPrideTake'])->name('insertPrideTake');
 
