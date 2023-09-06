@@ -53,9 +53,10 @@ class CastingService
         }
         if ($keyPass=='checked'){
             $result=DB::table('casting_mc')
-            ->where('status',1)
             ->where('fullName', 'like', '%'.$keySearch.'%')
-            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->where('status','=',1)
+            ->where('studentCode','like', '%'.$keySearch.'%','or')
+            ->where('status','=',1)
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -63,9 +64,10 @@ class CastingService
         }
         if ($keyPass=='unchecked'){
             $result=DB::table('casting_mc')
-            ->where('status','=',0)
             ->Where('studentCode','like', '%'.$keySearch.'%')
-            ->orWhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status','=',0)
+            ->Where('fullName', 'like', '%'.$keySearch.'%','or')
+            ->where('status','=',0)
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -74,7 +76,7 @@ class CastingService
         if ($keyPass=='all'){
             $result=DB::table('casting_mc')
             ->where('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('fullName', 'like', '%'.$keySearch.'%','or')
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -93,9 +95,10 @@ class CastingService
         }
         if ($keyPass=='checked'){
             $result=DB::table('casting_stage')
-            ->where('status',1)
             ->where('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status',1)
+            ->where('fullName', 'like', '%'.$keySearch.'%','or')
+            ->where('status',1)
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -103,9 +106,10 @@ class CastingService
         }
         if ($keyPass=='unchecked'){
             $result=DB::table('casting_stage')
-            ->where('status',0)
             ->where('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status',0)
+            ->where('fullName', 'like', '%'.$keySearch.'%','or')
+            ->where('status',0)
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -114,7 +118,7 @@ class CastingService
         if ($keyPass=='all'){
             $result=DB::table('casting_stage')
             ->where('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('fullName', 'like', '%'.$keySearch.'%','or')
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
