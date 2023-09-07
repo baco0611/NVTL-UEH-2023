@@ -16,15 +16,21 @@ class CastingMCResource extends JsonResource
      */
     public function convertImage()
     {
+        $linkResource= new LinkResource();
+        $link=$linkResource->Link();
+  
         $fileName=$this->portrait;
         $pathFull = '/media/casting/image/'.$fileName;
-        return 'http://localhost:8000' .$pathFull;
+        return $link .$pathFull;
     }
     public function convertVideo()
     {
+        $linkResource= new LinkResource();
+        $link=$linkResource->Link();
+  
         $fileName=$this->clipIntroduce;
         $pathFull = '/media/casting/video/'.$fileName;
-        return 'http://localhost:8000' .$pathFull;
+        return $link .$pathFull;
     }
     public function toArray($request)
     {

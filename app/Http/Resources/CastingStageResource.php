@@ -15,15 +15,21 @@ class CastingStageResource extends JsonResource
      */
     public function convertMusic()
     {
+        $linkResource= new LinkResource();
+        $link=$linkResource->Link();
+  
         $fileName=$this->fileMusic;
         $pathFull = '/media/casting/music/'.$fileName;
-        return 'http://localhost:8000' .$pathFull;
+        return $link .$pathFull;
     }
     public function convertVideo()
     {
+        $linkResource= new LinkResource();
+        $link=$linkResource->Link();
+
         $fileName=$this->clipTemplate;
         $pathFull = '/media/casting/video/'.$fileName;
-        return 'http://localhost:8000' .$pathFull;
+        return $link .$pathFull;
     }
     public function toArray($request)
     {
