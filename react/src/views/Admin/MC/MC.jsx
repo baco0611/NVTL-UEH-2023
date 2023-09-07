@@ -4,7 +4,7 @@ import axiosClient from '../../../context/axiosClient'
 import axios from "axios"
 
 function MC() {
-    const { setPath } = useContext(UserContext)
+    const { setPath, getUserId } = useContext(UserContext)
     useEffect(() => setPath('/admin/casting'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
@@ -78,7 +78,27 @@ function MC() {
         a.click()
     }
 
+    const changeNoteRef = useRef(null)
     const handleChangeNote = (id, e) => {
+        const payload = {
+            key: "MC",
+            id: getUserId(id).real,
+            note: e.target.value
+        }
+
+        if(changeNoteRef.current)
+            clearTimeout(changeNoteRef.current)
+    
+        changeNoteRef.current = setTimeout(() => {
+            axiosClient.post('/updateCasting/note', payload)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }, 750)
+
         setCastingList(prev => {
             const result = prev.map(item => {
                 if(item.id == id) 
@@ -86,7 +106,6 @@ function MC() {
                         ...item,
                         note: e.target.value
                     }
-
                 else return item
             })
             
@@ -95,6 +114,20 @@ function MC() {
     }
 
     const handleChangePassed = (id, e) => {
+        const payload = {
+            key: "MC",
+            id: getUserId(id).real,
+            pass: e.target.checked
+        }
+
+        axiosClient.post('/updateCasting/pass', payload)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
         setCastingList(prev => {
             const result = prev.map(item => {
                 if(item.id == id) 

@@ -113,26 +113,20 @@ function Stage() {
         })
     }
 
-    const changePassRef = useRef(null)
     const handleChangePassed = (id, e) => {
         const payload = {
-            key: "MC",
+            key: "Stage",
             id: getUserId(id).real,
             pass: e.target.checked
         }
 
-        if(changePassRef.current)
-            clearTimeout(changePassRef.current)
-    
-        changePassRef.current = setTimeout(() => {
-            axiosClient.post('/updateCasting/pass', payload)
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        }, 750)
+        axiosClient.post('/updateCasting/pass', payload)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
 
         setCastingList(prev => {
             const result = prev.map(item => {
