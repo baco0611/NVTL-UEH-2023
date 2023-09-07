@@ -78,7 +78,8 @@ function Stage() {
         a.click()
     }
 
-    const handleChangeNote = (id, e) => {
+    const handleChangeNote = async (id, e) => {
+
         setCastingList(prev => {
             const result = prev.map(item => {
                 if(item.id == id) 
@@ -120,7 +121,7 @@ function Stage() {
             clearTimeout(searchRef.current)
     
         searchRef.current = setTimeout(() => {
-            axiosClient.post('/castingMC_Admin', result)
+            axiosClient.post('/castingStage_Admin', result)
             .then(response => {
                 console.log(response)
                 setCastingList(response.data.castingList.data)

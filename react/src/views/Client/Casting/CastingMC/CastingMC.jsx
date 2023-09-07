@@ -106,7 +106,7 @@ function CastingMC() {
         console.log(files)
         if(files[0]) {
             const file = files[0]
-            const maxSize = 1024 * 1024 * 75
+            const maxSize = 1024 * 1024 * 25
             console.log(file)
 
             if(file.size <= maxSize) {
@@ -132,7 +132,7 @@ function CastingMC() {
                     html: `
                         <div class="user-update-success">
                             <i class="fa-regular fa-circle-xmark"></i>
-                            <h1>Vui lòng tải file video dưới 75MB</h1>
+                            <h1>Vui lòng tải file video dưới 25MB</h1>
                         </div>
                     `,
                     confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
@@ -362,7 +362,7 @@ function CastingMC() {
                                 <p className='placeholder'>Clip giới thiệu (tối đa 1 phút)</p>
                         }
                         </div>
-                        <p>{'*Upload file định dạng mp4/webp (<=75MB)'}</p>
+                        <p>{'*Upload file định dạng mp4/webp (<=25MB)'}</p>
                         <span className='client-sign-message'></span>
                         <input ref={videoRef} className="none" type="file" accept=".mp4, .webp" onChange={handleChangeVideo}/>
                     </div>

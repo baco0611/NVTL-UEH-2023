@@ -66,20 +66,24 @@ const errorInformation = (error) => {
 }
 
 const checkFile = (file) => {
+    console.log(file.type)
     const fileType = file.type.split('/')[0]
     const fileSize = file.size
-    
-    const maxImage = 1024 * 1024 * 2.5
-    const maxVideo = 1024 * 1024 * 50
-    const maxFile = 1024 * 1024 * 25
+
+    const maxImage = 1024 * 1024 * 3
+    const maxFile = 1024 * 1024 * 10
 
     switch(fileType) {
-        case 'video': 
-            return fileSize > maxVideo ? ['Video', maxVideo] : true
         case 'image': 
             return fileSize > maxImage ? ['Ảnh', maxImage] : true
         case 'application': 
-            return fileSize > maxFile ? ['File', maxFile] : true
+            const check = file.type.split('/')[1]
+            if(check == 'pdf')
+                return fileSize > maxFile ? ['File', maxFile] : true
+            else 
+                return ["ERROR", 0]
+        default:
+            return ["ERROR", 0]
     }
 }
 
