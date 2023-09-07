@@ -124,13 +124,12 @@ class CastingService
             ->paginate(25);
             return $result;
         }
-     }
-     public function updateCasting($request){
+    }
+     public function updateCastingNote($request){
         if($request['key']=='MC'){
          $result= DB::table('casting_mc')
         ->where('idCasting',$request['id'])
         ->update([
-            'status'=>boolval($request['pass']), 
             'note'=>$request['note']
         ]);
         $item= DB::table('casting_mc')
@@ -142,8 +141,31 @@ class CastingService
         $result= DB::table('casting_stage')
         ->where('idCasting',$request['id'])
         ->update([
-            'status'=>boolval($request['pass']), 
             'note'=>$request['note']
+        ]);
+        $item= DB::table('casting_mc')
+        ->where('idCasting',$request['id'])
+        ->get();
+        return $item;
+        }
+     }
+     public function updateCastingPass($request){
+        if($request['key']=='MC'){
+         $result= DB::table('casting_mc')
+        ->where('idCasting',$request['id'])
+        ->update([
+             'status'=>boolval($request['pass'])
+        ]);
+        $item= DB::table('casting_mc')
+        ->where('idCasting',$request['id'])
+        ->get();
+        return $item;
+        }
+        if($request['key']=='Stage'){
+        $result= DB::table('casting_stage')
+        ->where('idCasting',$request['id'])
+        ->update([
+            'status'=>boolval($request['pass'])
         ]);
         $item= DB::table('casting_mc')
         ->where('idCasting',$request['id'])
