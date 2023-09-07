@@ -4,7 +4,7 @@ import axiosClient from '../../../context/axiosClient'
 import axios from "axios"
 
 function Stage() {
-    const { setPath } = useContext(UserContext)
+    const { setPath, getUserId } = useContext(UserContext)
     useEffect(() => setPath('/admin/casting'), [])
     useEffect(() => {window.scrollTo(0, 0)}, [])
 
@@ -78,7 +78,26 @@ function Stage() {
         a.click()
     }
 
-    const handleChangeNote = async (id, e) => {
+    const changeNoteRef = useRef(null)
+    const handleChangeNote = (id, e) => {
+        const payload = {
+            key: "Stage",
+            id: getUserId(id).real,
+            note: e.target.value
+        }
+
+        if(changeNoteRef.current)
+            clearTimeout(changeNoteRef.current)
+    
+        changeNoteRef.current = setTimeout(() => {
+            axiosClient.post('/updateCasting/note', payload)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }, 750)
 
         setCastingList(prev => {
             const result = prev.map(item => {
@@ -87,7 +106,6 @@ function Stage() {
                         ...item,
                         note: e.target.value
                     }
-
                 else return item
             })
             
@@ -95,7 +113,27 @@ function Stage() {
         })
     }
 
+    const changePassRef = useRef(null)
     const handleChangePassed = (id, e) => {
+        const payload = {
+            key: "MC",
+            id: getUserId(id).real,
+            pass: e.target.checked
+        }
+
+        if(changePassRef.current)
+            clearTimeout(changePassRef.current)
+    
+        changePassRef.current = setTimeout(() => {
+            axiosClient.post('/updateCasting/pass', payload)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }, 750)
+
         setCastingList(prev => {
             const result = prev.map(item => {
                 if(item.id == id) 
