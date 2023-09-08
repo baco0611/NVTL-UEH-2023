@@ -34,7 +34,7 @@ class CollaboratorsResource extends JsonResource
     {
         $fakeId= Str::random(10)."-".strval($this->idCollaborator)."-".strval($this->idCollaborator*2)."-".strval($this->idCollaborator*5);
         return [
-            "id"=>$this->idCollaborator,
+            "id"=>$fakeId,
             "createTime"=>Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d/m/Y H:i:s'),
             "fullName"=>$this->fullName,
             "grade"=>$this->grade,
