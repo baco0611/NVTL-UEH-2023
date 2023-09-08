@@ -128,7 +128,7 @@
 .control {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 25px;
 
     &-box {
         display: flex;
@@ -166,5 +166,57 @@
             border-radius: 5px;
             padding: 2px;
         }
+    }
+}
+
+.admin-box table {
+    width: auto;
+    height: auto;
+    border-collapse: collapse;
+
+    th, td {
+        line-height: 30px;
+        font-size: 13px;
+        padding: 0 5px;
+        color: #646262;
+        background-color: white;
+        word-wrap: break-word;
+        text-wrap: wrap;
+        text-align: center; 
+        vertical-align: top;
+    }
+
+    td {
+        z-index: 1;
+        
+        a {
+            color: #646262;
+            text-decoration: underline;
+        }
+
+        &.file a {
+            display: block;
+        }
+
+        & textarea {
+            resize: vertical;
+            text-align: left;
+            padding: 2px 10px;
+            border: 1px solid #646262;
+            border-radius: 10px;
+        }
+    
+        & input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    th {
+        height: 30px;
+        position: sticky;
+        top: 0;
+        border-bottom: 2px solid #646262;
+        z-index: 5;
     }
 }
