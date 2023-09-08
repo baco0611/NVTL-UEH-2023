@@ -192,6 +192,28 @@ class CollaboratorsService
             }
         }
     }
+    public function updateCollaboratorNote($request){
+        $result= DB::table('collaborators')
+        ->where('idCollaborator',$request['id'])
+        ->update([
+            'note'=>$request['note']
+        ]);
+        $item= DB::table('collaborators')
+        ->where('idCollaborator',$request['id'])
+        ->get();
+        return $item;
+     }
+     public function updateCollaboratorPass($request){
+        $result= DB::table('collaborators')
+        ->where('idCollaborator',$request['id'])
+        ->update([
+            'status'=>boolval($request['pass'])
+        ]);
+        $item= DB::table('collaborators')
+        ->where('idCollaborator',$request['id'])
+        ->get();
+        return $item;
+     }
 
 
     

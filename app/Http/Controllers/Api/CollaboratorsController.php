@@ -96,11 +96,26 @@ class CollaboratorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateCollaboratorNote(Request $request)
     {
-        //
+        $ctvService= new CollaboratorsService();
+        $item= $ctvService->updateCollaboratorNote($request);
+        $itemResource = CollaboratorsResource::collection($item);
+        return response()->json([
+            'data'=>$itemResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
     }
-
+    public function updateCollaboratorPass(Request $request)
+    {
+        $ctvService= new CollaboratorsService();
+        $item= $ctvService->updateCollaboratorPass($request);
+        $itemResource = CollaboratorsResource::collection($item);
+        return response()->json([
+            'data'=>$itemResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
+    }
     /**
      * Remove the specified resource from storage.
      *
