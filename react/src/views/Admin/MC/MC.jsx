@@ -10,7 +10,7 @@ function MC() {
 
     const [ search, setSearch ] = useState({
         searchKey: '',
-        createTime: 'increase',
+        createTime: 'decrease',
         pass: 'all'
     })
     const height = window.innerHeight - 118 - 65 - 25
@@ -86,6 +86,8 @@ function MC() {
             note: e.target.value
         }
 
+        let value = e.target.value
+
         if(changeNoteRef.current)
             clearTimeout(changeNoteRef.current)
     
@@ -93,6 +95,7 @@ function MC() {
             axiosClient.post('/updateCasting/note', payload)
             .then(response => {
                 console.log(response)
+                value = response.data.castingUpdateStage[0].note
             })
             .catch(error => {
                 console.log(error)
@@ -104,7 +107,7 @@ function MC() {
                 if(item.id == id) 
                     return {
                         ...item,
-                        note: e.target.value
+                        note: value
                     }
                 else return item
             })

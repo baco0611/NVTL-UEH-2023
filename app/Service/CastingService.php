@@ -143,7 +143,7 @@ class CastingService
         ->update([
             'note'=>$request['note']
         ]);
-        $item= DB::table('casting_Stage')
+        $item= DB::table('casting_stage')
         ->where('idCasting',$request['id'])
         ->get();
         return $item;
@@ -167,7 +167,7 @@ class CastingService
         ->update([
             'status'=>boolval($request['pass'])
         ]);
-        $item= DB::table('casting_Stage')
+        $item= DB::table('casting_stage')
         ->where('idCasting',$request['id'])
         ->get();
         return $item;
