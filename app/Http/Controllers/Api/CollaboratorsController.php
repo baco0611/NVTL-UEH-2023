@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBlogCTV;
+use App\Http\Resources\CollaboratorsResource;
 use App\Service\CollaboratorsService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
@@ -42,9 +43,6 @@ class CollaboratorsController extends Controller
             if ($key=='image'){
                 $folderPath = public_path() . '/media/' . 'CTV/image/';
             }
-            // if ($key=='video'){
-            //     $folderPath = public_path() . '/media/' . 'CTV/video/';
-            // }
             if ($key=='application'){
                 $folderPath = public_path() . '/media/' . 'CTV/text/';
             }
@@ -80,9 +78,15 @@ class CollaboratorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function sortByTimeCTV(Request $request)
     {
-        //
+        $ctvService= new CollaboratorsService();
+        $listItem= $ctvService->sortTimeCollaborators($request);
+        $listItemResource = CollaboratorsResource::collection($listItem)->response()->getData(true);
+        return response()->json([
+            'data'=>$listItemResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
     }
 
     /**

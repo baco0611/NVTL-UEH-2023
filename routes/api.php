@@ -37,6 +37,8 @@ Route::post('castingMC_Admin', [CastingController::class,'sortByTimeMC'])->name(
 Route::post('castingStage_Admin', [CastingController::class,'sortByTimeStage'])->name('castingStageAdmin_sortByTime');
 Route::post('updateCasting/note', [CastingController::class,'updateCastingNote'])->name('updateCasting_note');
 Route::post('updateCasting/pass', [CastingController::class,'updateCastingPass'])->name('updateCasting__pass');
+Route::post('collaborators_Admin', [CollaboratorsController::class,'sortByTimeCTV'])->name('collaborators_sortByTime');
+
 #PrideTake
 Route::post('insertPrideTake', [PrideTakeController::class,'insertPrideTake'])->name('insertPrideTake');
 
