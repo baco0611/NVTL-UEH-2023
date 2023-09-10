@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react"
 import { UserContext } from "../../../context/ContextProvider"
 import axiosClient from "../../../context/axiosClient"
+import axios from "axios"
 
 function AdminRecruitment() {
     const { setPath, getUserId } = useContext(UserContext)
@@ -9,7 +10,7 @@ function AdminRecruitment() {
 
     const [ search, setSearch ] = useState({
         searchKey: "",
-        createTime: "",
+        createTime: "decrease",
         aspiration1: "",
         aspiration2: "",
         pass: "all"
@@ -30,60 +31,21 @@ function AdminRecruitment() {
         }
     })
 
-    const [ recruitList, setRecruitList ] = useState([
-        {
-            "id": "fmvmcrfkd-1-2-3",
-            "createTime": "2023-09-01 22:13:48",
-            "fullName": "Huỳnh Lê Thanh Phương",
-            "grade": "K49",
-            "studentCode": "31231023970",
-            "phone": "0365191492",
-            "accountLink": "https://www.facebook.com/thienpax.notthing666/",
-            "email": "huynhthanhphuong365@gmail.com",
-            "informationFile": [
-                {
-                    "file": "CV1",
-                    "fileName": "CV1"
-                },
-                {
-                    "file": "CV2",
-                    "fileName": "CV2"
-                },
-                {
-                    "file": "CV3",
-                    "fileName": "CV3"
-                }
-            ],
-            "aspiration1": "HR",
-            "aspiration1File": [
-                {
-                    "file": "nv1.1",
-                    "fileName": "nv1.1"
-                },
-                {
-                    "file": "nv1.2",
-                    "fileName": "nv1.2"
-                }
-            ],
-            "aspiration2": "hello",
-            "aspiration2File": [
-                {
-                    "file": "nv2.1",
-                    "fileName": "nv2.1"
-                },
-                {
-                    "file": "nv2.2",
-                    "fileName": "nv2.2"
-                },
-                {
-                    "file": "nv2.3",
-                    "fileName": "nv2.3"
-                }
-            ],
-            "note": "",
-            "pass": ""
-        },
-    ])
+    const [ recruitList, setRecruitList ] = useState([])
+
+    useEffect(() => {
+        axiosClient.post('/collaborators_Admin', search)
+        .then(response => {
+            setRecruitList(response.data.data.data)
+            setInformation({
+                links: response.data.data.links,
+                meta: response.data.data.meta
+            })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }, [])
 
     const searchRef = useRef(null)
 
@@ -95,19 +57,17 @@ function AdminRecruitment() {
             clearTimeout(searchRef.current)
     
         searchRef.current = setTimeout(() => {
-            console.log(result)
-            // axiosClient.post('/castingMC_Admin', result)
-            // .then(response => {
-            //     console.log(response)
-            //     setCastingList(response.data.castingList.data)
-            //     setInformation({
-            //         links: response.data.castingList.links,
-            //         meta: response.data.castingList.meta
-            //     })
-            // })  
-            // .catch(error => {
-            //     console.log(error)
-            // })
+            axiosClient.post('/collaborators_Admin', result)
+            .then(response => {
+                setRecruitList(response.data.data.data)
+                setInformation({
+                    links: response.data.data.links,
+                    meta: response.data.data.meta
+                })
+            })  
+            .catch(error => {
+                console.log(error)
+            })
         }, 750)
     }
 
@@ -124,15 +84,14 @@ function AdminRecruitment() {
             clearTimeout(changeNoteRef.current)
     
         changeNoteRef.current = setTimeout(() => {
-            console.log(payload)
-            // axiosClient.post('/updateCasting/note', payload)
-            // .then(response => {
-            //     console.log(response)
-            //     value = response.data.castingUpdateStage[0].note
-            // })
-            // .catch(error => {
-            //     console.log(error)
-            // })
+            axiosClient.post('/updateCollaborators/note', payload)
+            .then(response => {
+                console.log(response)
+                value = response.data.data[0].note
+            })
+            .catch(error => {
+                console.log(error)
+            })
         }, 750)
 
         setRecruitList(prev => {
@@ -150,19 +109,18 @@ function AdminRecruitment() {
     }
 
     const handleChangePassed = (id, e) => {
+        console.log(1)
         const payload = {
             id: getUserId(id).real,
             pass: e.target.checked
         }
 
-        console.log(payload)
-        // axiosClient.post('/updateCasting/pass', payload)
-        // .then(response => {
-        //     console.log(response)
-        // })
-        // .catch(error => {
-        //     console.log(error)
-        // })
+        axiosClient.post('/updateCollaborators/pass', payload)
+        .then(response => {
+        })
+        .catch(error => {
+            console.log(error)
+        })
 
         setRecruitList(prev => {
             const result = prev.map(item => {
@@ -177,6 +135,22 @@ function AdminRecruitment() {
             
             return result
         })
+    }
+
+    const clickButton = (url) => {
+        if(url) {
+            axios.post(url, search)
+            .then(response => {
+                setRecruitList(response.data.data.data)
+                setInformation({
+                    links: response.data.data.links,
+                    meta: response.data.data.meta
+                })
+            })  
+            .catch(error => {
+                console.log(error)
+            })
+        }
     }
 
     const aspiration = [
@@ -309,7 +283,7 @@ function AdminRecruitment() {
                         {
                             recruitList.map((item, index) => {
                                 return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td style={{
                                             minWidth: '50px',
                                             position: 'sticky',

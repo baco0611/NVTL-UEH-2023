@@ -46,20 +46,20 @@ function Casting() {
                     </li>
                 </ul>
             </div>
-            <div className="client-casting-quote">
+            {/* <div className="client-casting-quote">
                 <img src={casting}/>
-            </div>
+            </div> */}
 
-            <h1>CÁC TIẾT MỤC BÙNG SỨC NÓNG<br/>CỦA NỐI VÒNG TAY LỚN</h1>
+            <h1 style={{paddingTop: '75px'}}>CÁC TIẾT MỤC BÙNG SỨC NÓNG<br/>CỦA NỐI VÒNG TAY LỚN</h1>
             <CastingSlider></CastingSlider>
 
-            <img className="client-casting-timeline" src={timeline}/>
+            {/* <img className="client-casting-timeline" src={timeline}/> */}
 
-            <h1>CÒN CHẦN CHỜ GÌ NỮA<br/>HÃY CASTING THÔI</h1>
+            {/* <h1>CÒN CHẦN CHỜ GÌ NỮA<br/>HÃY CASTING THÔI</h1>
             <div className="client-casting-nav">
                 <Link className="secondary-button" to={'/casting/stage'}>VĂN NGHỆ</Link>
                 <Link className="secondary-button" to={'/casting/mc'}>MC</Link>
-            </div>
+            </div> */}
         </section>
     )
 }

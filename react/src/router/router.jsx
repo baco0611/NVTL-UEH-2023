@@ -87,14 +87,14 @@ const router = createBrowserRouter([
                 path: '/casting',
                 element: <Casting/>
             },
-            {
-                path: '/casting/mc',
-                element: <CastingMC/>
-            },
-            {
-                path: '/casting/stage',
-                element: <CastingStage/>
-            },
+            // {
+            //     path: '/casting/mc',
+            //     element: <CastingMC/>
+            // },
+            // {
+            //     path: '/casting/stage',
+            //     element: <CastingStage/>
+            // },
             {
                 path: '/recruitment',
                 element: <Recruitment/>

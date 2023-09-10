@@ -42,7 +42,7 @@ class CollaboratorsResource extends JsonResource
             "phone"=>$this->phone,
             "accountLink"=>$this->accountLink,
             "email"=>$this->email,
-            "infomationFile"=>FileCollaboratorsResource::collection($this->informationFile()),
+            "informationFile"=>FileCollaboratorsResource::collection($this->informationFile()),
             "aspiration1"=>$this->aspiration1,
             "aspiration1File"=>FileCollaboratorsResource::collection($this->aspiration1File()),
             "aspiration2"=>strval($this->aspiration2),
