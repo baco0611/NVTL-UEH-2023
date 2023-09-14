@@ -99,10 +99,10 @@ const router = createBrowserRouter([
                 path: '/recruitment',
                 element: <Recruitment/>
             }, 
-            {
-                path: '/recruitment/form',
-                element: <TraoForm/>
-            }, 
+            // {
+            //     path: '/recruitment/form',
+            //     element: <TraoForm/>
+            // }, 
             {
                 path: '/login',
                 element: <LogLayout/>,

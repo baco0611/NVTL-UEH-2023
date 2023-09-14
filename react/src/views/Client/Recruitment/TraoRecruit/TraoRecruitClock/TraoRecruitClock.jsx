@@ -5,13 +5,19 @@ import timedots from '../img/timedot.png'
 
 function TraoRecruitClock() {
     const date = new Date()
-    const deadline = new Date("September 11, 2023 23:59:59")
+    const deadline = new Date("September 12, 2023 23:59:59")
     const dateLL = new Date(deadline - date)
 
-    let DAY = dateLL.getDate()
-    let HOUR = dateLL.getHours()
-    let MINUTE = dateLL.getMinutes()
-    let SECOND = dateLL.getSeconds()
+    // let DAY = dateLL.getDate()
+    // let HOUR = dateLL.getHours()
+    // let MINUTE = dateLL.getMinutes()
+    // let SECOND = dateLL.getSeconds()
+
+    let DAY = deadline.getDate() - date.getDate()
+    let HOUR = deadline.getHours() - date.getHours()
+    let MINUTE = deadline.getMinutes() - date.getMinutes()
+    let SECOND = deadline.getSeconds() - date.getSeconds()
+
 
     DAY = DAY.toString()
     if(DAY.length == 1) DAY = '0' + DAY
@@ -87,22 +93,22 @@ function TraoRecruitClock() {
     return (
         <div className='trao-recruit-clock-main'>
             <div className='trao-recruit-clock-item'>
-                <Flip value={time.day}/>
+                <Flip value={0}/>
                 <p>NGÀY</p>
             </div>
             <img className='time-dots' src={timedots}/>
             <div className='trao-recruit-clock-item'>
-                <Flip value={time.hour}/>
+                <Flip value={0}/>
                 <p>GIỜ</p>
             </div>
             <img className='time-dots' src={timedots}/>
             <div className='trao-recruit-clock-item'>
-                <Flip value={time.minute}/>
+                <Flip value={0}/>
                 <p>PHÚT</p>
             </div>
             <img className='time-dots' src={timedots}/>
             <div className='trao-recruit-clock-item'>
-                <Flip value={time.second}/>
+                <Flip value={0}/>
                 <p>GIÂY</p>
             </div>
         </div>
