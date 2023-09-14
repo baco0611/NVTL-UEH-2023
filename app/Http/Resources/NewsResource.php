@@ -15,12 +15,16 @@ class NewsResource extends JsonResource
      */
     public function convertImage()
     {
+        $linkResource= new LinkResource();
+        $link=$linkResource->Link();
+        
         $fileName=$this->thumbnail;
         $pathFull = '/media/imageNews/'.$fileName;
-        return 'http://localhost:8000' .$pathFull;
+        return $link .$pathFull;
     }
     public function toArray($request)
     {
+        dd($this->convertImage());
         return [
             'id'=>$this->id,
             'title'=>$this->title,

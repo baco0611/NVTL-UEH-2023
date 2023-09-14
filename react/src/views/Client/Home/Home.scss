@@ -14,6 +14,8 @@ $primary-color: #0052ba;
         align-items: center;
         justify-content: center;
         gap: 50px;
+        background: url('./img/clientLodestarBackGround.png');
+        background-size: 100% 100%;
 
         h3 {
             color: white;
@@ -271,6 +273,29 @@ $primary-color: #0052ba;
         }   
     }
 
+    &-mv {
+        padding-bottom: 75px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            text-align: center;
+            color: white;
+            font-size: 50px;
+            font-weight: 900;
+            line-height: 70px;
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+            padding: 0 50px;
+            padding-bottom: 50px;
+        }
+
+        iframe {
+            width: 60%;
+            aspect-ratio: 16/9;
+        }
+    }
+
     &-ntt {
         padding: 50px;
         display: flex;
@@ -354,6 +379,12 @@ $primary-color: #0052ba;
             font-size: 38px;
         }
     }
+
+    .client-home-mv {
+        h2 {
+            font-size: 48px;
+        }
+    }
 }
 
 @media screen and (max-width: 890px) {
@@ -418,6 +449,13 @@ $primary-color: #0052ba;
 
         h2 {
             font-size: 50px;
+        }
+    }
+
+    .client-home-mv {
+        h2 {
+            font-size: 30px;
+            line-height: 48px;
         }
     }
 

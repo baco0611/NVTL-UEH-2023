@@ -1,0 +1,251 @@
+{
+    "recruit_search": {
+        "searchKey": "",
+        "createTime": "",
+        "aspiration1": "",
+        "aspiration2": "",
+        "pass": "",
+
+        
+        "data_trả_về": {
+            "data": [
+                {
+                    "id": "",
+                    "createTime": "",
+                    "fullName": "",
+                    "grade": "",
+                    "studentCode": "",
+                    "phone": "",
+                    "accountLink": "",
+                    "email": "",
+                    "infomationFile": [
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        }
+                    ],
+                    "aspiration1": "",
+                    "aspiration1File": [
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        }
+                    ],
+                    "aspiration2": "",
+                    "aspiration2File": [
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        }
+                    ],
+                    "note": "",
+                    "pass": ""
+                },
+                {
+                    "id": "",
+                    "createTime": "",
+                    "fullName": "",
+                    "grade": "",
+                    "studentCode": "",
+                    "phone": "",
+                    "accountLink": "",
+                    "email": "",
+                    "infomationFile": [
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        }
+                    ],
+                    "aspiration1": "",
+                    "aspiration1File": [
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        }
+                    ],
+                    "aspiration2": "",
+                    "aspiration2File": [
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        },
+                        {
+                            "file": "",
+                            "fileName": ""
+                        }
+                    ],
+                    "note": "",
+                    "pass": ""
+                }
+            ]
+        }
+    },
+
+    "recruit_updateNote": {
+        "id": "",
+        "note": "",
+
+        "data_trả_về": {
+            "id": "",
+            "createTime": "",
+            "fullName": "",
+            "grade": "",
+            "studentCode": "",
+            "phone": "",
+            "accountLink": "",
+            "email": "",
+            "infomationFile": [
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                }
+            ],
+            "aspiration1": "",
+            "aspiration1File": [
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                }
+            ],
+            "aspiration2": "",
+            "aspiration2File": [
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                }
+            ],
+            "note": "",
+            "pass": ""
+        }
+    },
+
+    "recruit_updatePass": {
+        "id": "",
+        "pass": "",
+
+        "data_trả_về": {
+            "id": "",
+            "createTime": "",
+            "fullName": "",
+            "grade": "",
+            "studentCode": "",
+            "phone": "",
+            "accountLink": "",
+            "email": "",
+            "infomationFile": [
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                }
+            ],
+            "aspiration1": "",
+            "aspiration1File": [
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                }
+            ],
+            "aspiration2": "",
+            "aspiration2File": [
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                },
+                {
+                    "file": "",
+                    "fileName": ""
+                }
+            ],
+            "note": "",
+            "pass": ""
+        }
+    }
+}

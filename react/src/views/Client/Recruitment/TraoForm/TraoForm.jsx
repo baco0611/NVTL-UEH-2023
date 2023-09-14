@@ -61,25 +61,49 @@ function TraoForm() {
         const [error, maxSize] = value
         const MB = maxSize / (1024*1024)
 
-        Swal.fire({
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            },
-            customClass: {
-                confirmButton: 'user-update-success-button'
-            },
-            html: `
-                <div class="user-update-success">
-                    <i style="background: #be291f" class="fa-regular fa-circle-xmark"></i>
-                    <h1>${error} bạn tải lên đã vượt quá ${MB}MB. Vui lòng tải lại file khác.</h1>
-                </div>
-            `,
-            confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
-            confirmButtonColor: "#be291f"
-        })
+        if(error == "ERROR") {
+            Swal.fire({
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                },
+                customClass: {
+                    confirmButton: 'user-update-success-button'
+                },
+                html: `
+                    <div class="user-update-success">
+                        <i style="background: #be291f" class="fa-regular fa-circle-xmark"></i>
+                        <h1>Vui lòng chỉ tải file đúng định dạng</h1>
+                    </div>
+                `,
+                confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+                confirmButtonColor: "#be291f"
+            })
+        }
+        else {
+            Swal.fire({
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                },
+                customClass: {
+                    confirmButton: 'user-update-success-button'
+                },
+                html: `
+                    <div class="user-update-success">
+                        <i style="background: #be291f" class="fa-regular fa-circle-xmark"></i>
+                        <h1>${error} bạn tải lên đã vượt quá ${MB}MB. Vui lòng tải lại file khác.</h1>
+                    </div>
+                `,
+                confirmButtonText: '<h2 class="user-update-success-btn">OK</h2>',
+                confirmButtonColor: "#be291f"
+            })
+        }
+
     }
 
     const appendIntroduceFile = async (e) => {
@@ -563,7 +587,7 @@ function TraoForm() {
                             <div className='client-recruit-input'>
                                 <input
                                     type='file'
-                                    accept='.jpeg, .jpg, .png, .webp, .mp4, .pdf'
+                                    accept='.jpeg, .jpg, .png, .pdf'
                                     ref={introduceRef}
                                     onChange={appendIntroduceFile}
                                     multiple
@@ -573,9 +597,8 @@ function TraoForm() {
                                 </div>
                                 <ul>
                                     <li>Quy định về định dạng</li>
-                                    <li><span></span>{`Đối với video: .mp4, .webp' (<=50MB)`}</li>
-                                    <li><span></span>{'Đối với ảnh: .jpeg, .jpg, .png (<=2.5MB)'}</li>
-                                    <li><span></span>{'Đối với văn bản: .pdf (<=25MB)'}</li>
+                                    <li><span></span>{'Đối với ảnh: .jpeg, .jpg, .png (<=3MB)'}</li>
+                                    <li><span></span>{'Đối với văn bản: .pdf (<=10MB)'}</li>
                                 </ul>
                             </div>
                         </div>
@@ -652,8 +675,8 @@ function TraoForm() {
                                     </div>
                                     <ul>
                                         <li>Quy định về định dạng</li>
-                                        <li><span></span>{'Đối với ảnh: .jpeg, .jpg, .png (<=2.5MB)'}</li>
-                                        <li><span></span>{'Đối với văn bản: .pdf (<=25MB)'}</li>
+                                        <li><span></span>{'Đối với ảnh: .jpeg, .jpg, .png (<=3MB)'}</li>
+                                        <li><span></span>{'Đối với văn bản: .pdf (<=10MB)'}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -731,8 +754,8 @@ function TraoForm() {
                                         </div>
                                         <ul>
                                             <li>Quy định về định dạng</li>
-                                            <li><span></span>{'Đối với ảnh: .jpeg, .jpg, .png (<=2.5MB)'}</li>
-                                            <li><span></span>{'Đối với văn bản: .pdf (<=25MB)'}</li>
+                                            <li><span></span>{'Đối với ảnh: .jpeg, .jpg, .png (<=3MB)'}</li>
+                                            <li><span></span>{'Đối với văn bản: .pdf (<=10MB)'}</li>
                                         </ul>
                                     </div>
                                 </div>

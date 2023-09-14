@@ -191,10 +191,10 @@ class CastingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateCasting(Request $request)
+    public function updateCastingNote(Request $request)
     {
         $castingService= new CastingService();
-        $itemUpdate= $castingService->updateCasting($request);
+        $itemUpdate= $castingService->updateCastingNote($request);
         if ($request['key']=='MC'){
             $itemResource = CastingMCResource::collection($itemUpdate);
             return response()->json([
@@ -209,7 +209,25 @@ class CastingController extends Controller
                 'status'=>HttpResponse::HTTP_OK
             ], HttpResponse::HTTP_OK);
         }
-        
+    }
+    public function updateCastingPass(Request $request)
+    {
+        $castingService= new CastingService();
+        $itemUpdate= $castingService->updateCastingPass($request);
+        if ($request['key']=='MC'){
+            $itemResource = CastingMCResource::collection($itemUpdate);
+            return response()->json([
+                'castingUpdateMC'=>$itemResource,
+                'status'=>HttpResponse::HTTP_OK
+            ], HttpResponse::HTTP_OK);
+        }
+        if ($request['key']=='Stage'){
+            $itemResource = CastingStageResource::collection($itemUpdate);
+            return response()->json([
+                'castingUpdateStage'=>$itemResource,
+                'status'=>HttpResponse::HTTP_OK
+            ], HttpResponse::HTTP_OK);
+        }
     }
 
     /**

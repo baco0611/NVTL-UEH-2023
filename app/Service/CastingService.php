@@ -53,9 +53,10 @@ class CastingService
         }
         if ($keyPass=='checked'){
             $result=DB::table('casting_mc')
-            ->where('status',1)
             ->where('fullName', 'like', '%'.$keySearch.'%')
-            ->orwhere('studentCode','like', '%'.$keySearch.'%')
+            ->where('status','=',1)
+            ->where('studentCode','like', '%'.$keySearch.'%','or')
+            ->where('status','=',1)
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -63,9 +64,10 @@ class CastingService
         }
         if ($keyPass=='unchecked'){
             $result=DB::table('casting_mc')
-            ->where('status','=',0)
             ->Where('studentCode','like', '%'.$keySearch.'%')
-            ->orWhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status','=',0)
+            ->Where('fullName', 'like', '%'.$keySearch.'%','or')
+            ->where('status','=',0)
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -74,7 +76,7 @@ class CastingService
         if ($keyPass=='all'){
             $result=DB::table('casting_mc')
             ->where('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('fullName', 'like', '%'.$keySearch.'%','or')
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -93,9 +95,10 @@ class CastingService
         }
         if ($keyPass=='checked'){
             $result=DB::table('casting_stage')
-            ->where('status',1)
             ->where('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status',1)
+            ->where('fullName', 'like', '%'.$keySearch.'%','or')
+            ->where('status',1)
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -103,9 +106,10 @@ class CastingService
         }
         if ($keyPass=='unchecked'){
             $result=DB::table('casting_stage')
-            ->where('status',0)
             ->where('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('status',0)
+            ->where('fullName', 'like', '%'.$keySearch.'%','or')
+            ->where('status',0)
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
@@ -114,19 +118,18 @@ class CastingService
         if ($keyPass=='all'){
             $result=DB::table('casting_stage')
             ->where('studentCode','like', '%'.$keySearch.'%')
-            ->orwhere('fullName', 'like', '%'.$keySearch.'%')
+            ->where('fullName', 'like', '%'.$keySearch.'%','or')
             ->orderBy('created_at',$keyTime)
             ->select('*')
             ->paginate(25);
             return $result;
         }
-     }
-     public function updateCasting($request){
+    }
+     public function updateCastingNote($request){
         if($request['key']=='MC'){
          $result= DB::table('casting_mc')
         ->where('idCasting',$request['id'])
         ->update([
-            'status'=>boolval($request['pass']), 
             'note'=>$request['note']
         ]);
         $item= DB::table('casting_mc')
@@ -138,10 +141,33 @@ class CastingService
         $result= DB::table('casting_stage')
         ->where('idCasting',$request['id'])
         ->update([
-            'status'=>boolval($request['pass']), 
             'note'=>$request['note']
         ]);
+        $item= DB::table('casting_stage')
+        ->where('idCasting',$request['id'])
+        ->get();
+        return $item;
+        }
+     }
+     public function updateCastingPass($request){
+        if($request['key']=='MC'){
+         $result= DB::table('casting_mc')
+        ->where('idCasting',$request['id'])
+        ->update([
+             'status'=>boolval($request['pass'])
+        ]);
         $item= DB::table('casting_mc')
+        ->where('idCasting',$request['id'])
+        ->get();
+        return $item;
+        }
+        if($request['key']=='Stage'){
+        $result= DB::table('casting_stage')
+        ->where('idCasting',$request['id'])
+        ->update([
+            'status'=>boolval($request['pass'])
+        ]);
+        $item= DB::table('casting_stage')
         ->where('idCasting',$request['id'])
         ->get();
         return $item;

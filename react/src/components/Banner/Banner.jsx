@@ -5,6 +5,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import './Banner.scss'
 import bannerCasting from './img/bannerCasting.png'
 import bannerPrimewave from './img/bannerPrimewave.png'
+import bannerHome from './img/bannerHome.png'
 import { useContext } from 'react';
 import { UserContext } from '../../context/ContextProvider';
 function Banner() {
@@ -27,6 +28,9 @@ function Banner() {
                     modules={[Autoplay, Pagination, Navigation]}
                     className="mySwiper"
                 >
+                    <SwiperSlide className='banner'>
+                        <img src={bannerHome}/>
+                    </SwiperSlide>
                     <SwiperSlide className='banner'>
                         <img src={bannerCasting}/>
                     </SwiperSlide>
