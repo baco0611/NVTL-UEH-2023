@@ -16,10 +16,27 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getNewsHome()
     {
-        //
+        $newsService = new NewsService();
+        $listItem= $newsService->getDataHome();
+        $newsResource= NewsResource::collection($listItem);
+        return response()->json([
+            'data'=>$newsResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
     }
+    public function getNewsWeekly()
+    {
+        $newsService = new NewsService();
+        $listItem= $newsService->getDataWeekly();
+        $newsResource= NewsResource::collection($listItem);
+        return response()->json([
+            'data'=>$newsResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
+    }
+    
 
     /**
      * Store a newly created resource in storage.

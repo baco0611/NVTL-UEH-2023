@@ -48,4 +48,18 @@ class NewsService
              return $result;
         }
     }
+    public function getDataHome() {
+        $result= DB::table('news')
+        ->where('category', 'home')
+        ->take(6)
+        ->get();
+        return $result;
+    }
+    public function getDataWeekly() {
+        $result= DB::table('news')
+        ->where('category', 'weekly')
+        ->take(6)
+        ->get();
+        return $result;
+    }
 }

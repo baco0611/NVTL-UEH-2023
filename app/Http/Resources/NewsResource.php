@@ -30,7 +30,7 @@ class NewsResource extends JsonResource
             'title'=>$this->title,
             'subTitle'=>$this->subTitle,
             'thumbnail'=>$this->convertImage(),
-            'linkPost'=>$this->linkPost,
+            'link'=>$this->linkPost,
             'createTime'=>Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d/m/Y H:i:s')
         ];
     }

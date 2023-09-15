@@ -56,6 +56,8 @@ Route::post('reset-password/{token}', [ResetPasswordController::class,'reset'])-
 #News
 Route::post('newsUpload', [NewsController::class,'storeNews'])->name('newsUpload');
 Route::post('newsAdmin/sortByTime', [NewsController::class,'sortByTime'])->name('sortByTime');
+Route::get('newsAdmin/home', [NewsController::class,'getNewsHome'])->name('getNewsHome');
+Route::get('newsAdmin/weekly', [NewsController::class,'getNewsWeekly'])->name('getNewsWeekly');
 #Casting
 Route::post('castingMC', [CastingController::class,'insertCastingMC'])->name('castingMC');
 Route::post('castingStage', [CastingController::class,'insertCastingStage'])->name('castingStage');
