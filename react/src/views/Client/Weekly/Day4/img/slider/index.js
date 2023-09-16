@@ -1,0 +1,8 @@
+export { default as pic1 } from './slider1.png'
+export { default as pic2 } from './slider2.png'
+export { default as pic3 } from './slider3.png'
+export { default as pic4 } from './slider4.png'
+export { default as pic5 } from './slider5.png'
+export { default as pic6 } from './slider6.png'
+export { default as pic7 } from './slider7.png'
+export { default as pic8 } from './slider8.png'

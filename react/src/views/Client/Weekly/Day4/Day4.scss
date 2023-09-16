@@ -1,0 +1,30 @@
+.client-day4 {
+    &-amazing {
+        width: 100%;
+        // padding-bottom: 25px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 50px;
+
+        p {
+            width: 100%;
+            padding: 40px 10vw;
+            background: url(../img/timeBack.png);
+            background-size: 100% 100%;
+            text-align: justify;
+            font-size: 20px;
+            line-height: 28px;
+            font-weight: 600;
+            color: #0052ba;
+        }
+
+        &-slider {
+            width: max(480px, 80%);
+        }
+
+        .competitionTable {
+            width: max(400px, 65%);
+        }
+    }
+}
