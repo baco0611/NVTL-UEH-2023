@@ -7,11 +7,12 @@ import overview from './img/overview.png'
 import news from './img/news.png'
 import overviewTimeline from './img/overviewTimeline.png'
 import guideVid from './video/guideVid.mp4'
+import axiosClient from '../../../../context/axiosClient'
 
 function Weekly() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/weekly'), [])
-    // useEffect(() => {window.scrollTo(0, 0)}, [])
+    useEffect(() => {window.scrollTo(0, 0)}, [])
 
     const videoRef = useRef()
     const playRef = useRef()
@@ -21,29 +22,17 @@ function Weekly() {
         videoRef.current.play()
     }
 
-    const [ newsValue, setNewsValue ] = useState([
-        {
-            id: "1",
-            title: "news 1",
-            subTitle: "Được dịch từ tiếng Anh-Trong xuất bản và thiết kế đồ họa, Lorem ipsum là một văn bản giữ chỗ thường được sử dụng để thể hiện hình thức trực quan của tài liệu hoặc kiểu chữ mà không dựa vào nội dung có ý nghĩa. Lorem ipsum có thể được sử dụng làm trình giữ chỗ trước khi có bản sao cuối cùng.",
-            thumbnail: "https://marketplace.canva.com/EAEqfS4X0Xw/1/0/1600w/canva-most-attractive-youtube-thumbnail-wK95f3XNRaM.jpg",
-            link: "https://www.facebook.com/"
-        },
-        {
-            id: "1",
-            title: "news 1",
-            subTitle: "Được dịch từ tiếng Anh-Trong xuất bản và thiết kế đồ họa, Lorem ipsum là một văn bản giữ chỗ thường được sử dụng để thể hiện hình thức trực quan của tài liệu hoặc kiểu chữ mà không dựa vào nội dung có ý nghĩa. Lorem ipsum có thể được sử dụng làm trình giữ chỗ trước khi có bản sao cuối cùng.",
-            thumbnail: "https://marketplace.canva.com/EAEqfS4X0Xw/1/0/1600w/canva-most-attractive-youtube-thumbnail-wK95f3XNRaM.jpg",
-            link: "https://www.facebook.com/"
-        },
-        {
-            id: "1",
-            title: "news 1",
-            subTitle: "Được dịch từ tiếng Anh-Trong xuất bản và thiết kế đồ họa, Lorem ipsum là một văn bản giữ chỗ thường được sử dụng để thể hiện hình thức trực quan của tài liệu hoặc kiểu chữ mà không dựa vào nội dung có ý nghĩa. Lorem ipsum có thể được sử dụng làm trình giữ chỗ trước khi có bản sao cuối cùng.",
-            thumbnail: "https://marketplace.canva.com/EAEqfS4X0Xw/1/0/1600w/canva-most-attractive-youtube-thumbnail-wK95f3XNRaM.jpg",
-            link: "https://www.facebook.com/"
-        }
-    ])
+    const [ newsValue, setNewsValue ] = useState([])
+
+    useEffect(() => {
+        axiosClient.get('/newsAdmin/weekly')
+        .then(response => {
+            setNewsValue(response.data.data)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }, [])
 
     return (
         <section id='client-weekly' className='client-weekly'>
