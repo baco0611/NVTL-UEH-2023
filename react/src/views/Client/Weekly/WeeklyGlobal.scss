@@ -1,0 +1,102 @@
+.weekly-day-title {
+    width: max(480px, 80%);
+    margin: 0 auto;
+}
+
+.client-day {
+
+    .title {
+        height: 50px;
+    }
+
+    &-act {
+        padding-top: 75px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 50px;
+
+        .title {
+            height: 75px;
+        }
+
+        &-main {
+            display: flex;
+            gap: 50px;
+
+            div {
+                width: calc((100% - 50px) / 2);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .name {
+                    height: 30px;
+                }
+
+                .act {
+                    width: 85%;
+                }
+            }
+        }
+    }
+
+    &-guide {
+        padding: 75px 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 25px;
+
+
+        p {
+            width: 100%;
+            padding: 20px 10px;
+            background: url('./img/timeBack.png');
+            background-size: 100% 100%;
+
+            text-align: center;
+            font-size: 24px;
+            line-height: 36px;
+            font-weight: 700;
+            color: #0052ba;
+        }
+    }
+
+    &-timeline {
+        padding-bottom: 25px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 50px;
+
+        .main {
+            width: max(480px, 60%);
+        }
+    }
+
+    &-map {
+        padding-bottom: 25px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .title {
+            height: 75px;
+        }
+
+        .main {
+            width: max(480px, 70%);
+        }
+    }
+}
+
+@media  screen and (max-width: 850px) {
+    .client-day-act-main div .name {
+        height: 18px;
+    }
+}
