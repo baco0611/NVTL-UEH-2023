@@ -48,4 +48,41 @@ class NewsService
              return $result;
         }
     }
+    public function getDataHome() {
+        $result= DB::table('news')
+        ->where('category', 'home')
+        ->take(6)
+        ->get();
+        return $result;
+    }
+    public function getDataWeekly() {
+        $result= DB::table('news')
+        ->where('category', 'weekly')
+        ->take(6)
+        ->get();
+        return $result;
+    }
+    public function updateData($request,$image,$category){
+        DB::table('news')
+        ->where('id',$request['id'])
+        ->update([
+            'title'=> $request['title'],
+            'subTitle'=>$request['subTitle'],
+            'thumbnail'=>$image,
+            'category'=>$request['category'],
+            'linkPost'=>$request['linkPost'],
+        ]);
+        if ($category=='home'){
+            $result=DB::table('news')
+            ->where('category','home')
+            ->get();
+        return $result;
+        }
+        if ($category=='weekly'){
+            $result=DB::table('news')
+            ->where('category','weekly')
+            ->get();
+        return $result;
+        }
+    }
 }
