@@ -36,7 +36,8 @@ class NewsService
             ->where('category',$request['category'])
             ->where('title', 'like', '%'.$request['search'].'%')
             ->orderBy('created_at')
-            ->get();
+            ->select('*')
+            ->paginate(25);
             return $result;
         }
         if ($request['createTime']=='decrease'){
@@ -44,8 +45,9 @@ class NewsService
             ->where('category',$request['category'])
             ->where('title', 'like', '%'.$request['search'].'%')
             ->orderBy('created_at','desc')
-            ->get();
-             return $result;
+            ->select('*')
+            ->paginate(25);
+            return $result;
         }
     }
     public function getDataHome() {
