@@ -24,7 +24,6 @@ class NewsResource extends JsonResource
     }
     public function toArray($request)
     {
-        // dd($this->convertImage());
         return [
             'id'=>$this->id,
             'title'=>$this->title,
