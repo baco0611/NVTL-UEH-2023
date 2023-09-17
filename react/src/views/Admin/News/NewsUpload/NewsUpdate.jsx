@@ -4,14 +4,15 @@ import { getBase64 } from '../../../Client/Casting/scripts/base64'
 import Swal from 'sweetalert2'
 import axiosClient from '../../../../context/axiosClient'
 
-function NewsUpload({ setUploadStatus, category, search, setInformation, setNewsList }) {
+function NewsUpdate({ setUpdateStatus, category, search, setInformation, setNewsList, id, item }) {
     const [ value, setValue ] = useState({
-        title: "",
-        subTitle: "",
-        thumbnail: "",
+        title: item.title,
+        subTitle: item.subTitle,
+        thumbnail: item.thumbnail,
         thumbnailName: "",
         category,
-        linkPost: ""
+        linkPost: item.link,
+        id
     })
 
     const imageRef = useRef()
@@ -35,17 +36,25 @@ function NewsUpload({ setUploadStatus, category, search, setInformation, setNews
         })
     }
 
-    const uploadImage = () => {
+    const updateNews = () => {
         if(
             value.title && value.subTitle && value.linkPost && value.thumbnail
         ) {
-            axiosClient.post('/newsUpload', value)
+
+            const payload = {...value}
+
+            if(payload.thumbnailName=="") {
+                payload.thumbnail = ""
+                payload.thumbnailName = ""
+            }
+
+            axiosClient.post('/newsUpdate/weekly', payload)
             .then(response => {
                 console.log(response)
                 axiosClient.post('/newsAdmin/sortByTime', search)
                     .then(response => {
                         console.log(response)
-                        setUploadStatus(false)
+                        setUpdateStatus(false)
                         setNewsList(response.data.data)
                         setInformation({
                             links: response.data.castingList.links,
@@ -106,10 +115,10 @@ function NewsUpload({ setUploadStatus, category, search, setInformation, setNews
             <div className='new-upload-block'>
                 <i 
                     className="fa-solid fa-xmark close"
-                    onClick={() => setUploadStatus(false)}
+                    onClick={() => setUpdateStatus(false)}
                     ref={closeRef}
                 ></i>
-                <h1>Upload News</h1>
+                <h1>Update News</h1>
                 <form>
                     <div className='image'>
                         <input
@@ -134,7 +143,7 @@ function NewsUpload({ setUploadStatus, category, search, setInformation, setNews
                         }
                         <p>
                             {
-                                value.thumbnailName || "Click vào biểu tượng để upload ảnh"
+                                value.thumbnailName || "Click vào biểu tượng để chỉnh sửa ảnh"
                             }
                         </p>
                     </div>
@@ -168,11 +177,11 @@ function NewsUpload({ setUploadStatus, category, search, setInformation, setNews
                 </form>
                 <button 
                     className='upload'
-                    onClick={uploadImage}
-                >Upload</button>
+                    onClick={updateNews}
+                >Update</button>
             </div>
         </div>
     )
 }
 
-export default NewsUpload
+export default NewsUpdate

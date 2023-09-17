@@ -73,7 +73,7 @@ function Stage() {
     const showVideo = (url, name) => {
         const a = document.createElement('a')
         a.href = url
-        a.target = 'blank'
+        a.target = '__blank'
         a.title=name
         a.click()
     }
@@ -323,7 +323,7 @@ function Stage() {
                                 </div>
                                 <div style={{minWidth: '100px'}}>
                                     <p className="admin-row-item href">
-                                        <a href={item.accountLink} target="blank">Link</a>
+                                        <a href={item.accountLink} target="__blank">Link</a>
                                     </p>
                                 </div>
                                 <div style={{minWidth: '275px'}}>
