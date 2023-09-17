@@ -1,22 +1,31 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Flip from './Flip'
-import './TraoRecruitClock.scss'
-import timedots from '../img/timedot.png'
+import timedots from './img/timedots.png'
 
-function TraoRecruitClock() {
+function NightCoundown() {
+    const deadline = new Date('October 1, 2023 23:59:59')
     const date = new Date()
-    const deadline = new Date("September 12, 2023 23:59:59")
-    const dateLL = new Date(deadline - date)
+    const t2 = deadline.getTime();
+    const t1 = date.getTime();
 
-    // let DAY = dateLL.getDate()
-    // let HOUR = dateLL.getHours()
-    // let MINUTE = dateLL.getMinutes()
-    // let SECOND = dateLL.getSeconds()
+    let DAY = 0
+    let HOUR = 0
+    let MINUTE = 0
+    let SECOND = 0
 
-    let DAY = deadline.getDate() - date.getDate()
-    let HOUR = deadline.getHours() - date.getHours()
-    let MINUTE = deadline.getMinutes() - date.getMinutes()
-    let SECOND = deadline.getSeconds() - date.getSeconds()
+    if(
+        t2>=t1
+    ) { 
+        DAY = parseInt((t2-t1)/(24*3600*1000));
+        HOUR = deadline.getHours() - date.getHours()
+        MINUTE = deadline.getMinutes() - date.getMinutes()
+        SECOND = deadline.getSeconds() - date.getSeconds()
+    } else {
+        DAY = 0
+        HOUR = 0
+        MINUTE = 0
+        SECOND = 0
+    }
 
 
     DAY = DAY.toString()
@@ -91,28 +100,28 @@ function TraoRecruitClock() {
     }, [])
 
     return (
-        <div className='trao-recruit-clock-main'>
+        <div className='trao-recruit-clock-main nightfest'>
             <div className='trao-recruit-clock-item'>
-                <Flip value={'00'}/>
+                <Flip value={time.day}/>
                 <p>NGÀY</p>
             </div>
             <img className='time-dots' src={timedots}/>
             <div className='trao-recruit-clock-item'>
-                <Flip value={'00'}/>
+                <Flip value={time.hour}/>
                 <p>GIỜ</p>
             </div>
             <img className='time-dots' src={timedots}/>
             <div className='trao-recruit-clock-item'>
-                <Flip value={'00'}/>
+                <Flip value={time.minute}/>
                 <p>PHÚT</p>
             </div>
             <img className='time-dots' src={timedots}/>
             <div className='trao-recruit-clock-item'>
-                <Flip value={'00'}/>
+                <Flip value={time.second}/>
                 <p>GIÂY</p>
             </div>
         </div>
     )
 }
 
-export default TraoRecruitClock
+export default NightCoundown

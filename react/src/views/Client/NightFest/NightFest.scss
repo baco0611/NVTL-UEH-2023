@@ -1,0 +1,203 @@
+#client-night {
+    width: 100%;
+    background: url(./img/background.png);
+    background-size: cover;
+}
+
+.client-night {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+
+    &-container {
+        width: max(80%, 480px);
+
+        .title {
+            height: 65px;
+        }
+
+        .double-title {
+            height: 125px;
+        }
+    }
+
+    .night-title {
+        width: max(445px, 70%);
+        padding-bottom: 50px;
+    }
+
+    &-guide {
+        display: grid;
+        grid-template-columns: calc((100% - 50px)/2) calc((100% - 50px)/2);
+        column-gap: 50px;
+        row-gap: 30px;
+        padding-bottom: 75px;
+
+        img {
+            width: 100%;
+
+            &:nth-child(1) {
+                grid-row: 1/2;
+                grid-column: 1/3;
+            }
+
+            &:nth-child(2) {
+                grid-row: 2/3;
+                grid-column: 1/2;
+            }
+
+            &:nth-child(3) {
+                grid-row: 2/3;
+                grid-column: 2/3;
+            }
+        }
+    }
+
+    &-stage {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 75px;
+
+        &-main {
+            display: grid;
+            grid-template-columns: calc(100% / 6) calc(100% / 6) calc(100% / 6) calc(100% / 6) calc(100% / 6) calc(100% / 6);
+            row-gap: 40px;
+            padding-top: 30px;
+
+            img {
+                padding: 0 5px;
+
+                &:nth-child(1) {
+                    grid-row: 1/2;
+                    grid-column: 1/3;
+                }
+                &:nth-child(2) {
+                    grid-row: 1/2;
+                    grid-column: 3/5;
+                }
+                &:nth-child(3) {
+                    grid-row: 1/2;
+                    grid-column: 5/7;
+                }
+                &:nth-child(4) {
+                    grid-row: 2/3;
+                    grid-column: 2/4;
+                }
+                &:nth-child(5) {
+                    grid-row: 2/3;
+                    grid-column: 4/6;
+                }
+            }
+        }
+    }
+
+    &-act {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 75px;
+        gap: 40px;
+
+        .act {
+            width: 80%;
+        }
+    }
+
+    &-singer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 75px;
+
+        &-main {
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 85%;
+
+            .singer-block {
+                width: 30%;
+                aspect-ratio: 333.25 / 547.2;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    aspect-ratio: 333.25 / 547.2;
+                }
+                .mask {
+                    width: 100%;
+                    position: absolute;
+                    z-index: 5;
+                    transition: all ease-in-out 1s;
+                    visibility: visible;
+                    opacity: 1;
+                    cursor: pointer;
+                }
+                .singer {
+                    z-index: 1;
+                    visibility: hidden;
+                    width: 20%;
+                    transition: all ease-in-out 1s;
+                    opacity: 0;
+                }
+
+                &.open {
+                    .singer{
+                        width: 100%;
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+
+                &.left.open {
+                    .mask {
+                        visibility: hidden;
+                        transform: scale(2.5);
+                        opacity: 0;
+                    }
+                }
+
+                &.main.open {
+                    .mask {
+                        visibility: hidden;
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+
+                &.right.open {
+                    .mask {
+                        visibility: hidden;
+                        transform: scale(2.5);
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &-button {
+        margin-bottom: 75px;
+        padding: 25px 60px;
+        font-size: 28px;
+    }
+}
+
+.trao-recruit-clock-main.nightfest {
+    padding-top: 100px;
+
+    .tick-flip-panel {
+        background-color: white;
+        color: #367cfd;
+    }
+
+    .trao-recruit-clock-item p {
+        color: white;
+        text-shadow: none;
+    }
+}
