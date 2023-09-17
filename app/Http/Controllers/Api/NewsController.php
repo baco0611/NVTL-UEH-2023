@@ -84,7 +84,7 @@ class NewsController extends Controller
     {
         $newsService= new NewsService();
         $listItem= $newsService->sortTime($request);
-        $newsResource= NewsResource::collection($listItem);
+        $newsResource= NewsResource::collection($listItem)->response()->getData(true);;
         return response()->json([
             'category'=>$request['category'],
             'data'=>$newsResource,
