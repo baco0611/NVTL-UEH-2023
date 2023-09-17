@@ -11,6 +11,7 @@ import map from '../img/mapDay1.png'
 function Day1() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/weekly'), [])
+    useEffect(() => {window.scrollTo(0, 0)}, [])
 
     return (
         <section className='client-weekly client-day'>

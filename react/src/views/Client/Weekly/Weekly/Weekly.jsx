@@ -36,7 +36,7 @@ function Weekly() {
 
     return (
         <section id='client-weekly' className='client-weekly'>
-            <div className='client-weekly-title'>
+            {/* <div className='client-weekly-title'>
                 <img src={title}/>
                 <div className='client-weekly-title-video'>
                     <video ref={videoRef} playsInline loop>
@@ -53,7 +53,7 @@ function Weekly() {
                         ></i>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className='client-weekly-line'></div>
             <div className='client-weekly-overview'>
                 <img className='title' src={overview}/>

@@ -1,0 +1,131 @@
+.new-upload {
+    position: fixed;
+    top: 65px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &-block {
+        width: 800px;
+        border-radius: 50px;
+        background: #ffffff;
+        position: relative;
+        padding: 35px;
+        color: #4f4949;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+
+        .close {
+            position: absolute;
+            font-size: 26px;
+            top: 30px;
+            right: 30px;
+            cursor: pointer;
+            color: #4f4949;
+
+            &:hover {
+                color: #a39999;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .image {
+            display: flex;
+            align-items: flex-end;
+            gap: 25px; 
+
+            img {
+                height: 120px;
+                border-radius: 10px;
+                border: 1.5px #4f4949 solid;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+
+            i {
+                font-size: 80px;
+                cursor: pointer;
+
+                &:hover {
+                    color: #a39999;
+                }
+            }
+
+            p {
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+
+        .input {
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            label {
+                font-size: 18px;
+                font-weight: 600;
+                width: 100px;
+            }
+
+            input {
+                height: 40px;
+                width: 100%;
+                padding: 0 15px;
+                border-radius: 20px;
+                border: #4f4949 2px solid;
+                color: inherit;
+                font-weight: 500;
+                font-size: 18px;
+            }
+
+            textarea {
+                height: 100px;
+                width: 100%;
+                padding: 0 15px;
+                border-radius: 20px;
+                border: #4f4949 2px solid;
+                color: inherit;
+                font-weight: 500;
+                font-size: 18px;
+                resize: none;
+            }
+        }
+
+        .upload {
+            width: 120px;
+            height: 50px;
+            background: #fff;
+            border: #4f4949 solid 2px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: inherit;
+
+            &:hover {
+                background: #4f4949;
+                color: white;
+            }
+        }
+    }
+}
