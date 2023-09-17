@@ -60,6 +60,7 @@ Route::get('newsAdmin/home', [NewsController::class,'getNewsHome'])->name('getNe
 Route::get('newsAdmin/weekly', [NewsController::class,'getNewsWeekly'])->name('getNewsWeekly');
 Route::post('newsUpdate/home', [NewsController::class,'updateNewsHome'])->name('updateNewsHome');
 Route::post('newsUpdate/weekly', [NewsController::class,'updateNewsWeekly'])->name('updateNewsWeekly');
+Route::post('deleteNews', [NewsController::class,'deleteNews'])->name('deleteNews');
 #Casting
 Route::post('castingMC', [CastingController::class,'insertCastingMC'])->name('castingMC');
 Route::post('castingStage', [CastingController::class,'insertCastingStage'])->name('castingStage');

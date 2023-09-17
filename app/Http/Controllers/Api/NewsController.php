@@ -84,7 +84,7 @@ class NewsController extends Controller
     {
         $newsService= new NewsService();
         $listItem= $newsService->sortTime($request);
-        $newsResource= NewsResource::collection($listItem);
+        $newsResource= NewsResource::collection($listItem)->response()->getData(true);;
         return response()->json([
             'category'=>$request['category'],
             'data'=>$newsResource,
@@ -137,6 +137,14 @@ class NewsController extends Controller
         $newsResource= NewsResource::collection($item);
         return response()->json([
             'data'=>$newsResource,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
+    }
+    public function deleteNews(Request $request){
+        $newsService = new NewsService();
+        $check= $newsService->deleteNews($request);
+        return response()->json([
+            'mess'=>$check,
             'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
