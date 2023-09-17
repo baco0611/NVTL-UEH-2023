@@ -87,4 +87,11 @@ class NewsService
         return $result;
         }
     }
+    public function deleteNews($request) {
+            $result= DB::table('news')
+            ->where('id',$request['id'])
+            ->where('category',$request['category'])
+            ->delete();
+            return $result;
+    }
 }

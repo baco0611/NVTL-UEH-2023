@@ -140,4 +140,12 @@ class NewsController extends Controller
             'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
+    public function deleteNews(Request $request){
+        $newsService = new NewsService();
+        $check= $newsService->deleteNews($request);
+        return response()->json([
+            'mess'=>$check,
+            'status'=>HttpResponse::HTTP_OK
+        ], HttpResponse::HTTP_OK);
+    }
 }
