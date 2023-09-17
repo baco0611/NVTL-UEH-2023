@@ -57,8 +57,8 @@ function NewsUpdate({ setUpdateStatus, category, search, setInformation, setNews
                         setUpdateStatus(false)
                         setNewsList(response.data.data)
                         setInformation({
-                            links: response.data.castingList.links,
-                            meta: response.data.castingList.meta
+                            links: response.data.data.links,
+                            meta: response.data.data.meta
                         })
                     })  
                     .catch(error => {

@@ -1,9 +1,30 @@
 import React, { useState } from 'react'
 import NewsUpdate from '../NewsUpload/NewsUpdate'
+import axiosClient from '../../../../context/axiosClient'
 
 function NewsWeeklyItem({item, information, index, search, setInformation, setNewsList, category}) {
 
     const [ updateStatus, setUpdateStatus ]= useState(false)
+
+    const handleDeleteNews = () => [
+        axiosClient.post('/deleteNews', {id: item.id, category})
+        .then(response => {
+            if(response.status == 200) {
+                axiosClient.post('/newsAdmin/sortByTime', search)
+                    .then(response => {
+                        console.log(response)
+                        setNewsList(response.data.data.data)
+                        setInformation({
+                            links: response.data.data.links,
+                            meta: response.data.data.meta
+                        })
+                    })  
+                    .catch(error => {
+                        console.log(error)
+                    })
+            }
+        })
+    ]
 
     return (
         <>
@@ -74,7 +95,10 @@ function NewsWeeklyItem({item, information, index, search, setInformation, setNe
                     >Edit</p>
                 </div>
                 <div style={{minWidth: '150px'}}>
-                    <p className="admin-row-item">Delete</p>
+                    <p 
+                        className="admin-row-item cursorPointer"
+                        onClick={handleDeleteNews}
+                    >Delete</p>
                 </div>
             </div>
         </>

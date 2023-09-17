@@ -46,10 +46,10 @@ function NewsUpload({ setUploadStatus, category, search, setInformation, setNews
                     .then(response => {
                         console.log(response)
                         setUploadStatus(false)
-                        setNewsList(response.data.data)
+                        setNewsList(response.data.data.data)
                         setInformation({
-                            links: response.data.castingList.links,
-                            meta: response.data.castingList.meta
+                            links: response.data.data.links,
+                            meta: response.data.data.meta
                         })
                     })  
                     .catch(error => {
