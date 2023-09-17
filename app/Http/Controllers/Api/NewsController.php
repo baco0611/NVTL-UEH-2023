@@ -98,42 +98,24 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateNewsWeekly(Request $request)
+    public function updateNews(Request $request)
     {
-        $img=$request['thumbnail'];
-        $image_name=$request['thumbnailName'];
-        $folderPath = public_path() . '/media/' . 'imageNews/';
-        $image_parts = explode(";base64,", $img);
-        $uniqid= uniqid();
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
-        $file = $folderPath . $image_name . '_'.$uniqid.'.' . $image_type;
-        file_put_contents($file, $image_base64);
-        $imageFile=$image_name. '_'.$uniqid.'.'.$image_type;
+        $imageFile="";
+        if ($request['thumbnail']!=""){
+            $img=$request['thumbnail'];
+            $image_name=$request['thumbnailName'];
+            $folderPath = public_path() . '/media/' . 'imageNews/';
+            $image_parts = explode(";base64,", $img);
+            $uniqid= uniqid();
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = $folderPath . $image_name . '_'.$uniqid.'.' . $image_type;
+            file_put_contents($file, $image_base64);
+            $imageFile=$image_name. '_'.$uniqid.'.'.$image_type;
+        }
         $newsService= new NewsService();
-        $item= $newsService->updateData($request,$imageFile, 'weekly');
-        $newsResource= NewsResource::collection($item);
-        return response()->json([
-            'data'=>$newsResource,
-            'status'=>HttpResponse::HTTP_OK
-        ], HttpResponse::HTTP_OK);
-    }
-    public function updateNewsHome(Request $request)
-    {
-        $img=$request['thumbnail'];
-        $image_name=$request['thumbnailName'];
-        $folderPath = public_path() . '/media/' . 'imageNews/';
-        $image_parts = explode(";base64,", $img);
-        $uniqid= uniqid();
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
-        $file = $folderPath . $image_name . '_'.$uniqid.'.' . $image_type;
-        file_put_contents($file, $image_base64);
-        $imageFile=$image_name. '_'.$uniqid.'.'.$image_type;
-        $newsService= new NewsService();
-        $item= $newsService->updateData($request,$imageFile, 'home');
+        $item= $newsService->updateData($request,$imageFile);
         $newsResource= NewsResource::collection($item);
         return response()->json([
             'data'=>$newsResource,

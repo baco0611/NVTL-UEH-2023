@@ -64,33 +64,43 @@ class NewsService
         ->get();
         return $result;
     }
-    public function updateData($request,$image,$category){
-        DB::table('news')
-        ->where('id',$request['id'])
-        ->update([
-            'title'=> $request['title'],
-            'subTitle'=>$request['subTitle'],
-            'thumbnail'=>$image,
-            'category'=>$request['category'],
-            'linkPost'=>$request['linkPost'],
-        ]);
-        if ($category=='home'){
-            $result=DB::table('news')
-            ->where('category','home')
+    public function updateData($request,$image){
+        if($image!=""){
+            DB::table('news')
+            ->where('id',$request['id'])
+            ->update([
+            'thumbnail'=>$image
+            ]);   
+        }
+        if($request['title']!=""){
+            DB::table('news')
+            ->where('id',$request['id'])
+            ->update([
+            'title'=> $request['title']
+            ]);
+        }
+        if($request['subTitle']!=""){
+            DB::table('news')
+            ->where('id',$request['id'])
+            ->update([
+            'subTitle'=> $request['subTitle']
+            ]);
+        }
+        if($request['link']!=""){
+            DB::table('news')
+            ->where('id',$request['id'])
+            ->update([
+            'linkPost'=> $request['link']
+            ]);
+        }
+        $result=DB::table('news')
+            ->where('id',$request['id'])
             ->get();
         return $result;
-        }
-        if ($category=='weekly'){
-            $result=DB::table('news')
-            ->where('category','weekly')
-            ->get();
-        return $result;
-        }
     }
     public function deleteNews($request) {
             $result= DB::table('news')
             ->where('id',$request['id'])
-            ->where('category',$request['category'])
             ->delete();
             return $result;
     }
