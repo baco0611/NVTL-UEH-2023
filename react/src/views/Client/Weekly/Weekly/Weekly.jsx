@@ -8,14 +8,22 @@ import news from './img/news.png'
 import overviewTimeline from './img/overviewTimeline.png'
 import guideVid from './video/guideVid.mp4'
 import axiosClient from '../../../../context/axiosClient'
+import day1 from './img/day1.png'
+import day2 from './img/day2.png'
+import day3 from './img/day3.png'
+import day4 from './img/day4.png'
 
 function Weekly() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/weekly'), [])
-    useEffect(() => {window.scrollTo(0, 0)}, [])
+    // useEffect(() => {window.scrollTo(0, 0)}, [])
 
     const videoRef = useRef()
     const playRef = useRef()
+    const day1Ref = useRef()
+    const day2Ref = useRef()
+    const day3Ref = useRef()
+    const day4Ref = useRef()
 
     const playVideo = () => {
         playRef.current.classList.add('none')
@@ -59,10 +67,30 @@ function Weekly() {
                 <img className='title' src={overview}/>
                 <div className='client-weekly-overview-link'>
                     <img className='timeline' src={overviewTimeline}/>
-                    <Link to={'/weekly/day1'}></Link>
-                    <Link to={'/weekly/day2'}></Link>
-                    <Link to={'/weekly/day3'}></Link>
-                    <Link to={'/weekly/day4'}></Link>
+                    <Link 
+                        to={'/weekly/day1'}
+                        onMouseEnter={() => day1Ref.current.classList.add('active')}    
+                        onMouseLeave={() => day1Ref.current.classList.remove('active')}    
+                    ></Link>
+                    <Link 
+                        to={'/weekly/day2'}
+                        onMouseEnter={() => day2Ref.current.classList.add('active')}    
+                        onMouseLeave={() => day2Ref.current.classList.remove('active')}    
+                    ></Link>
+                    <Link 
+                        to={'/weekly/day3'}
+                        onMouseEnter={() => day3Ref.current.classList.add('active')}    
+                        onMouseLeave={() => day3Ref.current.classList.remove('active')}    
+                    ></Link>
+                    <Link 
+                        to={'/weekly/day4'}
+                        onMouseEnter={() => day4Ref.current.classList.add('active')}    
+                        onMouseLeave={() => day4Ref.current.classList.remove('active')}    
+                    ></Link>
+                    <img className='image-hover' src={day1} ref={day1Ref}/>
+                    <img className='image-hover' src={day2} ref={day2Ref}/>
+                    <img className='image-hover' src={day3} ref={day3Ref}/>
+                    <img className='image-hover' src={day4} ref={day4Ref}/>
                 </div>
             </div>
             {

@@ -20,12 +20,12 @@ import singerMask from './img/singerMask.png'
 import singer1 from './img/singer1.png'
 import singer2 from './img/singer2.png'
 import singer3 from './img/singer3.png'
-import NightCoundown from "./NightCoundown/NightCoundown"
+import NightCountdown from "./NightCoundown/NightCountdown"
 
 function NightFest() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/nightfest'), [])
-    useEffect(() => {window.scrollTo(0, 0)}, [])
+    // useEffect(() => {window.scrollTo(0, 0)}, [])
 
     const singer1Ref = useRef()
     const singer2Ref = useRef()
@@ -74,7 +74,7 @@ function NightFest() {
                         <img src={singer3} className="singer"/>
                     </div>
                 </div>
-                <NightCoundown/>
+                <NightCountdown/>
             </div>
 
             <Link to={'/'} className="secondary-button client-night-button">ĐĂNG KÝ THAM GIA ĐÊM NHẠC HỘI</Link>

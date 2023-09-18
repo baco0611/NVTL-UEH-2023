@@ -118,6 +118,34 @@
                     left: 23.6%;
                 }
             }
+
+            .image-hover {
+                position: absolute;
+                width: 30%;
+                opacity: 0.85;
+                display: none;
+
+                &.active {
+                    display: block !important;
+                }
+
+                &:nth-child(6) {
+                    top: 7%;
+                    left: 15%;    
+                }
+                &:nth-child(7) {
+                    top: 26%;
+                    left: 53%;    
+                }
+                &:nth-child(8) {
+                    top: 49%;
+                    left: 15%;    
+                }
+                &:nth-child(9) {
+                    top: 65%;
+                    left: 53%;    
+                }
+            }
         }
 
     }
