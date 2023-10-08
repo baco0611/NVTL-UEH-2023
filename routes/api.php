@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\ResetPasswordController;
 use App\Http\Controllers\Api\CollaboratorsController;
 use App\Http\Controllers\Api\WonderUController;
 use App\Models\CastingMC;
+use App\Models\PrideTake;
+use App\Models\ProudMate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +45,7 @@ Route::post('updateCollaborators/pass', [CollaboratorsController::class,'updateC
 
 #PrideTake
 Route::post('insertPrideTake', [PrideTakeController::class,'insertPrideTake'])->name('insertPrideTake');
-
+Route::get('listPrideTake', [PrideTakeController::class, 'getPrideTake'])->name('listPrideTake');
 #Login
 Route::post('registerAccount', [LoginController::class,'registerAccount'])->name('register');
 Route::post('loginAccount', [LoginController::class,'checkAccount'])->name('login');
@@ -69,8 +71,11 @@ Route::post('searchMember', [ProudMateController::class,'searchMember'])->name('
 Route::post('postProudMate', [ProudMateController::class,'postProudMate'])->name('postProudMate');
 Route::post('postProof', [ProudMateController::class,'postProof'])->name('postProof');
 Route::post('updateTemplateChoice', [ProudMateController::class,'updateChoice'])->name('updateChoice');
+Route::get('listProudMate', [ProudMateController::class, 'getProudMate'])->name('listProudMate');
 #CTV
 Route::post('recruitment_post', [CollaboratorsController::class,'postCollaborators'])->name('postCollaborators');
 #wonderU
 Route::post('wonderU_post', [WonderUController::class,'postWonderU'])->name('postWonderU');
+Route::get('wonderU_get/{idUser}', [WonderUController::class,'getWonderU'])->name('getWonderU');
+
 Route::get('wonderU_get/{idUser}', [WonderUController::class,'getWonderU'])->name('getWonderU');

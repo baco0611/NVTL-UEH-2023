@@ -17,6 +17,7 @@ class PrideTakeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function getPrideTake()
     {
         $prideTakeService = new PrideTakeService();

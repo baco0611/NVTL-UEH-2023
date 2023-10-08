@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GetProudMateResource;
+use App\Http\Resources\ListProudMate;
 use App\Http\Resources\ProudMateResource;
 use App\Http\Resources\SearchProudMateResource;
 use App\Service\ProudMateService;
@@ -23,7 +24,7 @@ class ProudMateController extends Controller
         $proudMateService = new ProudMateService();
         $listProudMate = $proudMateService->getListProudMate();
         return response()->json([
-            'data'=>ProudMateResource::collection($listProudMate),
+            'data'=>ListProudMate::collection($listProudMate),
             'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }

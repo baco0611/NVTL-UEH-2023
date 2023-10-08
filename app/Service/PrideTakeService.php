@@ -9,8 +9,8 @@ class PrideTakeService
 {
     public function getListPrideTake() {
         $result = DB::table('pride_take')
-        ->join('login','pride_take.idUser','=', 'login.idUser')
-        ->select('*')
+        ->join('login','pride_take.idUser','=', 'login.id')
+        ->select('studentCode','fullName')
         ->get();
         return $result;
     }
