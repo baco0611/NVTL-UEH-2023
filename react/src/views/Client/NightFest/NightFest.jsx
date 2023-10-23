@@ -25,7 +25,7 @@ import NightCountdown from "./NightCoundown/NightCountdown"
 function NightFest() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/nightfest'), [])
-    // useEffect(() => {window.scrollTo(0, 0)}, [])
+    useEffect(() => {window.scrollTo(0, 0)}, [])
 
     const singer1Ref = useRef()
     const singer2Ref = useRef()
@@ -62,22 +62,19 @@ function NightFest() {
                 <img src={singerTitle} className="doubleTitle"/>
                 <div className="client-night-singer-main">
                     <div className="singer-block left" ref={singer1Ref}>
-                        <img src={singerMask} className="mask" onClick={() => singer1Ref.current.classList.add('open')}/>
                         <img src={singer1} className="singer"/>
                     </div>
                     <div className="singer-block main" ref={singer2Ref}>
-                        <img src={singerMask} className="mask" onClick={() => singer2Ref.current.classList.add('open')}/>
                         <img src={singer2} className="singer"/>
                     </div>
                     <div className="singer-block right" ref={singer3Ref}>
-                        <img src={singerMask} className="mask" onClick={() => singer3Ref.current.classList.add('open')}/>
                         <img src={singer3} className="singer"/>
                     </div>
                 </div>
                 <NightCountdown/>
             </div>
 
-            <Link to={'/'} className="secondary-button client-night-button">ĐĂNG KÝ THAM GIA ĐÊM NHẠC HỘI</Link>
+            <Link target="__blank" to={'https://es.ueh.edu.vn/dichvu/chitiet/10166'} className="secondary-button client-night-button">ĐĂNG KÝ THAM GIA ĐÊM NHẠC HỘI</Link>
         </section>
     )
 }

@@ -16,7 +16,7 @@ import day4 from './img/day4.png'
 function Weekly() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/weekly'), [])
-    // useEffect(() => {window.scrollTo(0, 0)}, [])
+    useEffect(() => {window.scrollTo(0, 0)}, [])
 
     const videoRef = useRef()
     const playRef = useRef()

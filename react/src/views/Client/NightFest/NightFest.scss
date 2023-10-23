@@ -127,51 +127,8 @@
                 justify-content: center;
                 aspect-ratio: 333.25 / 547.2;
 
-                .mask {
-                    width: 100%;
-                    position: absolute;
-                    z-index: 5;
-                    transition: all ease-in-out 1s;
-                    visibility: visible;
-                    opacity: 1;
-                    cursor: pointer;
-                }
                 .singer {
-                    z-index: 1;
-                    width: 20%;
-                    opacity: 0;
-                    transition: all ease-in-out 1s;
-                }
-
-                &.open {
-                    .singer{
-                        width: 100%;
-                        opacity: 1;
-                    }
-                }
-
-                &.left.open {
-                    .mask {
-                        visibility: hidden;
-                        transform: scale(2.5) translateX(5vw);
-                        opacity: 0;
-                    }
-                }
-
-                &.main.open {
-                    .mask {
-                        visibility: hidden;
-                        transform: scale(4);
-                        opacity: 0;
-                    }
-                }
-
-                &.right.open {
-                    .mask {
-                        visibility: hidden;
-                        transform: scale(2.5) translateX(-5vw);
-                        opacity: 0;
-                    }
+                    width: 100%;
                 }
             }
         }

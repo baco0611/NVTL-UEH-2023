@@ -13,12 +13,11 @@ import block3 from './img/block3.png'
 import block4 from './img/block4.png'
 import block5 from './img/block5.png'
 import message from './img/message.png'
-import ComingSoon from '../../../components/ComingSoon/ComingSoon'
 
 function Home() {
     const { setPath } = useContext(UserContext)
     useEffect(() => setPath('/'), [])
-    // useEffect(() => {window.scrollTo(0, 0)}, [])
+    useEffect(() => {window.scrollTo(0, 0)}, [])
 
     const messageRef = useRef()
     const block1Ref = useRef()
